@@ -4,6 +4,12 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		echo 'Main GTD controller';
+		$projects = $this->Task->get_tasks_by_project(6);
+		
+		foreach ($projects->result() as $project)
+		{
+			echo $project->description;
+			echo '<br>';
+		}
 	}
 }
