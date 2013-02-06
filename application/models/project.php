@@ -7,4 +7,15 @@ class Project extends CI_Model {
         parent::__construct();
     }
 	
+	function find($id = NULL)
+	{
+		return $this->db->where('id', $id)->get('projects');
+	}
+	
+	function alphabetical_list()
+	{
+		$projects = $this->db->order_by('name', 'asc')->get('projects');
+		return $projects->result();
+	}
+	
 }
