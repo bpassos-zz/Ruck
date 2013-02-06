@@ -5,6 +5,7 @@
 	</head>
 	<body>
 		<h1><?php echo $template['title']; ?></h1>
+		<?php echo $template['partials']['sidebar']; ?>
 		<?php echo $template['body']; ?>
 	</body>
 </html>

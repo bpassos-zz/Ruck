@@ -30,12 +30,22 @@ class Tasks extends CI_Controller {
 	
 	public function test()
 	{
+
+		# Configure template to use.
 		$this->template->set_layout('gtd');
-		$this->template->title('Blog', 'Test');
+
+		# Set page title.
+		$this->template->title('GTD', 'Tasks');
+
+		# Create template partials, including passing data.
 		$this->template->set_partial('header', 'layouts/partial/header');
-		$this->template->build('tasks', array(
+		$this->template->set_partial('sidebar', 'layouts/partial/sidebar', array(
 			'projects_list' => $this->projects_list
 		));
+
+		# Load the main content of the page.
+		$this->template->build('tasks');
+
 	}
 
 }
