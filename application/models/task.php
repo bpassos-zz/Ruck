@@ -7,6 +7,11 @@ class Task extends CI_Model {
         parent::__construct();
     }
 	
+	function find($id = NULL)
+	{
+		return $this->db->where('id', $id)->get('tasks');
+	}
+
 	function get_tasks_by_project($project_id)
 	{
 		return $this->db->get_where('tasks', array(
