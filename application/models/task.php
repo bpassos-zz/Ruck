@@ -12,7 +12,10 @@ class Task extends CI_Model {
 	 */
 	function find($id = NULL)
 	{
-		return $this->db->where('id', $id)->get('tasks');
+		$task = $this->db->get_where('tasks', array(
+			'id' => $id
+		));
+		return $task->row();
 	}
 
 	/**

@@ -34,13 +34,23 @@ class Tasks extends CI_Controller {
 		
 	}
 	
+	/**
+	 * Show an individual task details.
+	 */
 	public function detail($id = NULL)
 	{
+
 		$task = $this->Task->find($id);
-		$this->parser->parse('tasks/detail', array(
-			'projects_list' => $this->projects_list,
-			'task'			=> $task->result()
+
+		# Set page title.
+		$this->template->title('GTD', $task->description);
+
+		# Load the main content of the page.
+		$this->template->build('tasks/detail', array(
+			'description'	=> $task->description,
+			'notes'			=> $task->notes,
 		));
+
 	}
 	
 }
