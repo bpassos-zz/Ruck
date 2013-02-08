@@ -7,4 +7,13 @@ class Context extends CI_Model {
         parent::__construct();
     }
 	
+	/**
+	 * Return a list of all contexts in alphabetical order
+	 */
+	function alphabetical_list()
+	{
+		$contexts = $this->db->order_by('name', 'asc')->get('contexts');
+		return $contexts->result();
+	}
+
 }
