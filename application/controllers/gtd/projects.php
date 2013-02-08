@@ -23,6 +23,42 @@ class Projects extends Ruck_Controller {
 	}
 	
 	/**
+	 * Ajax handler to re-order the tasks within a project after they have
+	 * been rearranged.
+	 */
+	function order()
+	{
+		$new_order = $this->input->post('new_order');
+		if (isset($new_order))
+		{
+			// We have a list of re-arranged IDs.
+			// What we want to do is retrieve the Todo items, duplicate them,
+			// insert them in the new order, then delete the originals.
+			foreach ($new_order as $id)
+			{
+				// TODO: I'm sure there must be a simpler/more efficient way to do this...
+				$task = $this->db->get_where('tasks', array(
+					'id' => $id
+				))->row();
+				$data = array(
+					'description'	=> $task->description,
+					'notes'			=> $task->notes,
+					'project_id'	=> $task->project_id,
+					'status_id'		=> $task->status_id,
+					'context_id'	=> $task->context_id,
+					'due'			=> $task->due,
+					'created_at'	=> $task->created_at,
+					'updated_at'	=> $task->updated_at,
+				);
+				$this->db->insert('tasks', $data);
+				$this->db->delete('tasks', array(
+					'id' => $id
+				));
+			}
+		}
+	}
+	
+	/**
 	 * Creating a new project.
 	 */
 	public function create()

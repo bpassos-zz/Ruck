@@ -25,6 +25,33 @@
 			<?php echo $template['body']; ?>
 		</div>
 
+		<!-- Load jQuery -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/j/jquery-1.9.1.min.js"><\/script>')</script>
+		
+		<!-- Load jQuery UI Sortable -->
+		<script src="/j/jquery-ui-1.10.0.custom.min.js"></script>
+		
+		<script>
+			$(function () {
+				$('.sortable').sortable({
+					revert: true,
+					update: function (event, ui) {
+						$.ajax({
+							data: {
+								new_order : $('.sortable').sortable('toArray')
+							},
+							error: function () {
+								// TODO: Add error handling for failed Ajax call.
+							},
+							type: 'POST',
+							url: '/gtd/projects/order'
+						});
+					}
+				});
+			});
+		</script>
+
 	</body>
 
 </html>
