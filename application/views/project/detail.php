@@ -6,6 +6,9 @@
 
 <ul class="task-list sortable">
 	<?php foreach ($tasks as $task): ?>
-		<li id="<?php echo $task->id; ?>"><a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> <a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="mini">Delete</a></li>
+		<li id="<?php echo $task->id; ?>">
+			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
+			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="mini">Delete</a>
+		</li>
 	<?php endforeach; ?>
 </ul>

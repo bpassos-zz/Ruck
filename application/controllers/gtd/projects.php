@@ -34,6 +34,7 @@ class Projects extends Ruck_Controller {
 			// We have a list of re-arranged IDs.
 			// What we want to do is retrieve the Todo items, duplicate them,
 			// insert them in the new order, then delete the originals.
+			$new_ids = array();
 			foreach ($new_order as $id)
 			{
 				// TODO: I'm sure there must be a simpler/more efficient way to do this...
@@ -51,10 +52,12 @@ class Projects extends Ruck_Controller {
 					'updated_at'	=> $task->updated_at,
 				);
 				$this->db->insert('tasks', $data);
+				$new_ids[] = $this->db->insert_id();
 				$this->db->delete('tasks', array(
 					'id' => $id
 				));
 			}
+			echo implode(',', $new_ids);
 		}
 	}
 	

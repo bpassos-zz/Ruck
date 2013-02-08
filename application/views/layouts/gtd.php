@@ -44,6 +44,16 @@
 							error: function () {
 								// TODO: Add error handling for failed Ajax call.
 							},
+							success: function (data) {
+								// Re-apply the correct IDs to the sortable list and links.
+								new_ids = data.split(',');
+								$('.sortable li').each(function (i) {
+									this.id = new_ids[i];
+									$(this).find('a').each(function () {
+										this.href = this.href.replace(/\d+/, new_ids[i]);
+									});
+								});
+							},
 							type: 'POST',
 							url: '/gtd/projects/order'
 						});
