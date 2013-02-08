@@ -38,6 +38,7 @@
 |
 */
 
+$route['gtd'] = 'gtd/tasks';
 $route['gtd/projects/(:num)'] = 'gtd/projects/index/$1';
 $route['404_override'] = '';
 

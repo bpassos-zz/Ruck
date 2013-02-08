@@ -10,7 +10,7 @@
 
 	<body>
 		
-		<div style="font-weight: bold; font-size: 22px; font-family: serif; font-style: italic; background: #333; color: #fff; padding: 10px; margin: -20px -20px 20px;">Ruck - Where GTD meets Scrum</div>
+		<div style="font-weight: bold; font-size: 22px; font-family: serif; font-style: italic; background: #333; color: #fff; padding: 10px 20px; margin: -20px -20px 20px;">Ruck - Where <a href="/gtd/">GTD</a> meets <a href="/scrum/">Scrum</a></div>
 
 		<?php echo $template['partials']['sidebar']; ?>
 		
