@@ -7,11 +7,11 @@ class Status extends CI_Model {
         parent::__construct();
     }
 	
-	function fetch_project_statuses()
+	function fetch_statuses($type)
 	{
 		$statuses = array();
 		$query = $this->db->select('id, name')->get_where('statuses', array(
-			'type' => 'project'
+			'type' => $type
 		));
 		foreach ($query->result() as $row)
 		{

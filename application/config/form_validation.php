@@ -13,4 +13,12 @@ $config = array(
 		),
 	),
 
+	'new_task' => array(
+		array(
+			'field'	=> 'description',
+			'label'	=> 'Task description',
+			'rules'	=> 'trim|required|max_length[255]|xss_clean',
+		),
+	),
+
 );

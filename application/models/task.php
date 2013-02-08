@@ -61,4 +61,35 @@ class Task extends CI_Model {
 
 	}
 	
+	/**
+	 * Insert a new task from the New Task form.
+	 */
+	function insert_new()
+	{
+		$this->db->insert('tasks', array(
+			'description'		=> $this->input->post('description'),
+			'notes'				=> $this->input->post('notes'),
+			'context_id'		=> $this->input->post('context_id'),
+			'status_id'			=> $this->input->post('status_id'),
+			'project_id'		=> $this->input->post('project_id'),
+			'created_at'		=> date('Y-m-d H:i:s'),
+			'updated_at'		=> date('Y-m-d H:i:s'),
+		));
+		return;
+	}
+
+	/**
+	 * Delete a task.
+	 */
+	function delete($id)
+	{
+		$project = $this->db->select('project_id')->get_where('tasks', array(
+			'id' => $id
+		));
+		$this->db->delete('tasks', array(
+			'id' => $id
+		));
+		return $project->row()->project_id;
+	}
+
 }

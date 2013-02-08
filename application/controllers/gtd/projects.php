@@ -39,7 +39,7 @@ class Projects extends Ruck_Controller {
 	
 			# Load the main content of the page.
 			$this->template->build('project/new', array(
-				'statuses'	=> $this->Status->fetch_project_statuses(),
+				'statuses'	=> $this->Status->fetch_statuses('project'),
 				'projects'	=> $this->Project->fetch_projects_for_dropdown(),
 			));
 			
@@ -70,4 +70,5 @@ class Projects extends Ruck_Controller {
 		# Redirect to the master page.
 		redirect('/gtd/');
 	}
+
 }
