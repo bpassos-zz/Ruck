@@ -1,0 +1,100 @@
+* {
+	margin: 0;
+	padding: 0;
+	font: 14px/20px Helvetica, Arial, sans-serif;
+	color: #333;
+}
+
+body {
+	padding: 20px;
+}
+
+a {
+	color: #08c;
+}
+
+button {
+	padding: 5px 10px;
+	border-radius: 5px;
+	background: #c30;
+	color: #fff;
+	border: 0;
+	cursor: pointer;
+	box-shadow: 0 1px 1px #000;
+}
+
+button:hover {
+	background: #f30;
+	box-shadow: 0 0 1px #000;
+}
+
+.actions {
+	margin: 0 0 10px;
+}
+
+#sidebar {
+	float: left;
+	width: 20%;
+	margin-right: 5%;
+}
+
+#sidebar ul, #contexts {
+	list-style: none;
+	overflow: hidden;
+}
+
+#sidebar a {
+	text-decoration: none;
+	display: block;
+	background: #eee;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+#sidebar a:hover {
+	background: #ccc;
+	color: #09f;
+}
+
+h1 {
+	font-size: 24px;
+	margin: 0 0 20px;
+}
+
+#contexts a {
+	display: block;
+	float: left;
+	margin: 0 10px 20px 0;
+	padding: 5px 10px;
+	border-radius: 10px;
+	text-decoration: none;
+	background: #eee;
+}
+
+fieldset {
+	border: 0;
+}
+
+legend {
+	font-size: 18px;
+	color: #666;
+}
+
+form ol {
+	list-style: none;
+}
+
+form li {
+	margin-bottom: 10px;
+}
+
+label, input, select {
+	display: block;
+}
+
+.error {
+	background: #fcc;
+	color: #d00;
+	margin: 0 0 20px;
+	padding: 10px;
+}

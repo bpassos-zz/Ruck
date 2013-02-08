@@ -1,28 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Projects extends CI_Controller {
+class Projects extends Ruck_Controller {
 	
 	/**
-	 * Constructor. Here we setup the templating system, and create standard
-	 * content like the sidebar list of projects and top list of contexts.
-	 */	
-	public function __construct()
-	{
-		parent::__construct();
-
-		# Configure template to use.
-		$this->template->set_layout('gtd');
-
-		# Create template partials, including passing data.
-		$this->template->set_partial('header', 'layouts/partial/header');
-		$this->template->set_partial('sidebar', 'layouts/partial/sidebar', array(
-			'projects_list' => $this->Project->alphabetical_list(),
-		));
-		$this->template->set_partial('contexts', 'layouts/partial/contexts', array(
-			'context_list'	=> $this->Context->alphabetical_list(),
-		));
-	}
-
+	 * A single project view, showing all tasks associated with that project.
+	 */
 	public function index($id = NULL)
 	{
 		
@@ -39,5 +21,40 @@ class Projects extends CI_Controller {
 		));
 
 	}
+	
+	/**
+	 * Creating a new project.
+	 */
+	public function create()
+	{
+		
+		$this->load->library('form_validation');
+		
+		# Validate the new project form if submitted.
+		if ($this->form_validation->run() == FALSE)
+		{
 
+			# Set page title.
+			$this->template->title('GTD', 'Create a new Project');
+	
+			# Load the main content of the page.
+			$this->template->build('project/new', array(
+				'statuses'	=> $this->Status->fetch_project_statuses(),
+				'projects'	=> $this->Project->fetch_projects_for_dropdown(),
+			));
+			
+		}
+		else
+		{
+			
+			# Form passes validation, insert the new project into the database.
+			$project_id = $this->Project->insert_new();
+			
+			# Redirect to the new Project's page.
+			redirect('/gtd/projects/' . $project_id);
+			
+		}
+
+	}
+	 
 }
