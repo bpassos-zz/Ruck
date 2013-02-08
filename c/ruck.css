@@ -64,7 +64,7 @@ button:hover {
 	padding: 5px;
 }
 
-#sidebar a:hover {
+#sidebar a:hover, #contexts a:hover {
 	background: #ccc;
 	color: #09f;
 }

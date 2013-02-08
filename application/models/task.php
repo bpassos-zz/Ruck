@@ -29,6 +29,16 @@ class Task extends CI_Model {
 	}
 	
 	/**
+	 * Find all tasks tagged for a specific context.
+	 */
+	function get_tasks_by_context($context_id)
+	{
+		return $this->db->get_where('tasks', array(
+			'context_id' => $context_id
+		));
+	}
+	
+	/**
 	 * Find all of the 'next' tasks. These will be the single task within
 	 * each project with the lowest id (as we re-insert the tasks each time
 	 * their order is updated.)

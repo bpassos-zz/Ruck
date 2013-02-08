@@ -39,7 +39,10 @@
 */
 
 $route['gtd'] = 'gtd/tasks';
+
 $route['gtd/projects/(:num)'] = 'gtd/projects/index/$1';
+$route['gtd/contexts/(:num)'] = 'gtd/contexts/index/$1';
+
 $route['404_override'] = '';
 
 

@@ -13,6 +13,14 @@ $config = array(
 		),
 	),
 
+	'contexts/create' => array(
+		array(
+			'field'	=> 'name',
+			'label'	=> 'Context name',
+			'rules'	=> 'trim|required|max_length[100]|is_unique[contexts.name]|xss_clean',
+		),
+	),
+
 	'new_task' => array(
 		array(
 			'field'	=> 'description',
