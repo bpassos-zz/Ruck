@@ -96,6 +96,22 @@ class Projects extends Ruck_Controller {
 
 	}
 	
+	function activate($id)
+	{
+		$this->db->where('id', $id)->update('projects', array(
+			'status_id' => 3
+		));
+		redirect('/gtd/projects/' . $id);
+	}
+	
+	function deactivate($id)
+	{
+		$this->db->where('id', $id)->update('projects', array(
+			'status_id' => 4
+		));
+		redirect('/gtd/projects/' . $id);
+	}
+	
 	/**
 	 * Delete a project. This process should really check whether there are any
 	 * outstanding tasks assigned to this project and prompt the user to decide

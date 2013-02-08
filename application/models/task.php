@@ -50,7 +50,9 @@ class Task extends CI_Model {
 		$next_tasks = array();
 
 		# Retrieve all projects.
-		$projects = $this->db->get('projects');
+		$projects = $this->db->get_where('projects', array(
+			'status_id' => '3'
+		));
 
 		# Loop through each project.
 		foreach ($projects->result() as $project)

@@ -1,8 +1,14 @@
-<h1><?php echo $project['name']; ?></h1>
+<h1>
+	<?php echo $project['name']; ?> 
+	<?php if ($project['status_id'] == 3): ?>
+		<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="mini">Mark as inactive</a>
+	<?php else: ?>
+		<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="mini">Mark as active</a>
+	<?php endif; ?>
+	<a href="/gtd/projects/delete/<?php echo $project['id']; ?>" class="mini">Delete this project</a>
+</h1>
 
 <p><?php echo $project['description']; ?></p>
-
-<p><a href="/gtd/tasks/create/<?php echo $project['id']; ?>">Add new task</a> | <a href="/gtd/projects/delete/<?php echo $project['id']; ?>">Delete this project</a></p>
 
 <ul class="task-list sortable">
 	<?php foreach ($tasks as $task): ?>
@@ -12,3 +18,5 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
+
+<p><a href="/gtd/tasks/create/<?php echo $project['id']; ?>">Add new task</a></p>
