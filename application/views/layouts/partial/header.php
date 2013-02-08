@@ -27,8 +27,9 @@
 		margin-right: 5%;
 	}
 	
-	#sidebar ul {
+	#sidebar ul, #contexts {
 		list-style: none;
+		overflow: hidden;
 	}
 	
 	#sidebar a {
@@ -47,6 +48,16 @@
 	h1 {
 		font-size: 24px;
 		margin: 0 0 20px;
+	}
+	
+	#contexts a {
+		display: block;
+		float: left;
+		margin: 0 10px 20px 0;
+		padding: 5px 10px;
+		border-radius: 10px;
+		text-decoration: none;
+		background: #eee;
 	}
 	
 </style>

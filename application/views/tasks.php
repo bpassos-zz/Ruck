@@ -1,10 +1,7 @@
-<div id="content">
-	{project}
-		<h1>{name}</h1>
-	{/project}
-	<ul>
-		{tasks}
-			<li><a href="/gtd/tasks/detail/{id}">{description}</a></li>
-		{/tasks}
-	</ul>
-</div>
+<h1><?php echo $project['name']; ?></h1>
+
+<ul>
+	<?php foreach ($tasks as $task): ?>
+		<li><a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a></li>
+	<?php endforeach; ?>
+</ul>

@@ -1,2 +1,3 @@
-	<h1>{description}</h1>
-	<p>{notes}</p>
+<h1><?php echo $task['description']; ?></h1>
+
+<p><?php echo $task['notes']; ?></p>

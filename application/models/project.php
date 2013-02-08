@@ -9,7 +9,8 @@ class Project extends CI_Model {
 	
 	function find($id = NULL)
 	{
-		return $this->db->where('id', $id)->get('projects');
+		$project = $this->db->get_where('projects', array('id' => $id));
+		return $project->row_array();
 	}
 	
 	function alphabetical_list()

@@ -17,6 +17,8 @@ class Tasks extends CI_Controller {
 		$this->template->set_partial('header', 'layouts/partial/header');
 		$this->template->set_partial('sidebar', 'layouts/partial/sidebar', array(
 			'projects_list' => $this->Project->alphabetical_list(),
+		));
+		$this->template->set_partial('contexts', 'layouts/partial/contexts', array(
 			'context_list'	=> $this->Context->alphabetical_list(),
 		));
 	}
@@ -43,12 +45,11 @@ class Tasks extends CI_Controller {
 		$task = $this->Task->find($id);
 
 		# Set page title.
-		$this->template->title('GTD', $task->description);
+		$this->template->title('GTD', $task['description']);
 
 		# Load the main content of the page.
 		$this->template->build('tasks/detail', array(
-			'description'	=> $task->description,
-			'notes'			=> $task->notes,
+			'task' => $task,
 		));
 
 	}

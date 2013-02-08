@@ -15,7 +15,7 @@ class Task extends CI_Model {
 		$task = $this->db->get_where('tasks', array(
 			'id' => $id
 		));
-		return $task->row();
+		return $task->row_array();
 	}
 
 	/**

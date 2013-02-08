@@ -1,7 +1,7 @@
 <div id="sidebar">
 	<ul>
-		{projects_list}
-			<li><a href="/gtd/projects/{id}">{name}</a></li>
-		{/projects_list}
+		<?php foreach ($projects_list as $project): ?>
+			<li><a href="/gtd/projects/<?php echo $project->id ?>"><?php echo $project->name; ?></a></li>
+		<?php endforeach; ?>
 	</ul>
 </div>
