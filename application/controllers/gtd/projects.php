@@ -15,7 +15,7 @@ class Projects extends Ruck_Controller {
 		$this->template->title('GTD', $project['name']);
 
 		# Load the main content of the page.
-		$this->template->build('tasks', array(
+		$this->template->build('project/detail', array(
 			'project'		=> $project,
 			'tasks'			=> $tasks->result(),
 		));
@@ -56,5 +56,18 @@ class Projects extends Ruck_Controller {
 		}
 
 	}
-	 
+	
+	/**
+	 * Delete a project. This process should really check whether there are any
+	 * outstanding tasks assigned to this project and prompt the user to decide
+	 * what to do with them before deleting.
+	 */
+	function delete($id = NULL)
+	{
+		# Delete the project row.
+		$this->Project->delete($id);
+		
+		# Redirect to the master page.
+		redirect('/gtd/');
+	}
 }

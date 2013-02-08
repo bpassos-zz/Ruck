@@ -13,6 +13,15 @@ a {
 	color: #08c;
 }
 
+p {
+	margin: 0 0 10px;
+}
+
+.mini {
+	font-size: 11px;
+	color: #c30;
+}
+
 button {
 	padding: 5px 10px;
 	border-radius: 5px;

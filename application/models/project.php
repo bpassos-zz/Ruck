@@ -48,4 +48,14 @@ class Project extends CI_Model {
 		return $this->db->insert_id();
 	}
 	
+	/**
+	 * Delete a project.
+	 */
+	function delete($id)
+	{
+		$this->db->delete('projects', array(
+			'id' => $id
+		));
+		return;
+	}
 }
