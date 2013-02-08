@@ -13,9 +13,19 @@ class Project extends CI_Model {
 		return $project->row_array();
 	}
 	
-	function alphabetical_list()
+	function active_projects()
 	{
-		$projects = $this->db->order_by('name', 'asc')->get('projects');
+		$projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
+			'status_id' => 3
+		));
+		return $projects->result();
+	}
+	
+	function inactive_projects()
+	{
+		$projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
+			'status_id' => 4
+		));
 		return $projects->result();
 	}
 	

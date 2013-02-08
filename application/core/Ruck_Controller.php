@@ -18,7 +18,8 @@ class Ruck_Controller extends CI_Controller {
 		$this->template->set_partial('header', 'layouts/partial/header');
 		$this->template->set_partial('actions', 'layouts/partial/actions');
 		$this->template->set_partial('sidebar', 'layouts/partial/sidebar', array(
-			'projects_list' => $this->Project->alphabetical_list(),
+			'active_projects'	=> $this->Project->active_projects(),
+			'inactive_projects'	=> $this->Project->inactive_projects(),
 		));
 		$this->template->set_partial('contexts', 'layouts/partial/contexts', array(
 			'context_list'	=> $this->Context->alphabetical_list(),
