@@ -61,7 +61,7 @@ class Tasks extends Ruck_Controller {
 		{
 			
 			# Form passes validation, insert the new project into the database.
-			$this->Task->insert_new();
+			$project_id = $this->Task->insert_new();
 			
 			# Redirect to the Project's page to show the new task.
 			redirect('/gtd/projects/' . $project_id);

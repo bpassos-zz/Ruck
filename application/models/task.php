@@ -62,20 +62,52 @@ class Task extends CI_Model {
 	}
 	
 	/**
-	 * Insert a new task from the New Task form.
+	 * Insert a new task from the New Task form. Might also create a new project
+	 * if this task has no parent project specified.
 	 */
 	function insert_new()
 	{
-		$this->db->insert('tasks', array(
-			'description'		=> $this->input->post('description'),
-			'notes'				=> $this->input->post('notes'),
-			'context_id'		=> $this->input->post('context_id'),
-			'status_id'			=> $this->input->post('status_id'),
-			'project_id'		=> $this->input->post('project_id'),
-			'created_at'		=> date('Y-m-d H:i:s'),
-			'updated_at'		=> date('Y-m-d H:i:s'),
-		));
-		return;
+
+		$project_id = $this->input->post('project_id');
+
+		# If the project_id is set, create a child task.
+		if ($project_id)
+		{
+			$this->db->insert('tasks', array(
+				'description'		=> $this->input->post('description'),
+				'notes'				=> $this->input->post('notes'),
+				'context_id'		=> $this->input->post('context_id'),
+				'status_id'			=> $this->input->post('status_id'),
+				'project_id'		=> $this->input->post('project_id'),
+				'created_at'		=> date('Y-m-d H:i:s'),
+				'updated_at'		=> date('Y-m-d H:i:s'),
+			));
+		}
+		else
+		{
+			# No project provided, so first we create a new project to hold this task.
+			$this->db->insert('projects', array(
+				'name'				=> $this->input->post('description'),
+				'status_id'			=> 0,
+				'created_at'		=> date('Y-m-d H:i:s'),
+				'updated_at'		=> date('Y-m-d H:i:s'),
+			));
+			# Now we can create the new task as a child of the new project.
+			$project_id = $this->db->insert_id();
+			$this->db->insert('tasks', array(
+				'description'		=> $this->input->post('description'),
+				'notes'				=> $this->input->post('notes'),
+				'context_id'		=> $this->input->post('context_id'),
+				'status_id'			=> $this->input->post('status_id'),
+				'project_id'		=> $project_id,
+				'created_at'		=> date('Y-m-d H:i:s'),
+				'updated_at'		=> date('Y-m-d H:i:s'),
+			));
+		}
+
+		# Return to either the original project or the newly created one.
+		return $project_id;
+
 	}
 
 	/**
