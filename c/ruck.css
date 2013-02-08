@@ -51,6 +51,11 @@ button:hover {
 	margin-right: 5%;
 }
 
+#main {
+	width: 70%;
+	float: left;
+}
+
 #sidebar ul, #contexts {
 	list-style: none;
 	overflow: hidden;
@@ -110,4 +115,8 @@ label, input, select {
 	color: #d00;
 	margin: 0 0 20px;
 	padding: 10px;
+}
+
+.task-list li:first-child {
+	background: #ff6;
 }

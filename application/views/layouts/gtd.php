@@ -21,7 +21,9 @@
 		
 		<?php echo $template['partials']['contexts']; ?>
 
-		<?php echo $template['body']; ?>
+		<div id="main">
+			<?php echo $template['body']; ?>
+		</div>
 
 	</body>
 
