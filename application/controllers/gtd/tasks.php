@@ -4,7 +4,7 @@ class Tasks extends Ruck_Controller {
 
 	public function index()
 	{
-		
+
 		# Set page title.
 		$this->template->title('GTD', 'Home');
 

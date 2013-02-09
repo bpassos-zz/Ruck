@@ -91,6 +91,11 @@ button {
 	padding: 5px;
 }
 
+.projects .child a {
+	background: #222;
+	padding-left: 25px;
+}
+
 .inactive a {
 	background: #666;
 	color: #999;

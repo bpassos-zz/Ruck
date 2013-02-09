@@ -13,12 +13,35 @@ class Project extends CI_Model {
 		return $project->row_array();
 	}
 	
+	/**
+	 * Return a nested list of active projects.
+	 */
 	function active_projects()
 	{
+
+		$active_projects;
+
+		# Retrieve all the active projects, as it's quicker to do the re-ordering in memory than in MySQL.
 		$projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
-			'status_id' => 3
-		));
-		return $projects->result();
+			'status_id' => 3,
+		))->result();
+
+		# Loop the parent projects, adding any that have a parent_id to a child array of the parent project.
+		foreach ($projects as $project)
+		{
+			if ($project->parent_project_id > 0)
+			{
+				$active_projects[$project->parent_project_id]['children'][] = $project;
+			}
+			else
+			{
+				$active_projects[$project->id]['parent'] = $project;
+			}
+		}
+		
+		# Return the final nested array.
+		return $active_projects;
+
 	}
 	
 	function inactive_projects()

@@ -63,8 +63,11 @@ class Task extends CI_Model {
 				'project_id' => $project->id
 			), 1);
 			
-			# Insert the Task object into the array.
-			$next_tasks[] = $task->row();			
+			# Insert the Task object into the array, if any were found.
+			if ($task->num_rows() != 0)
+			{
+				$next_tasks[] = $task->row();
+			}
 
 		}
 
