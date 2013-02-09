@@ -34,6 +34,8 @@
 		
 		<script>
 			$(function () {
+				
+				// Make task lists within projects sortable.
 				$('.sortable').sortable({
 					revert: true,
 					update: function (event, ui) {
@@ -59,6 +61,30 @@
 						});
 					}
 				});
+				
+				// Make context links toggle the current task list by context.
+				$('.context').click(function () {
+					$this = $(this);
+					// First either add or remove the active class for this context.
+					$this.toggleClass('active');
+					// Now collect all the active contexts and filter the task list.
+					var active_context_ids = [];
+					$('#contexts .active').each(function () {
+						active_context_ids.push(this.getAttribute('data-context-id'));
+					});
+					// If at least one is active, hide all the tasks then show the ones that match.
+					if (active_context_ids.length) {
+						$('.tasks li').hide();
+						for (var i = 0; i < active_context_ids.length; i++) {
+							$('.tasks li[data-context-id="' + active_context_ids[i] + '"]').show();
+						}
+					} else {
+						// Show all tasks as no contexts are selected.
+						$('.tasks li').show();
+					}
+					return false;
+				});
+				
 			});
 		</script>
 

@@ -103,6 +103,14 @@ h1 {
 	background: #eee;
 }
 
+#contexts .active {
+	background: #cfc;
+}
+
+#contexts .active:hover {
+	background: #3c3;
+}
+
 fieldset {
 	border: 0;
 }
