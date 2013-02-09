@@ -110,13 +110,20 @@ h1 {
 	margin: 0 0 20px;
 }
 
-#contexts a {
-	display: block;
+#contexts li {
+	position: relative;
 	float: left;
 	margin: 0 10px 20px 0;
+}
+
+#contexts a {
+	display: block;
 	padding: 5px 10px;
 	border-radius: 10px;
 	text-decoration: none;
+}
+
+.context {
 	background: #eee;
 }
 
@@ -128,12 +135,25 @@ h1 {
 	background: #3c3;
 }
 
+#contexts div {
+	display: none;
+	position: absolute;
+	top: 24px;
+	left: 0;
+	width: 100%;
+	background: #ccc;
+}
+
+#contexts li:hover div {
+	display: block;
+}
+
 fieldset {
 	border: 0;
 }
 
 legend {
-	font-size: 18px;
+	font-size: 24px;
 	color: #666;
 }
 
