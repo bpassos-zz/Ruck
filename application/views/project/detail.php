@@ -10,9 +10,9 @@
 
 <p><?php echo $project['description']; ?></p>
 
-<ul class="task-list sortable">
+<ul class="tasks sortable">
 	<?php foreach ($tasks as $task): ?>
-		<li id="<?php echo $task->id; ?>">
+		<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
 			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
 			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="mini">Delete</a>
 		</li>

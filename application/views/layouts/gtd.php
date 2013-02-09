@@ -62,11 +62,22 @@
 					}
 				});
 				
+				// Remove context links that are of no use for this project/view.
+				var context_ids = [];
+				$('.tasks li').each(function () {
+					context_ids.push(this.getAttribute('data-context-id'));
+				});
+				$('#contexts li').each(function () {
+					if (this.getAttribute('data-context-id') && context_ids.indexOf(this.getAttribute('data-context-id')) == -1) {
+						$(this).hide();
+					}
+				});
+				
 				// Make context links toggle the current task list by context.
 				$('.context').click(function () {
 					$this = $(this);
 					// First either add or remove the active class for this context.
-					$this.toggleClass('active');
+					$this.parent().toggleClass('active');
 					// Now collect all the active contexts and filter the task list.
 					var active_context_ids = [];
 					$('#contexts .active').each(function () {

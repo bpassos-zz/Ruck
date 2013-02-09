@@ -103,11 +103,11 @@ h1 {
 	background: #eee;
 }
 
-#contexts .active {
+#contexts .active a {
 	background: #cfc;
 }
 
-#contexts .active:hover {
+#contexts .active a:hover {
 	background: #3c3;
 }
 
