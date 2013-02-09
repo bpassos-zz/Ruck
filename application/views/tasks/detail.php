@@ -4,7 +4,7 @@
 
 <form method="post">
 	
-	<input class="inline-edit heading" type="text" name="description" value="<?php echo addslashes($task['description']); ?>">
+	<input class="inline-edit heading" type="text" name="description" value="<?php echo htmlspecialchars($task['description']); ?>">
 
 	<textarea name="notes" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea>
 

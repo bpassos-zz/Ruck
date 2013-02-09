@@ -19,4 +19,4 @@
 	<?php endforeach; ?>
 </ul>
 
-<p><a href="/gtd/tasks/create/<?php echo $project['id']; ?>">Add new task</a></p>
+<p>[+] <a href="/gtd/tasks/create/<?php echo $project['id']; ?>">Add new task</a></p>
