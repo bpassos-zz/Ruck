@@ -23,18 +23,31 @@ b {
 }
 
 button {
-	padding: 5px 10px;
-	border-radius: 5px;
-	background: #c30;
-	color: #fff;
-	border: 0;
+	padding: 0;
+	overflow: visible;
 	cursor: pointer;
+}
+
+.btn {
+	padding: 5px 10px;
+	text-decoration: none;
+	border-radius: 5px;
+	border: 0;
+	background: #333;
+	color: #fff;
 	box-shadow: 0 1px 1px #000;
 }
 
-button:hover {
-	background: #f30;
+.primary {
+	background: #c30;
+}
+
+.btn:hover {
 	box-shadow: 0 0 1px #000;
+}
+
+.primary:hover {
+	background: #f30;
 }
 
 .title-bar {
@@ -141,4 +154,22 @@ label, input, select {
 
 .task-list li:first-child {
 	background: #ff6;
+}
+
+/* Inline editing */
+
+.inline-edit {
+	border: 0;
+	width: 100%;
+	padding: 5px 0;
+}
+
+.inline-edit.heading {
+	font-size: 24px;
+}
+
+textarea.inline-edit {
+	background: #ffc;
+	height: 200px;
+	font: 16px/20px "Marker Felt", "Comic Sans";
 }

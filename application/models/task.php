@@ -72,6 +72,20 @@ class Task extends CI_Model {
 		return $next_tasks;
 
 	}
+
+	/**
+	 * Save changes to a task.
+	 */
+	function update($id)
+	{
+		$this->db->where('id', $id)->update('tasks', array(
+			'description'		=> $this->input->post('description'),
+			'notes'				=> strlen($this->input->post('notes')) ? $this->input->post('notes')  : '',
+#			'context_id'		=> $this->input->post('context_id'),
+#			'status_id'			=> $this->input->post('status_id'),
+			'updated_at'		=> date('Y-m-d H:i:s'),
+		));
+	}
 	
 	/**
 	 * Insert a new task from the New Task form. Might also create a new project

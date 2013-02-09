@@ -16,21 +16,32 @@ class Tasks extends Ruck_Controller {
 	}
 	
 	/**
-	 * Show an individual task details.
+	 * Show an individual task details, and allow editing of the task.
 	 */
 	public function detail($id = NULL)
 	{
 
+		$this->load->library('form_validation');
+		
+		# Validate the new project form if submitted.
+		if ($this->form_validation->run('new_task') != FALSE)
+		{
+			# Form passes validation, update the task in the database.
+			$this->Task->update($id);
+		}
+
 		$task = $this->Task->find($id);
+		$project = $this->Project->find($task['project_id']);
 
 		# Set page title.
 		$this->template->title('GTD', $task['description']);
 
 		# Load the main content of the page.
 		$this->template->build('tasks/detail', array(
-			'task' => $task,
+			'task'		=> $task,
+			'project'	=> $project,
 		));
-
+			
 	}
 	
 	/**
