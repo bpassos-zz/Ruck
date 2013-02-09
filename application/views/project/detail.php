@@ -20,3 +20,27 @@
 </ul>
 
 <p>[+] <a href="/gtd/tasks/create/<?php echo $project['id']; ?>">Add new task</a></p>
+
+<?php if (isset($child_projects)): ?>
+
+	<h2>Sub Projects</h2>
+	
+	<?php foreach ($child_projects as $project): ?>
+		<a href="/gtd/projects/<?php echo $project->id; ?>">
+			<div class="child-project">
+				<h3><?php echo $project->name; ?></h3>
+				<?php if ($project->tasks): ?>
+					<ul>
+						<?php foreach ($project->tasks as $task): ?>
+							<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
+								<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
+								<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="mini">Delete</a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+			</div>
+		</a>
+	<?php endforeach; ?>
+	
+<?php endif; ?>

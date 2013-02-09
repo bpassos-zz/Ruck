@@ -10,14 +10,16 @@ class Projects extends Ruck_Controller {
 		
 		$project = $this->Project->find($id);
 		$tasks = $this->Task->get_tasks_by_project($id);
+		$child_projects = $this->Project->get_child_projects_and_tasks($id);
 
 		# Set page title.
 		$this->template->title('GTD', $project['name']);
 
 		# Load the main content of the page.
 		$this->template->build('project/detail', array(
-			'project'		=> $project,
-			'tasks'			=> $tasks->result(),
+			'project'			=> $project,
+			'tasks'				=> $tasks->result(),
+			'child_projects'	=> $child_projects,
 		));
 
 	}

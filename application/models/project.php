@@ -79,6 +79,34 @@ class Project extends CI_Model {
 	}
 	
 	/**
+	 * If a project has any child projects, show details and tasks.
+	 */
+	function get_child_projects_and_tasks($id)
+	{
+		$query = $this->db->get_where('projects', array(
+			'parent_project_id' => $id
+		));
+		
+		if ($query->num_rows != 0)
+		{
+			# Found some child projects - let's find their tasks.
+			$child_projects = array();
+			foreach ($query->result() as $row)
+			{
+				$row->tasks = $this->db->get_where('tasks', array(
+					'project_id' => $row->id
+				))->result();
+				$child_projects[] = $row;
+			}
+			return $child_projects;
+		}
+		else
+		{
+			return;
+		}
+	}
+	
+	/**
 	 * Insert a new project from the New Project form and return the new ID.
 	 */
 	function insert_new()
