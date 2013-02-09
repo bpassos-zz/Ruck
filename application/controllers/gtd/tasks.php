@@ -7,7 +7,7 @@ class Tasks extends Ruck_Controller {
 
 		# Set page title.
 		$this->template->title('GTD', 'Home');
-
+		
 		# Load the main content of the page.
 		$this->template->build('home', array(
 			'next_tasks' => $this->Task->get_next_tasks()

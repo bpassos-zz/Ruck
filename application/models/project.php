@@ -19,28 +19,41 @@ class Project extends CI_Model {
 	function active_projects()
 	{
 
-		$active_projects;
-
 		# Retrieve all the active projects, as it's quicker to do the re-ordering in memory than in MySQL.
 		$projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
 			'status_id' => 3,
 		))->result();
 
-		# Loop the parent projects, adding any that have a parent_id to a child array of the parent project.
+		return $this->_build_tree($projects);
+
+	}
+	
+	/**
+	 * Recursive tree building function.
+	 */
+	function _build_tree($projects, $parent_id = 0)
+	{
+		$branch = array();
+
+		# Loop through every project.
 		foreach ($projects as $project)
 		{
-			if ($project->parent_project_id > 0)
+			# If this project's parent ID is the one we're looking for...
+			if ($project->parent_project_id == $parent_id)
 			{
-				$active_projects[$project->parent_project_id]['children'][] = $project;
-			}
-			else
-			{
-				$active_projects[$project->id]['parent'] = $project;
+				# ...Re-call this function, looking for projects with this project as a parent.
+				$children = $this->_build_tree($projects, $project->id);
+				# If this project has any (grand)children, add them to the array.
+				if ($children)
+				{
+					$project->children = $children;
+				}
+				# Add the parent project to the array.
+				$branch[] = $project;
 			}
 		}
-		
-		# Return the final nested array.
-		return $active_projects;
+
+		return $branch;
 
 	}
 	
