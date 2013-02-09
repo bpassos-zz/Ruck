@@ -33,6 +33,7 @@
 		<script src="/j/jquery-ui-1.10.0.custom.min.js"></script>
 		
 		<script>
+
 			$(function () {
 				
 				// Make task lists within projects sortable.
@@ -62,41 +63,51 @@
 					}
 				});
 				
-				// Remove context links that are of no use for this project/view.
-				var context_ids = [];
-				$('.tasks li').each(function () {
-					context_ids.push(this.getAttribute('data-context-id'));
-				});
-				$('#contexts li').each(function () {
-					if (this.getAttribute('data-context-id') && context_ids.indexOf(this.getAttribute('data-context-id')) == -1) {
-						$(this).hide();
-					}
-				});
-				
-				// Make context links toggle the current task list by context.
-				$('.context').click(function () {
-					$this = $(this);
-					// First either add or remove the active class for this context.
-					$this.parent().toggleClass('active');
-					// Now collect all the active contexts and filter the task list.
-					var active_context_ids = [];
-					$('#contexts .active').each(function () {
-						active_context_ids.push(this.getAttribute('data-context-id'));
+				var $tasks = $('.tasks li');
+
+				if ($tasks.length) {
+
+					// Remove context links that are of no use for this project/view.
+					var context_ids = [];
+					$('.tasks li').each(function () {
+						context_ids.push(this.getAttribute('data-context-id'));
 					});
-					// If at least one is active, hide all the tasks then show the ones that match.
-					if (active_context_ids.length) {
-						$('.tasks li').hide();
-						for (var i = 0; i < active_context_ids.length; i++) {
-							$('.tasks li[data-context-id="' + active_context_ids[i] + '"]').show();
+					$('#contexts li').each(function () {
+						if (this.getAttribute('data-context-id') && context_ids.indexOf(this.getAttribute('data-context-id')) == -1) {
+							$(this).hide();
 						}
-					} else {
-						// Show all tasks as no contexts are selected.
-						$('.tasks li').show();
-					}
-					return false;
-				});
+					});
 				
+					// Make context links toggle the current task list by context.
+					$('.context').click(function () {
+						$this = $(this);
+						// First either add or remove the active class for this context.
+						$this.parent().toggleClass('active');
+						// Now collect all the active contexts and filter the task list.
+						var active_context_ids = [];
+						$('#contexts .active').each(function () {
+							active_context_ids.push(this.getAttribute('data-context-id'));
+						});
+						// If at least one is active, hide all the tasks then show the ones that match.
+						if (active_context_ids.length) {
+							$('.tasks li').hide();
+							for (var i = 0; i < active_context_ids.length; i++) {
+								$('.tasks li[data-context-id="' + active_context_ids[i] + '"]').show();
+							}
+						} else {
+							// Show all tasks as no contexts are selected.
+							$('.tasks li').show();
+						}
+						return false;
+					});
+				
+				} else {
+					// No task list so hide the context navigation.
+					$('#contexts').remove();
+				}
+
 			});
+
 		</script>
 
 	</body>
