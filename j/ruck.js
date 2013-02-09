@@ -1,5 +1,13 @@
 $(function () {
 	
+	// Add show/hide animation to sidebar projects list.
+	$('.child, .grandchild').hide().parent().prepend('<a href="#" class="project-toggle">+</a>');
+	
+	$('.project-toggle').click(function () {
+		$(this).parent().children('ul').toggle();
+		return false;
+	});
+	
 	// Make task lists within projects sortable.
 	$('.sortable').sortable({
 		revert: true,

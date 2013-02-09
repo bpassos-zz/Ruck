@@ -36,6 +36,6 @@
 		</ol>
 	</fieldset>
 	<div class="actions">
-		<button type="submit">Create new task</button>
+		<button class="btn primary" type="submit">Create new task</button>
 	</div>
 </form>
