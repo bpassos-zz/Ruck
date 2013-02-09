@@ -4,6 +4,9 @@
 
 <ul class="tasks">
 	<?php foreach ($next_tasks as $task): ?>
-		<li data-context-id="<?php echo $task->context_id; ?>"><a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a></li>
+		<li data-context-id="<?php echo $task->context_id; ?>">
+			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a>
+			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="mini">Delete</a>
+			</li>
 	<?php endforeach; ?>
 </ul>
