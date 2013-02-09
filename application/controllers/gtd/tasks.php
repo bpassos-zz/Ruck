@@ -81,13 +81,20 @@ class Tasks extends Ruck_Controller {
 
 	}
 	
-	function delete($id = NULL)
+	function delete($id = NULL, $location = '')
 	{
 		# Delete the task row.
 		$project_id = $this->Task->delete($id);
 		
 		# Redirect to the project page.
-		redirect('/gtd/projects/' . $project_id);
+		if ($location == 'home')
+		{
+			redirect('/gtd/');
+		}
+		else
+		{
+			redirect('/gtd/projects/' . $project_id);
+		}
 	}
 
 }
