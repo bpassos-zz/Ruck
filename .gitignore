@@ -5,3 +5,5 @@
 */logs/!index.html
 */cache/*
 */cache/!index.html
+
+.settings/com.aptana.editor.php.prefs
