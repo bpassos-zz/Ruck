@@ -74,8 +74,7 @@ button {
 }
 
 #main {
-	width: 70%;
-	float: left;
+	margin-left: 25%;
 }
 
 #sidebar ul, #contexts {
