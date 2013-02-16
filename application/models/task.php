@@ -41,7 +41,8 @@ class Task extends CI_Model {
 	/**
 	 * Find all of the 'next' tasks. These will be the single task within
 	 * each project with the lowest id (as we re-insert the tasks each time
-	 * their order is updated.)
+	 * their order is updated.) We also need to retrieve the related project
+	 * so we can display a link and name for that in the list too.
 	 */
 	function get_next_tasks()
 	{
@@ -66,6 +67,8 @@ class Task extends CI_Model {
 			# Insert the Task object into the array, if any were found.
 			if ($task->num_rows() != 0)
 			{
+				$row = $task->row();
+				$row->project_name = $project->name;
 				$next_tasks[] = $task->row();
 			}
 
