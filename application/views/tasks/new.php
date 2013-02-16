@@ -27,7 +27,7 @@
 			</li>
 			<li>
 				<label for="context_id">Context</label>
-				<?php echo form_dropdown('context_id', $contexts, '0', 'id="context_id"'); ?>
+				<?php echo form_dropdown('context_id', $contexts, $default_context, 'id="context_id"'); ?>
 			</li>
 			<li>
 				<label for="project_id">Project</label>

@@ -107,6 +107,20 @@ class Project extends CI_Model {
 	}
 	
 	/**
+	 * For a given project, return the most frequently used context_id or NULL if there are no tasks.
+	 */
+	function find_most_frequent_context($project_id)
+	{
+		$query = $this->db->select('context_id, COUNT(context_id) AS count')->group_by('context_id')->order_by('count', 'desc')->get_where('tasks', array(
+			'project_id' => $project_id
+		), 1);
+		if ($query->num_rows())
+		{
+			return $query->row()->context_id;
+		}
+	}
+	
+	/**
 	 * Insert a new project from the New Project form and return the new ID.
 	 */
 	function insert_new()

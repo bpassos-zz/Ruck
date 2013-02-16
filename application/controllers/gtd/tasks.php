@@ -61,10 +61,11 @@ class Tasks extends Ruck_Controller {
 	
 			# Load the main content of the page.
 			$this->template->build('tasks/new', array(
-				'statuses'		=> $this->Status->fetch_statuses('task'),
-				'contexts'		=> $this->Context->fetch_contexts(),
-				'projects'		=> $this->Project->fetch_projects_for_dropdown(),
-				'project_id'	=> $project_id,
+				'statuses'			=> $this->Status->fetch_statuses('task'),
+				'contexts'			=> $this->Context->fetch_contexts(),
+				'projects'			=> $this->Project->fetch_projects_for_dropdown(),
+				'project_id'		=> $project_id,
+				'default_context'	=> $this->Project->find_most_frequent_context($project_id),
 			));
 			
 		}
