@@ -10,7 +10,6 @@ class Projects extends Ruck_Controller {
 		
 		$project = $this->Project->find($id);
 		$tasks = $this->Task->get_tasks_by_project($id);
-		$child_projects = $this->Project->get_child_projects_and_tasks($id);
 
 		# Set page title.
 		$this->template->title('GTD', $project['name']);
@@ -19,14 +18,16 @@ class Projects extends Ruck_Controller {
 		$this->template->build('project/detail', array(
 			'project'			=> $project,
 			'tasks'				=> $tasks->result(),
-			'child_projects'	=> $child_projects,
+			'parent_projects'	=> $this->Project->get_ancestor_projects($project['parent_project_id']),
+			'child_projects'	=> $this->Project->get_child_projects_and_tasks($id),
 		));
 
 	}
 	
 	/**
 	 * Ajax handler to re-order the tasks within a project after they have
-	 * been rearranged.
+	 * been rearranged. Returns the revised list of IDs so they can be used
+	 * to update the links on the page.
 	 */
 	function order()
 	{

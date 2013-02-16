@@ -79,6 +79,29 @@ class Project extends CI_Model {
 	}
 	
 	/**
+	 * Find any parent or grandparent projects and return them in an array.
+	 */
+	function get_ancestor_projects($id)
+	{
+		$ancestors = array();
+		$query = $this->db->get_where('projects', array(
+			'id' => $id,
+		));
+		if ($query->num_rows() > 0)
+		{
+			$ancestors[] = $query->row();
+			$query = $this->db->get_where('projects', array(
+				'id' => $query->row()->parent_project_id,
+			));
+			if ($query->num_rows() > 0)
+			{
+				$ancestors[] = $query->row();
+			}
+		}
+		return array_reverse($ancestors);
+	}
+	
+	/**
 	 * If a project has any child projects, show details and tasks.
 	 */
 	function get_child_projects_and_tasks($id)

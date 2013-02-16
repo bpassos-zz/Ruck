@@ -1,3 +1,10 @@
+<p>
+	<?php foreach ($parent_projects as $parent_project): ?>
+		<a href="/gtd/projects/<?php echo $parent_project->id; ?>"><?php echo $parent_project->name; ?></a>
+		 &raquo;
+	<?php endforeach; ?>
+</p>
+
 <h1>
 	<?php echo $project['name']; ?> 
 	<?php if ($project['status_id'] == 3): ?>
