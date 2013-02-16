@@ -6,7 +6,7 @@
 	
 	<input class="inline-edit heading" type="text" name="description" value="<?php echo htmlspecialchars($task['description']); ?>">
 
-	<textarea name="notes" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea>
+	<textarea name="notes" rows="20" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea>
 
 	<div class="form-actions">
 		<button type="submit" class="btn primary">Save Changes</button>

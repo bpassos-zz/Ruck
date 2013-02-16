@@ -5,17 +5,25 @@
 	<?php endforeach; ?>
 </p>
 
-<h1>
-	<?php echo $project['name']; ?> 
-	<?php if ($project['status_id'] == 3): ?>
-		<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="mini">Mark as inactive</a>
-	<?php else: ?>
-		<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="mini">Mark as active</a>
-	<?php endif; ?>
-	<a href="/gtd/projects/delete/<?php echo $project['id']; ?>" class="mini">Delete this project</a>
-</h1>
+<?php echo validation_errors('<div class="error">', '</div>'); ?>
 
-<p><?php echo $project['description']; ?></p>
+<form method="post">
+	
+	<input class="inline-edit heading" type="text" name="name" value="<?php echo htmlspecialchars($project['name']); ?>">
+
+	<textarea name="description" rows="2" class="inline-edit" placeholder="Enter a project description"><?php echo $project['description']; ?></textarea>
+
+	<div class="form-actions">
+		<button type="submit" class="btn primary">Save Changes</button>
+		<?php if ($project['status_id'] == 3): ?>
+			<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="btn">Mark as inactive</a>
+		<?php else: ?>
+			<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="btn">Mark as active</a>
+		<?php endif; ?>
+		<a href="/gtd/projects/delete/<?php echo $project['id']; ?>" class="btn">Delete this project</a>
+	</div>
+
+</form>
 
 <ul class="tasks sortable">
 	<?php foreach ($tasks as $task): ?>

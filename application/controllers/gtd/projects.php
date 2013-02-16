@@ -8,6 +8,15 @@ class Projects extends Ruck_Controller {
 	public function index($id = NULL)
 	{
 		
+		$this->load->library('form_validation');
+		
+		# Validate the new project form if submitted.
+		if ($this->form_validation->run('projects/create') != FALSE)
+		{
+			# Form passes validation, update the task in the database.
+			$this->Project->update($id);
+		}
+
 		$project = $this->Project->find($id);
 		$tasks = $this->Task->get_tasks_by_project($id);
 

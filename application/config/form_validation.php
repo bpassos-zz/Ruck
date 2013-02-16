@@ -9,7 +9,7 @@ $config = array(
 		array(
 			'field'	=> 'name',
 			'label'	=> 'Project name',
-			'rules'	=> 'trim|required|max_length[100]|is_unique[projects.name]|xss_clean',
+			'rules'	=> 'trim|required|max_length[100]|xss_clean',
 		),
 	),
 

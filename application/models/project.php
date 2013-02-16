@@ -144,6 +144,20 @@ class Project extends CI_Model {
 	}
 	
 	/**
+	 * Save changes to a project.
+	 */
+	function update($id)
+	{
+		$this->db->where('id', $id)->update('projects', array(
+			'name'				=> $this->input->post('name'),
+			'description'		=> strlen($this->input->post('description')) ? $this->input->post('description')  : '',
+#			'status_id'			=> $this->input->post('status_id'),
+#			'parent_project_id'	=> $this->input->post('parent_project_id'),
+			'updated_at'		=> date('Y-m-d H:i:s'),
+		));
+	}
+	
+	/**
 	 * Insert a new project from the New Project form and return the new ID.
 	 */
 	function insert_new()
