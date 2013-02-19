@@ -8,6 +8,19 @@ $(function () {
 		return false;
 	});
 	
+	// Add keyboard shortcuts, only if there are no form fields on the page.
+	$(document).on('keypress', function (e) {
+		if ($(e.target).is('input, select, textarea')) {
+            return;   
+        }
+		if(e.which == 80 || e.which == 112) { // P
+			location.href = $('#new-project').attr('href');
+		}
+		if(e.which == 84 || e.which == 116) { // T
+			location.href = $('#new-task').attr('href');
+		}
+	});
+	
 	// Make task lists within projects sortable.
 	$('.sortable').sortable({
 		revert: true,

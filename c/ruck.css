@@ -38,6 +38,10 @@ button {
 	box-shadow: 0 1px 1px #000;
 }
 
+.btn u {
+	color: #fff;
+}
+
 .primary {
 	background: #c30;
 }
