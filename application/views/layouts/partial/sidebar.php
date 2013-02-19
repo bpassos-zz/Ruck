@@ -2,17 +2,17 @@
 
 	<ul class="projects">
 		<?php foreach ($active_projects as $project): ?>
-			<li>
+			<li<?php if ($project->id == $this->uri->segment(3)) echo ' class="current"'; ?>>
 				<a href="/gtd/projects/<?php echo $project->id ?>"><?php echo $project->name; ?></a>
 				<?php if (isset($project->children)): ?>
 					<ul class="child">
 						<?php foreach ($project->children as $child): ?>
-							<li>
+							<li<?php if ($child->id == $this->uri->segment(3)) echo ' class="current"'; ?>>
 								<a href="/gtd/projects/<?php echo $child->id ?>"><?php echo $child->name; ?></a>
 								<?php if (isset($child->children)): ?>
 									<ul class="grandchild">
 										<?php foreach ($child->children as $grandchild): ?>
-											<li>
+											<li<?php if ($grandchild->id == $this->uri->segment(3)) echo ' class="current"'; ?>>
 												<a href="/gtd/projects/<?php echo $grandchild->id ?>"><?php echo $grandchild->name; ?></a>
 											</li>
 										<?php endforeach; ?>
