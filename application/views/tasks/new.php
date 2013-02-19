@@ -11,6 +11,7 @@
 					'id'		=> 'description',
 					'value'		=> set_value('description'),
 					'maxlength'	=> 255,
+					'size'		=> 50,
 					'autofocus'	=> 'autofocus',
 				)); ?>
 			</li>

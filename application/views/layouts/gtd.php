@@ -8,7 +8,7 @@
 
 	</head>
 
-	<body>
+	<body class="body-<?php echo $this->uri->segment(2); ?>">
 		
 		<div class="title-bar">
 			<span>Ruck</span>

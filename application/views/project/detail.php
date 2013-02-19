@@ -34,7 +34,7 @@
 	<?php endforeach; ?>
 </ul>
 
-<p>[+] <a href="/gtd/tasks/create/<?php echo $project['id']; ?>">Add new task</a></p>
+<p><a href="/gtd/tasks/create/<?php echo $project['id']; ?>" class="btn primary">Add new task</a></p>
 
 <?php if (isset($child_projects)): ?>
 
