@@ -74,6 +74,14 @@ class Project extends CI_Model {
 			}
 		}
 
+		if (!isset($links[0]))
+		{
+			$links[0] = array(
+				'url'	=> '/gtd/',
+				'text'	=> 'Home',
+			);
+		}
+
 		return $links;
 
 	}
