@@ -10,7 +10,6 @@ class Tasks extends Ruck_Controller {
 		
 		# Load navigation.
 		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
-			'breadcrumbs'		=> array(),
 			'active_projects'	=> $this->Project->active_projects(),
 			'inactive_projects'	=> $this->Project->inactive_projects(),
 		));
