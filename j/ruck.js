@@ -1,6 +1,6 @@
 $(function () {
 	
-	// Add keyboard shortcuts, only if there are no form fields on the page.
+	// Add keyboard shortcuts, only if the user is not currently focused on a form field.
 	$(document).on('keypress', function (e) {
 		if ($(e.target).is('input, select, textarea')) {
             return;   
@@ -49,7 +49,7 @@ $(function () {
 		$('.tasks li').each(function () {
 			context_ids.push(this.getAttribute('data-context-id'));
 		});
-		$('#contexts li').each(function () {
+		$('.contexts li').each(function () {
 			if (this.getAttribute('data-context-id') && context_ids.indexOf(this.getAttribute('data-context-id')) == -1) {
 				$(this).hide();
 			}
@@ -62,7 +62,7 @@ $(function () {
 			$this.parent().toggleClass('active');
 			// Now collect all the active contexts and filter the task list.
 			var active_context_ids = [];
-			$('#contexts .active').each(function () {
+			$('.contexts .active').each(function () {
 				active_context_ids.push(this.getAttribute('data-context-id'));
 			});
 			// If at least one is active, hide all the tasks then show the ones that match.
@@ -80,7 +80,7 @@ $(function () {
 	
 	} else {
 		// No task list so hide the context navigation.
-		$('#contexts').remove();
+		$('.contexts').remove();
 	}
 
 });

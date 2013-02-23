@@ -26,15 +26,15 @@
 				)); ?>
 			</li>
 			<li>
-				<label for="status_id">Status</label>
+				<label for="status_id">Status:</label>
 				<?php echo form_dropdown('status_id', $statuses, '0', 'id="status_id"'); ?>
 			</li>
 			<li>
-				<label for="context_id">Context</label>
+				<label for="context_id">Context:</label>
 				<?php echo form_dropdown('context_id', $contexts, $default_context, 'id="context_id"'); ?>
 			</li>
 			<li>
-				<label for="project_id">Project</label>
+				<label for="project_id">Project:</label>
 				<?php echo form_dropdown('project_id', $projects, $project_id, 'id="project_id"'); ?>
 			</li>
 		</ol>

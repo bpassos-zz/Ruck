@@ -21,6 +21,7 @@ body {
 
 textarea {
 	background: #ffd;
+	border: 0;
 }
 
 legend {
@@ -324,7 +325,7 @@ a.context {
 	background: #ed93b1;
 }
 
-a.context:hover {
+.active a.context, a.context:hover {
 	background: #ed3473;
 }
 
