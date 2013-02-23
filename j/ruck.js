@@ -1,13 +1,5 @@
 $(function () {
 	
-	// Add show/hide animation to sidebar projects list.
-	$('.child, .grandchild').hide().parent().prepend('<a href="#" class="project-toggle">+</a>');
-	
-	$('.project-toggle').click(function () {
-		$(this).parent().children('ul').toggle();
-		return false;
-	});
-	
 	// Add keyboard shortcuts, only if there are no form fields on the page.
 	$(document).on('keypress', function (e) {
 		if ($(e.target).is('input, select, textarea')) {
