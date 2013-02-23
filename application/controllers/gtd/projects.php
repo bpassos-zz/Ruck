@@ -23,6 +23,18 @@ class Projects extends Ruck_Controller {
 		# Set page title.
 		$this->template->title('GTD', $project['name']);
 
+		# Load navigation.
+		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
+			'breadcrumbs'		=> array(
+				array(
+					'url'	=> '/gtd/projects/' . $id,
+					'text'	=> $project['name'],
+				),
+			),
+			'active_projects'	=> $this->Project->active_projects(),
+			'inactive_projects'	=> $this->Project->inactive_projects(),
+		));
+
 		# Create footer links.
 		$this->template->set_partial('footer', 'layouts/partial/footer', array(
 			'links' => $this->Project->get_footer_links($id, $project['parent_project_id']),

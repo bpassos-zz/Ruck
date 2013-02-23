@@ -1,13 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Tasks extends Ruck_Controller {
-
+	
 	public function index()
 	{
 
 		# Set page title.
 		$this->template->title('GTD', 'Home');
 		
+		# Load navigation.
+		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
+			'breadcrumbs'		=> array(),
+			'active_projects'	=> $this->Project->active_projects(),
+			'inactive_projects'	=> $this->Project->inactive_projects(),
+		));
+
 		# Create footer links.
 		$this->template->set_partial('footer', 'layouts/partial/footer', array(
 			'links' => $this->Project->get_first_project(),
@@ -41,6 +48,18 @@ class Tasks extends Ruck_Controller {
 		# Set page title.
 		$this->template->title('GTD', $task['description']);
 
+		# Load navigation.
+		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
+			'breadcrumbs'		=> array(
+				array(
+					'url'	=> '/gtd/projects/' . $project['id'],
+					'text'	=> $project['name'],
+				),
+			),
+			'active_projects'	=> $this->Project->active_projects(),
+			'inactive_projects'	=> $this->Project->inactive_projects(),
+		));
+
 		# Create footer links.
 		$this->template->set_partial('footer', 'layouts/partial/footer', array(
 			'links' => $this->Task->get_footer_links($id, $task['project_id']),
@@ -68,7 +87,19 @@ class Tasks extends Ruck_Controller {
 
 			# Set page title.
 			$this->template->title('GTD', 'Create a new Task');
-	
+
+			# Override default navigation bar if this task is in an existing project.
+			if (isset($project_id))
+			{
+				$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
+					'breadcrumbs'		=> array(
+						$this->Project->get_project_breadcrumb($project_id),
+					),
+					'active_projects'	=> $this->Project->active_projects(),
+					'inactive_projects'	=> $this->Project->inactive_projects(),
+				));
+			}
+			
 			# Load the main content of the page.
 			$this->template->build('tasks/new', array(
 				'statuses'			=> $this->Status->fetch_statuses('task'),

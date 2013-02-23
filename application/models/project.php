@@ -28,6 +28,17 @@ class Project extends CI_Model {
 
 	}
 	
+	function get_project_breadcrumb($id)
+	{
+		$project = $this->db->select('name')->get_where('projects', array(
+			'id' => $id,
+		))->row();
+		return array(
+			'url'	=> '/gtd/projects/' . $id,
+			'text'	=> $project->name,
+		);
+	}
+	
 	/**
 	 * Return the previous and next project links for the currently selected one.
 	 */
