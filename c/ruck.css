@@ -19,6 +19,10 @@ body {
 	position: relative;
 }
 
+legend {
+	display: none;
+}
+
 a {
 	color: #09f;
 	transition: all .25s ease-in-out;
@@ -226,6 +230,28 @@ h2 {
 	background: #1e9423;
 }
 
+/* @group Forms */
+
+label, input, textarea {
+	display: block;
+}
+
+.no-label label {
+	display: none;
+}
+
+form li {
+	border-bottom: 1px dotted #ccc;
+	padding: 10px 0;
+}
+
+#name, #description {
+	font-size: 24px;
+	padding: 5px;
+}
+
+/* @end */
+
 /* @group Inline Editable data */
 
 .inline-edit {
@@ -252,6 +278,7 @@ h1 .inline-edit {
 	line-height: 20px;
 	margin-bottom: 20px;
 	padding-bottom: 20px;
+	width: 100%;
 }
 
 /* @end */
@@ -289,8 +316,11 @@ a.context:hover {
 
 .btn {
 	background: #666;
+	border: 0;
 	border-radius: 20px;
 	color: #fff;
+	cursor: pointer;
+	font-size: 14px;
 	font-weight: bold;
 	padding: 5px 20px;
 	text-decoration: none;
