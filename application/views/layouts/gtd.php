@@ -20,7 +20,7 @@
 		<form role="search" class="search" method="get" action="/search">
 			<div>
 				<label for="q">Search:</label>
-				<input id="q" name="q" placeholder="Search all tasks and projects...">
+				<input type="search" id="q" name="q" placeholder="Search all tasks and projects...">
 				<button type="submit">Search</button>
 			</div>
 		</form>

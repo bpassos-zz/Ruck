@@ -30,6 +30,12 @@ a {
 
 /* @group Common Classes */
 
+.hide-text {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
 .pill {
 	background: #ccc;
 	border-radius: 12px;
@@ -73,17 +79,12 @@ a {
 	margin: 0 0 20px;
 }
 
-.navigation li {
+.navigation > ul > li {
 	float: left;
 	line-height: 40px;
 }
 
-.navigation li:last-child {
-	background: #ccc;
-	padding: 0 20px;
-}
-
-.navigation li a {
+.navigation > ul > li > a {
 	background: #ccc;
 	color: #333;
 	display: block;
@@ -91,9 +92,15 @@ a {
 	text-decoration: none;
 }
 
+.navigation li ul {
+	display: none;
+}
+
 .navigation .home {
+	background: #ccc url(/i/icons.png) no-repeat -122px 4px;
 	border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
+	width: 62px;
 }
 
 /* @end */
@@ -136,6 +143,8 @@ a {
 .content {
 	background: #fff;
 	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #ccc;
 	margin-left: 8.5106%;
 	padding: 40px 20px;
 }
