@@ -170,7 +170,7 @@ a {
 .content {
 	background: #fff;
 	border: 1px solid #ccc;
-	border-radius: 5px;
+	border-radius: 4px;
 	box-shadow: 0 0 5px #ccc;
 	margin: 60px 0 0 8.5106%;
 	padding: 40px 20px;
@@ -227,9 +227,9 @@ h2 {
 
 /* @end */
 
-/* @group Contexts (and other secondary navigation) */
+/* @group Contexts & Buttons */
 
-.contexts {
+.context-actions {
 	text-align: center;
 	float: right;
 	width: 25.5814%;
@@ -246,6 +246,28 @@ a.context {
 
 a.context:hover {
 	background: #ed3473;
+}
+
+.buttons {
+	margin: 20px 0;
+}
+
+.context-actions .buttons {
+	margin-top: 40px;
+}
+
+.btn {
+	background: #666;
+	border-radius: 20px;
+	color: #fff;
+	font-weight: bold;
+	padding: 5px 20px;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.btn:hover {
+	background: #333;
 }
 
 /* @end */

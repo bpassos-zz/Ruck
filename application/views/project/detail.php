@@ -7,49 +7,54 @@
 
 <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
-<form method="post">
-	
-	<input class="inline-edit heading" type="text" name="name" value="<?php echo htmlspecialchars($project['name']); ?>">
+<h1><input class="inline-edit" type="text" name="name" value="<?php echo htmlspecialchars($project['name']); ?>"></h1>
 
-	<textarea name="description" rows="2" class="inline-edit" placeholder="Enter a project description"><?php echo $project['description']; ?></textarea>
+<aside class="context-actions">
 
-	<div class="form-actions">
-		<button type="submit" class="btn primary">Save Changes</button>
+	<p><textarea name="description" rows="2" class="inline-edit" placeholder="Enter a project description"><?php echo $project['description']; ?></textarea></p>
+
+	<?php echo $template['partials']['contexts']; ?>
+
+	<div class="buttons">
 		<?php if ($project['status_id'] == 3): ?>
-			<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="btn">Mark as inactive</a>
+			<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="btn inactive">Mark as inactive</a>
 		<?php else: ?>
-			<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="btn">Mark as active</a>
+			<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="btn active">Mark as active</a>
 		<?php endif; ?>
-		<a href="/gtd/projects/delete/<?php echo $project['id']; ?>" class="btn">Delete this project</a>
+		<br>
+		<br>
+		<a href="/gtd/projects/delete/<?php echo $project['id']; ?>" class="btn delete">Delete this project</a>
 	</div>
 
-</form>
+</aside>
 
 <ul class="tasks sortable">
 	<?php foreach ($tasks as $task): ?>
 		<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
+			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete mini"><input type="checkbox"></a>
 			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
-			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete mini">Delete</a>
 		</li>
 	<?php endforeach; ?>
 </ul>
 
-<p><a href="/gtd/tasks/create/<?php echo $project['id']; ?>" class="btn primary">Add new task</a></p>
+<div class="buttons">
+	<a href="/gtd/tasks/create/<?php echo $project['id']; ?>" class="btn add">Add new task</a>
+</div>
 
 <?php if (isset($child_projects)): ?>
 
-	<h2>Sub Projects</h2>
+	<h1>Sub Projects</h1>
 	
 	<?php foreach ($child_projects as $project): ?>
 		<a href="/gtd/projects/<?php echo $project->id; ?>">
 			<div class="child-project">
 				<h3><?php echo $project->name; ?></h3>
 				<?php if ($project->tasks): ?>
-					<ul>
+					<ul class="tasks">
 						<?php foreach ($project->tasks as $task): ?>
 							<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
+								<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete mini"><input type="checkbox"></a>
 								<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
-								<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete mini">Delete</a>
 							</li>
 						<?php endforeach; ?>
 					</ul>

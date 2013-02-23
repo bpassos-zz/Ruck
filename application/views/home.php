@@ -1,6 +1,8 @@
 <h1>Your Next Tasks</h1>
 
-<?php echo $template['partials']['contexts']; ?>
+<aside class="context-actions">
+	<?php echo $template['partials']['contexts']; ?>
+</aside>
 
 <ul class="tasks">
 	<?php foreach ($next_tasks as $task): ?>
