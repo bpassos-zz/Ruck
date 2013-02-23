@@ -80,6 +80,55 @@ class Task extends CI_Model {
 	}
 
 	/**
+	 * Return the previous and next task links for the currently viewed task.
+	 */
+	function get_footer_links($id, $project_id)
+	{
+
+		$links = array();
+
+		# Find all the tasks that have the same parent and are active. 
+		$sibling_tasks = $this->db->order_by('id')->get_where('tasks', array(
+			'project_id' => $project_id,
+		))->result();
+		
+		# Loop through them all to find the previous and next projects.
+		$passed_current_task = FALSE;
+		$found_next_task = FALSE;
+		foreach ($sibling_tasks as $task)
+		{
+			if (!$found_next_task)
+			{
+				# If the flag for the current task is set, set the next link and set a flag to ignore everything else.
+				if ($passed_current_task)
+				{
+					$links[1] = array(
+						'url'	=> '/gtd/tasks/detail/' . $task->id,
+						'text'	=> $task->description,
+					);
+					$found_next_task = TRUE;
+				}
+				# If this is the current task, set a flag to pick up the next link.
+				if ($task->id == $id)
+				{
+					$passed_current_task = TRUE;
+				}
+				# As long as this is not the current task, make this the previous link.
+				else if (!$found_next_task)
+				{
+					$links[0] = array(
+						'url'	=> '/gtd/tasks/detail/' . $task->id,
+						'text'	=> $task->description,
+					);
+				}
+			}
+		}
+
+		return $links;
+
+	}
+
+	/**
 	 * Save changes to a task.
 	 */
 	function update($id)

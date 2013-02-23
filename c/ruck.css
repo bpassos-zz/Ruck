@@ -14,7 +14,7 @@ body {
 	background: #eee;
 	color: #333;
 	font: 14px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
-	margin: 0 auto;
+	margin: 0 20px;
 	max-width: 1200px;
 	position: relative;
 }
@@ -145,6 +145,7 @@ a {
 	border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
 	width: 62px;
+	border-right: 1px solid #fff;
 }
 
 /* @end */
@@ -356,3 +357,22 @@ a.context {
 
 /* @end */
 
+/* @group Footer */
+
+footer {
+	margin: 20px 0 20px 8.5106%;
+}
+
+.footer-previous {
+	background: url(/i/icons.png) no-repeat 0 -47px;
+	float: left;
+	padding-left: 20px;
+}
+
+.footer-next {
+	background: url(/i/icons.png) no-repeat 100% -67px;
+	float: right;
+	padding-right: 20px;
+}
+
+/* @end */

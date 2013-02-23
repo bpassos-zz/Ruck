@@ -8,9 +8,14 @@ class Tasks extends Ruck_Controller {
 		# Set page title.
 		$this->template->title('GTD', 'Home');
 		
+		# Create footer links.
+		$this->template->set_partial('footer', 'layouts/partial/footer', array(
+			'links' => $this->Project->get_first_project(),
+		));
+
 		# Load the main content of the page.
 		$this->template->build('home', array(
-			'next_tasks' => $this->Task->get_next_tasks()
+			'next_tasks' => $this->Task->get_next_tasks(),
 		));
 		
 	}
@@ -35,6 +40,11 @@ class Tasks extends Ruck_Controller {
 
 		# Set page title.
 		$this->template->title('GTD', $task['description']);
+
+		# Create footer links.
+		$this->template->set_partial('footer', 'layouts/partial/footer', array(
+			'links' => $this->Task->get_footer_links($id, $task['project_id']),
+		));
 
 		# Load the main content of the page.
 		$this->template->build('tasks/detail', array(

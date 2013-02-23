@@ -29,6 +29,72 @@ class Project extends CI_Model {
 	}
 	
 	/**
+	 * Return the previous and next project links for the currently selected one.
+	 */
+	function get_footer_links($id, $parent_project_id)
+	{
+
+		$links = array();
+
+		# Find all the projects that have the same parent and are active. 
+		$sibling_projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
+			'parent_project_id'	=> $parent_project_id,
+			'status_id'			=> 3,
+		))->result();
+		
+		# Loop through them all to find the previous and next projects.
+		$passed_current_project = FALSE;
+		$found_next_link = FALSE;
+		foreach ($sibling_projects as $project)
+		{
+			if (!$found_next_link)
+			{
+				# If the flag for the current project is set, set the next link and set a flag to ignore everything else.
+				if ($passed_current_project)
+				{
+					$links[1] = array(
+						'url'	=> '/gtd/projects/' . $project->id,
+						'text'	=> $project->name,
+					);
+					$found_next_link = TRUE;
+				}
+				# If this is the current project, set a flag to pick up the next link.
+				if ($project->id == $id)
+				{
+					$passed_current_project = TRUE;
+				}
+				# As long as this is not the current project, make this the previous link.
+				else if (!$found_next_link)
+				{
+					$links[0] = array(
+						'url'	=> '/gtd/projects/' . $project->id,
+						'text'	=> $project->name,
+					);
+				}
+			}
+		}
+
+		return $links;
+
+	}
+	
+	/**
+	 * Return the footer link for the homepage.
+	 */
+	function get_first_project()
+	{
+		$links = array();
+		$first_project = $this->db->order_by('name', 'asc')->limit(1)->get_where('projects', array(
+			'parent_project_id' => 0
+		))->row();
+		$links[1] = array(
+			'url'	=> '/gtd/projects/' . $first_project->id,
+			'text'	=> $first_project->name,
+		);
+		return $links;
+	}
+	
+	/**
 	 * Recursive tree building function.
 	 */
 	function _build_tree($projects, $parent_id = 0)

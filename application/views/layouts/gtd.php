@@ -34,7 +34,7 @@
 		</section>
 		
 		<footer>
-			
+			<?php echo $template['partials']['footer']; ?>
 		</footer>
 
 		<!-- Load jQuery -->
