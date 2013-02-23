@@ -240,6 +240,10 @@ h1 .inline-edit {
 	font-weight: 300;
 }
 
+.content textarea {
+	width: 69.7674%;
+}
+
 .context-actions .inline-edit {
 	border-bottom: 1px solid #ccc;
 	color: #333;

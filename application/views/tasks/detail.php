@@ -1,16 +1,19 @@
 <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
-<p><a href="/gtd/projects/<?php echo $project['id']; ?>"><?php echo $project['name']; ?></a> &rarr;</p>
+<h1><input class="inline-edit heading" type="text" name="description" value="<?php echo htmlspecialchars($task['description']); ?>"></h1>
 
-<form method="post">
-	
-	<input class="inline-edit heading" type="text" name="description" value="<?php echo htmlspecialchars($task['description']); ?>">
+<aside class="context-actions">
 
-	<textarea name="notes" rows="20" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea>
+	<?php echo $template['partials']['contexts']; ?>
 
-	<div class="form-actions">
-		<button type="submit" class="btn primary">Save Changes</button>
+	<div class="buttons">
 		<a class="btn" href="/gtd/tasks/delete/<?php echo $task['id']; ?>">Delete this task</a>		
 	</div>
 
-</form>
+</aside>
+
+<p><textarea name="notes" rows="20" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea></p>
+
+<div class="buttons">
+	<button type="submit" class="btn save">Save Changes</button>
+</div>

@@ -1,10 +1,3 @@
-<p>
-	<?php foreach ($parent_projects as $parent_project): ?>
-		<a href="/gtd/projects/<?php echo $parent_project->id; ?>"><?php echo $parent_project->name; ?></a>
-		 &raquo;
-	<?php endforeach; ?>
-</p>
-
 <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
 <h1><input class="inline-edit" type="text" name="name" value="<?php echo htmlspecialchars($project['name']); ?>"></h1>
