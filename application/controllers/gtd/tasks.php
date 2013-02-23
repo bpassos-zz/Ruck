@@ -49,12 +49,7 @@ class Tasks extends Ruck_Controller {
 
 		# Load navigation.
 		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
-			'breadcrumbs'		=> array(
-				array(
-					'url'	=> '/gtd/projects/' . $project['id'],
-					'text'	=> $project['name'],
-				),
-			),
+			'breadcrumbs'		=> $this->Project->get_project_breadcrumb($project['id']),
 			'active_projects'	=> $this->Project->active_projects(),
 			'inactive_projects'	=> $this->Project->inactive_projects(),
 		));
@@ -91,9 +86,7 @@ class Tasks extends Ruck_Controller {
 			if (isset($project_id))
 			{
 				$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
-					'breadcrumbs'		=> array(
-						$this->Project->get_project_breadcrumb($project_id),
-					),
+					'breadcrumbs'		=> $this->Project->get_project_breadcrumb($project_id),
 					'active_projects'	=> $this->Project->active_projects(),
 					'inactive_projects'	=> $this->Project->inactive_projects(),
 				));

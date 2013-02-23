@@ -25,12 +25,7 @@ class Projects extends Ruck_Controller {
 
 		# Load navigation.
 		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
-			'breadcrumbs'		=> array(
-				array(
-					'url'	=> '/gtd/projects/' . $id,
-					'text'	=> $project['name'],
-				),
-			),
+			'breadcrumbs'		=> $this->Project->get_project_breadcrumb($id),
 			'active_projects'	=> $this->Project->active_projects(),
 			'inactive_projects'	=> $this->Project->inactive_projects(),
 		));

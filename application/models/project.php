@@ -28,15 +28,30 @@ class Project extends CI_Model {
 
 	}
 	
+	/**
+	 * Return an array of link arrays for the navigation, showing all ancestor projects.
+	 */
 	function get_project_breadcrumb($id)
 	{
-		$project = $this->db->select('name')->get_where('projects', array(
+		$links = array();
+		$project = $this->db->select('name, parent_project_id')->get_where('projects', array(
 			'id' => $id,
 		))->row();
-		return array(
+		$links[] = array(
 			'url'	=> '/gtd/projects/' . $id,
 			'text'	=> $project->name,
 		);
+		while ($project->parent_project_id != 0)
+		{
+			$project = $this->db->select('id, name, parent_project_id')->get_where('projects', array(
+				'id' => $project->parent_project_id,
+			))->row();
+			$links[] = array(
+				'url'	=> '/gtd/projects/' . $project->id,
+				'text'	=> $project->name,
+			);
+		}
+		return array_reverse($links);
 	}
 	
 	/**
