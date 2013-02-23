@@ -1,6 +1,6 @@
-<?php echo validation_errors('<div class="error">', '</div>'); ?>
-
 <h1>Create a new Project</h1>
+
+<?php echo validation_errors('<div class="error">', '</div>'); ?>
 
 <form method="post">
 	<fieldset>
