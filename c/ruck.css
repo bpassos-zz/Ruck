@@ -259,6 +259,11 @@ form li {
 	padding: 5px;
 }
 
+#notes {
+	padding: 5px;
+	font-size: 14px;
+}
+
 /* @end */
 
 /* @group Inline Editable data */

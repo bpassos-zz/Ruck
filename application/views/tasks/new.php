@@ -4,23 +4,25 @@
 	<fieldset>
 		<legend>Create a new task</legend>
 		<ol>
-			<li>
+			<li class="no-label">
 				<label for="description">Task description</label>
 				<?php echo form_input(array(
-					'name'		=> 'description',
-					'id'		=> 'description',
-					'value'		=> set_value('description'),
-					'maxlength'	=> 255,
-					'size'		=> 50,
-					'autofocus'	=> 'autofocus',
+					'name'			=> 'description',
+					'id'			=> 'description',
+					'value'			=> set_value('description'),
+					'maxlength'		=> 255,
+					'size'			=> 50,
+					'autofocus'		=> 'autofocus',
+					'placeholder'	=> 'Enter a brief description of this single task',
 				)); ?>
 			</li>
-			<li>
+			<li class="no-label">
 				<label for="notes">Task notes</label>
 				<?php echo form_textarea(array(
-					'name'		=> 'notes',
-					'id'		=> 'notes',
-					'value'		=> set_value('notes'),
+					'name'			=> 'notes',
+					'id'			=> 'notes',
+					'value'			=> set_value('notes'),
+					'placeholder'	=> '(optional) Enter the details of this task and any other notes or discussion you need to refer to later.',
 				)); ?>
 			</li>
 			<li>
@@ -37,7 +39,7 @@
 			</li>
 		</ol>
 	</fieldset>
-	<div class="actions">
-		<button class="btn primary" type="submit">Create new task</button>
+	<div class="buttons">
+		<button class="btn add" type="submit">Create new task</button>
 	</div>
 </form>
