@@ -31,7 +31,7 @@
 </ul>
 
 <div class="buttons">
-	<a href="/gtd/tasks/create/<?php echo $project['id']; ?>" class="btn add">Add new task</a>
+	<a href="/gtd/tasks/create/<?php echo $project['id']; ?>" class="btn add" id="add"><u>N</u>ew task</a>
 </div>
 
 <?php if (isset($child_projects)): ?>

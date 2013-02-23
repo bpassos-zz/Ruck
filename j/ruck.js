@@ -11,6 +11,12 @@ $(function () {
 		if(e.which == 84 || e.which == 116) { // T
 			location.href = $('#new-task').attr('href');
 		}
+		if(e.which == 78 || e.which == 110) { // N
+			location.href = $('#add').attr('href');
+		}
+		if(e.which == 72 || e.which == 104) { // H
+			location.href = $('#home').attr('href');
+		}
 	});
 	
 	// Make task lists within projects sortable.

@@ -1,7 +1,7 @@
 <nav role="navigation" class="navigation">
 
 	<ul>
-		<li><a href="/gtd/" class="home hide-text">Home</a></li>
+		<li><a href="/gtd/" class="home hide-text" id="home">Home</a></li>
 		<li>
 			<a href="#">Select a project:</a>
 			<ul>
