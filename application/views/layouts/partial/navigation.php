@@ -1,6 +1,12 @@
-<div id="sidebar">
+<nav role="navigation" class="navigation">
 
-	<ul class="projects">
+	<ul>
+		<li><a href="/gtd/" class="home">Home</a></li>
+		<li>Select a project:</li>
+	</ul>
+
+<!--	
+	<ul>
 		<?php foreach ($active_projects as $project): ?>
 			<li<?php if ($project->id == $this->uri->segment(3)) echo ' class="current"'; ?>>
 				<a href="/gtd/projects/<?php echo $project->id ?>"><?php echo $project->name; ?></a>
@@ -25,11 +31,12 @@
 			</li>
 		<?php endforeach; ?>
 	</ul>
-
-	<ul class="projects inactive">
+	
+	<ul>
 		<?php foreach ($inactive_projects as $project): ?>
 			<li><a href="/gtd/projects/<?php echo $project->id ?>"><?php echo $project->name; ?></a></li>
 		<?php endforeach; ?>
 	</ul>
+-->
 
-</div>
+</nav>

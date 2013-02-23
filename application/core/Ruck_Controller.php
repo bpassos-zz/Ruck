@@ -17,7 +17,7 @@ class Ruck_Controller extends CI_Controller {
 		# Create template partials, including passing data.
 		$this->template->set_partial('header', 'layouts/partial/header');
 		$this->template->set_partial('actions', 'layouts/partial/actions');
-		$this->template->set_partial('sidebar', 'layouts/partial/sidebar', array(
+		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
 			'active_projects'	=> $this->Project->active_projects(),
 			'inactive_projects'	=> $this->Project->inactive_projects(),
 		));

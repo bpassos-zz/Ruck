@@ -1,277 +1,216 @@
-* {
-	margin: 0;
-	padding: 0;
-	font: 14px/20px Helvetica, Arial, sans-serif;
+/**
+ * Ruck master stylesheet
+ *
+ * Author	: Matthew Pennell
+ * Created	: 22/02/2013
+ * Modified	: 22/02/2013
+ */
+
+@import url('/c/reset.css');
+
+/* @group Basic Element Styles */
+
+body {
+	background: #eee;
 	color: #333;
+	font: 14px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	margin: 0 auto;
+	max-width: 1200px;
+	position: relative;
 }
 
 a {
-	color: #08c;
+	color: #09f;
+	transition: all .25s ease-in-out;
+	-moz-transition: all .25s ease-in-out;
+	-webkit-transition: all .25s ease-in-out;
 }
 
-p {
-	margin: 0 0 10px;
-}
+/* @end */
 
-b {
-	font-weight: bold;
-}
+/* @group Common Classes */
 
-.mini {
-	font-size: 11px;
-	color: #c30;
-}
-
-button {
-	padding: 0;
-	overflow: visible;
-	cursor: pointer;
-}
-
-.btn {
-	padding: 5px 10px;
+.pill {
+	background: #ccc;
+	border-radius: 12px;
+	color: #fff;
+	font-size: 12px;
+	padding: 3px 10px;
 	text-decoration: none;
-	border-radius: 5px;
-	border: 0;
-	background: #333;
-	color: #fff;
-	box-shadow: 0 1px 1px #000;
+	white-space: nowrap;
 }
 
-.btn u {
-	color: #fff;
+/* @end */
+
+/* @group Header */
+
+.logo {
+	margin: 16px 0 19px;
 }
 
-.primary {
-	background: #c30;
+.search {
+	position: absolute;
+	right: 0;
+	top: 20px;
+	width: 23.4043%;
 }
 
-.btn:hover {
-	box-shadow: 0 0 1px #000;
+.search input {
+	height: 20px;
+	width: 100%;
 }
 
-.primary:hover {
-	background: #f30;
+.js .search label, .js .search button {
+	display: none;
 }
 
-.title-bar {
-	font: bold italic 20px serif;
-	background: #333;
-	color: #fff;
-	padding: 10px 20px;
+/* @end */
+
+/* @group Navigation Bar */
+
+.navigation {
+	overflow: hidden;
 	margin: 0 0 20px;
 }
 
-.title-bar span {
-	font: italic 32px serif;
-	color: #f60;
+.navigation li {
+	float: left;
+	line-height: 40px;
 }
+
+.navigation li:last-child {
+	background: #ccc;
+	padding: 0 20px;
+}
+
+.navigation li a {
+	background: #ccc;
+	color: #333;
+	display: block;
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+.navigation .home {
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+/* @end */
+
+/* @group Sidebar Actions */
 
 .actions {
-	margin: 0 0 20px 10px;
-}
-
-#sidebar {
 	float: left;
-	width: 20%;
-	margin-right: 5%;
+	margin-right: 2.1277%;
+	text-align: center;
+	width: 6.3830%;
 }
 
-#main {
-	margin-left: 25%;
-}
-
-#sidebar ul, #contexts {
-	list-style: none;
-	overflow: hidden;
-}
-
-#sidebar li {
-	position: relative;
-}
-
-.projects a {
-	text-decoration: none;
-	display: block;
-	background: #333;
-	border-bottom: 1px solid #444;
-	padding: 5px 5px 5px 20px;
-}
-
-a.project-toggle {
-	display: inline;
-	font-weight: bold;
-	color: #fff;
-	border: 0;
-	padding: 0;
-	position: absolute;
-	top: 4px;
-	left: 5px;
-}
-
-.projects .child a {
-	background: #222;
-	padding-left: 35px;
-}
-
-.child .project-toggle {
-	left: -30px;
-}
-
-.projects .grandchild a {
-	background: #111;
-	padding-left: 50px;
-}
-
-.inactive a {
-	background: #666;
-	color: #999;
-}
-
-.projects a:hover, #contexts a:hover {
-	background: #444;
-	color: #fff;
-}
-
-.projects .current a {
-	background: #fff;
-}
-
-.projects .current a:hover {
+.icon {
+	background: url(/i/icons.png) no-repeat;
 	color: #333;
+	display: block;
+	font-size: 12px;
+	line-height: 12px;
+	padding: 50px 10px 10px;
+	text-decoration: none;
+}
+
+.icon:hover {
+	background-color: #fff;
+}
+
+.project {
+	background-position: 22px 10px;
+}
+
+.task {
+	background-position: -48px 10px;
+}
+
+/* @end */
+
+/* @group Main Page Content */
+
+.content {
+	background: #fff;
+	border: 1px solid #ccc;
+	margin-left: 8.5106%;
+	padding: 40px 20px;
 }
 
 h1 {
-	font-size: 24px;
+	border-bottom: 1px solid #ccc;
+	font-size: 30px;
+	font-weight: 300;
 	margin: 0 0 20px;
+	padding-bottom: 20px;
 }
 
 h2 {
-	font-size: 20px;
-	margin: 40px 0 10px;
-}
-
-h3 {
+	color: #999;
+	font-size: 12px;
 	font-weight: bold;
+	letter-spacing: 2px;
+	margin: 0 0 20px;
+	text-transform: uppercase;
 }
 
 .tasks {
-	margin: 0 0 20px;
-	list-style: none;
+	font-size: 18px;
 }
 
 .tasks li {
-	border-bottom: 1px solid #ccc;
-	position: relative;
+	margin: 0 0 10px;
 }
 
-.tasks li a {
-	padding: 10px;
-	text-decoration: none;
-	display: block;
-}
-
-.tasks a:hover {
-	background: #eee;
-}
-
-.tasks .delete {
-	position: absolute;
-	right: 10px;
-	top: 20px;
-	padding: 0 5px;
-	background: #c00;
-	color: #fff;
-	border-radius: 10px;
-}
-
-.tasks .delete:hover {
-	background: #f00;
-}
-
-#contexts li {
-	position: relative;
+.tasks input {
 	float: left;
-	margin: 0 10px 20px 0;
+	height: 18px;
+	margin-right: 12px;
+	width: 18px;
 }
 
-#contexts a {
-	display: block;
-	padding: 5px 10px;
-	border-radius: 10px;
+.tasks a {
 	text-decoration: none;
 }
 
-.context {
-	background: #eee;
+.tasks .pill {
+	position: relative;
+	top: -5px;
 }
 
-#contexts .active a {
-	background: #cfc;
+.tasks .project {
+	background: #77c77b;
 }
 
-#contexts .active a:hover {
-	background: #3c3;
+.tasks .project:hover {
+	background: #1e9423;
 }
 
-#contexts div {
-	display: none;
-	position: absolute;
-	top: 24px;
-	left: 0;
-	width: 100%;
-	background: #ccc;
+/* @end */
+
+/* @group Contexts (and other secondary navigation) */
+
+.contexts {
+	text-align: center;
+	float: right;
+	width: 25.5814%;
 }
 
-#contexts li:hover div {
-	display: block;
+.contexts li {
+	display: inline;
+	margin: 0 10px 10px 0;
 }
 
-fieldset {
-	border: 0;
+a.context {
+	background: #ed93b1;
 }
 
-legend {
-	font-size: 24px;
-	color: #666;
+a.context:hover {
+	background: #ed3473;
 }
 
-form ol {
-	list-style: none;
-}
+/* @end */
 
-form li {
-	margin-bottom: 10px;
-}
-
-label, input, select {
-	display: block;
-}
-
-.error {
-	background: #fcc;
-	color: #d00;
-	margin: 0 0 20px;
-	padding: 10px;
-}
-
-.task-list li:first-child {
-	background: #ff6;
-}
-
-/* Inline editing */
-
-.inline-edit {
-	border: 0;
-	width: 100%;
-	padding: 5px 0;
-}
-
-.inline-edit.heading {
-	font-size: 24px;
-}
-
-textarea.inline-edit {
-	background: #ffc;
-	font: 16px/20px "Marker Felt", "Comic Sans";
-}

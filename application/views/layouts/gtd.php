@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 
 	<head>
 		
@@ -8,22 +11,31 @@
 
 	</head>
 
-	<body class="body-<?php echo $this->uri->segment(2); ?>">
+	<body class="<?php echo $this->uri->segment(2); ?>">
 		
-		<div class="title-bar">
-			<span>Ruck</span>
-			- Where <a href="/gtd/">GTD</a> meets <a href="/scrum/" onclick="alert('...eventually.'); return false;">Scrum</a>
-		</div>
-
+		<header role="banner">
+			<img class="logo" src="/i/ruck.png" alt="Ruck" width="67" height="23">
+		</header>
+		
+		<form role="search" class="search" method="get" action="/search">
+			<div>
+				<label for="q">Search:</label>
+				<input id="q" name="q" placeholder="Search all tasks and projects...">
+				<button type="submit">Search</button>
+			</div>
+		</form>
+		
+		<?php echo $template['partials']['navigation']; ?>
+		
 		<?php echo $template['partials']['actions']; ?>
 
-		<?php echo $template['partials']['sidebar']; ?>
-		
-		<?php echo $template['partials']['contexts']; ?>
-
-		<div id="main">
+		<section class="content" role="main">
 			<?php echo $template['body']; ?>
-		</div>
+		</section>
+		
+		<footer>
+			
+		</footer>
 
 		<!-- Load jQuery -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
@@ -33,6 +45,16 @@
 		<script src="/j/jquery-ui-1.10.0.custom.min.js"></script>
 		
 		<script src="/j/ruck.js"></script>
+		
+		<script>
+			var _gaq = [
+				["_setAccount", "UA-71160-19"],
+				["_trackPageview"]
+			];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+			g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+			s.parentNode.insertBefore(g,s)}(document,"script"));
+		</script>
 
 	</body>
 
