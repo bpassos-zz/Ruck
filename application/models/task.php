@@ -78,6 +78,17 @@ class Task extends CI_Model {
 		return $next_tasks;
 
 	}
+	
+	/**
+	 * Return a list of tasks with due dates that are within the next few weeks.
+	 */
+	function find_upcoming_due_dates()
+	{
+		# Find all the tasks with a due date that falls after NOW() minus 1 day.
+		return $query = $this->db->get_where('tasks', array(
+			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
+		))->result();
+	}
 
 	/**
 	 * Return the previous and next task links for the currently viewed task.
