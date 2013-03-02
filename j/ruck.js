@@ -5,6 +5,7 @@ $(function () {
 		if ($(e.target).is('input, select, textarea')) {
             return;   
         }
+        //alert(e.which);
 		if(e.which == 80 || e.which == 112) { // P
 			location.href = $('#new-project').attr('href');
 		}
@@ -16,6 +17,9 @@ $(function () {
 		}
 		if(e.which == 72 || e.which == 104) { // H
 			location.href = $('#home').attr('href');
+		}
+		if(e.which == 83 || e.which == 115) { // H
+			location.href = $('#new-child-project').attr('href');
 		}
 	});
 	
