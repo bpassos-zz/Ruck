@@ -88,22 +88,33 @@ class Projects extends Ruck_Controller {
 	/**
 	 * Creating a new project.
 	 */
-	public function create()
+	public function create($parent_project_id = NULL)
 	{
 		
 		$this->load->library('form_validation');
 		
 		# Validate the new project form if submitted.
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run('projects/create') == FALSE)
 		{
 
 			# Set page title.
 			$this->template->title('GTD', 'Create a new Project');
 	
+			# Override default navigation bar if this project is going to be a child project of an existing project.
+			if (isset($parent_project_id))
+			{
+				$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
+					'breadcrumbs'		=> $this->Project->get_project_breadcrumb($parent_project_id),
+					'active_projects'	=> $this->Project->active_projects(),
+					'inactive_projects'	=> $this->Project->inactive_projects(),
+				));
+			}
+			
 			# Load the main content of the page.
 			$this->template->build('project/new', array(
-				'statuses'	=> $this->Status->fetch_statuses('project'),
-				'projects'	=> $this->Project->fetch_projects_for_dropdown(),
+				'statuses'			=> $this->Status->fetch_statuses('project'),
+				'projects'			=> $this->Project->fetch_projects_for_dropdown(),
+				'parent_project_id'	=> $parent_project_id,
 			));
 			
 		}

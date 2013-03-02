@@ -155,7 +155,7 @@ a {
 .actions {
 	clear: left;
 	float: left;
-	margin-right: 2.1277%;
+	margin: 20px 2.1277% 0 0;
 	text-align: center;
 	width: 6.3830%;
 }
@@ -226,7 +226,7 @@ h2 {
 	margin: 0 0 10px;
 }
 
-.delete {
+li .delete {
 	float: left;
 	height: 18px;
 	margin-right: 12px;

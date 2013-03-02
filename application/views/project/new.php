@@ -35,7 +35,7 @@
 			</li>
 			<li>
 				<label for="parent_project_id">Parent project:</label>
-				<?php echo form_dropdown('parent_project_id', $projects, '0', 'id="parent_project_id"'); ?>
+				<?php echo form_dropdown('parent_project_id', $projects, $parent_project_id, 'id="parent_project_id"'); ?>
 			</li>
 		</ol>
 	</fieldset>
