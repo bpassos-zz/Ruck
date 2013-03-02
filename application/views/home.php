@@ -45,7 +45,7 @@
 										<?php echo character_limiter($task->description, 20); ?>
 									</a>
 								</div>
-								<?php $offset = ($offset <= 50) ? 140 : $offset - 30; ?>
+								<?php $offset = ($offset <= 50) ? 170 : $offset - 30; ?>
 								<?php $position = ($position >= 100) ? 25 : $position + 25; ?>
 							<?php endif ?>
 						<?php endforeach; ?>
