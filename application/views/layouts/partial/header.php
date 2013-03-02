@@ -12,6 +12,7 @@
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="/c/ruck.css">
+<link rel="stylesheet" href="/c/jquery-ui-1.10.1.custom.min.css">
 
 <!--[if (lt IE 9) & (!IEMobile)]>
 	<script src="/j/selectivizr-min.js"></script>

@@ -255,10 +255,22 @@ li .delete {
 	background: #1e9423;
 }
 
+.tasks .date {
+	background: #c66;
+}
+
+.tasks .date:hover {
+	background: #c00;
+}
+
 /* @group Forms */
 
 label, input, textarea {
 	display: block;
+}
+
+#due {
+	display: inline;
 }
 
 .no-label label {
@@ -278,6 +290,10 @@ form li {
 #notes {
 	padding: 5px;
 	font-size: 14px;
+}
+
+.ui-datepicker {
+	font-size: 12px !important;
 }
 
 /* @end */

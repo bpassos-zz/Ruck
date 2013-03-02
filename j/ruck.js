@@ -97,5 +97,14 @@ $(function () {
 		// No task list so hide the context navigation.
 		$('.contexts').remove();
 	}
+	
+	// Attach datepicker to Due Date field.
+	$('#due').datepicker({
+		dateFormat		: 'yy-mm-dd',
+		showButtonPanel	: true,
+		showOn			: 'button',
+		buttonImage		: '/i/calendar.gif',
+		buttonImageOnly	: true
+	});
 
 });

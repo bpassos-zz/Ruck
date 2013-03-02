@@ -8,7 +8,11 @@
 	</h1>
 	
 	<aside class="context-actions">
+
 		<?php echo $template['partials']['contexts']; ?>
+		
+		<input class="inline-edit date" type="text" name="due" id="due" value="<?php if (isset($task['due'])) echo date('Y-m-d', strtotime($task['due'])); ?>">
+
 	</aside>
 	
 	<p><textarea name="notes" rows="20" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea></p>

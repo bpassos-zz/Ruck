@@ -25,7 +25,10 @@
 	<?php foreach ($tasks as $task): ?>
 		<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
 			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete"><input type="checkbox"></a>
-			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
+			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a>
+			<?php if ($task->due): ?>
+				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill date"><?php echo date('F j', strtotime($task->due)); ?></a>
+			<?php endif; ?>
 		</li>
 	<?php endforeach; ?>
 </ul>

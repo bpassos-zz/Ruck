@@ -26,6 +26,16 @@
 				)); ?>
 			</li>
 			<li>
+				<label for="due">Due date</label>
+				<?php echo form_input(array(
+					'name'			=> 'due',
+					'id'			=> 'due',
+					'value'			=> set_value('due'),
+					'maxlength'		=> 20,
+					'size'			=> 15,
+				)); ?>
+			</li>
+			<li>
 				<label for="status_id">Status:</label>
 				<?php echo form_dropdown('status_id', $statuses, '0', 'id="status_id"'); ?>
 			</li>

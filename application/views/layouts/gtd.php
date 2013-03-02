@@ -44,7 +44,7 @@
 		<script>window.jQuery || document.write('<script src="/j/jquery-1.9.1.min.js"><\/script>')</script>
 		
 		<!-- Load jQuery UI Sortable -->
-		<script src="/j/jquery-ui-1.10.0.custom.min.js"></script>
+		<script src="/j/jquery-ui-1.10.1.custom.min.js"></script>
 		
 		<script src="/j/ruck.js"></script>
 		
