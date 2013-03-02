@@ -1,7 +1,7 @@
 $(function () {
 	
 	// Add keyboard shortcuts, only if the user is not currently focused on a form field.
-	$(document).on('keypress', function (e) {
+	$(document).on('keydown', function (e) {
 		if ($(e.target).is('input, select, textarea')) {
             return;   
         }
@@ -21,6 +21,17 @@ $(function () {
 		if(e.which == 83 || e.which == 115) { // H
 			location.href = $('#new-child-project').attr('href');
 		}
+		// Arrow keys.
+		if(e.which == 37) { // Left
+			location.href = $('#left-arrow').attr('href');
+		}
+		if(e.which == 38) { // Up
+			location.href = $('#up-arrow').attr('href');
+		}
+		if(e.which == 39) { // Right
+			location.href = $('#right-arrow').attr('href');
+		}
+
 	});
 	
 	// Make the task checkboxes not intercept the click event.

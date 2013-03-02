@@ -134,6 +134,11 @@ class Task extends CI_Model {
 				}
 			}
 		}
+		
+		$links[2] = array(
+			'url'	=> '/gtd/projects/' .  $project_id,
+			'text'	=> 'Parent project',
+		);
 
 		return $links;
 

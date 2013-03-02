@@ -107,6 +107,21 @@ class Project extends CI_Model {
 				'text'	=> 'Home',
 			);
 		}
+		
+		if ($parent_project_id != 0)
+		{
+			$links[2] = array(
+				'url'	=> '/gtd/projects/' . $parent_project_id,
+				'text'	=> 'Parent project',
+			);
+		}
+		else
+		{
+			$links[2] = array(
+				'url'	=> '/gtd/',
+				'text'	=> 'Home',
+			);
+		}
 
 		return $links;
 
