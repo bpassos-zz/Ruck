@@ -19,6 +19,11 @@ $(function () {
 		}
 	});
 	
+	// Make the task checkboxes not intercept the click event.
+	$('.delete input').click(function () {
+		location.href = $(this).parent().attr('href');
+	});
+	
 	// Make task lists within projects sortable.
 	$('.sortable').sortable({
 		revert: true,

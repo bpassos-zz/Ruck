@@ -24,7 +24,7 @@
 <ul class="tasks sortable">
 	<?php foreach ($tasks as $task): ?>
 		<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
-			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete mini"><input type="checkbox"></a>
+			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete"><input type="checkbox"></a>
 			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
 		</li>
 	<?php endforeach; ?>
@@ -43,7 +43,7 @@
 			<ul class="tasks">
 				<?php foreach ($project->tasks as $task): ?>
 					<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
-						<a href="/gtd/tasks/delete/<?php echo $task->id; ?>"><input type="checkbox"></a>
+						<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete"><input type="checkbox"></a>
 						<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
 						<a href="/gtd/projects/<?php echo $project->id; ?>" class="pill project" title="<?php echo $project->name; ?>"><?php echo character_limiter($project->name, 20); ?></a>
 					</li>
