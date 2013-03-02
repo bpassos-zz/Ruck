@@ -10,6 +10,13 @@ class Ruck_Controller extends CI_Controller {
 	{
 
 		parent::__construct();
+		
+		# Authentication process.
+		if (!$this->ion_auth->logged_in())
+		{
+			# Redirect user to the login page.
+			redirect('auth/login');
+		}
 
 		# Configure template to use.
 		$this->template->set_layout('gtd');
