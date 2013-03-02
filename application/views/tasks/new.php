@@ -1,6 +1,6 @@
 <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
-<form method="post" action="">
+<?php echo form_open(); ?>
 	<fieldset>
 		<legend>Create a new task</legend>
 		<ol>

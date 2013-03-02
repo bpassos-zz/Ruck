@@ -1,6 +1,6 @@
 <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
-<form method="post">
+<?php echo form_open(); ?>
 	
 	<h1>
 		<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="delete"><input type="checkbox"></a>		
