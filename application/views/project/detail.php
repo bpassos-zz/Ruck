@@ -5,8 +5,12 @@
 <aside class="context-actions">
 
 	<p><textarea name="description" rows="2" class="inline-edit" placeholder="Enter a project description"><?php echo $project['description']; ?></textarea></p>
+	
+	<hr>
 
 	<?php echo $template['partials']['contexts']; ?>
+	
+	<hr>
 
 	<div class="buttons">
 		<?php if ($project['status_id'] == 3): ?>

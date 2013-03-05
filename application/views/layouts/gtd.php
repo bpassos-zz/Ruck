@@ -13,11 +13,7 @@
 
 	<body class="body-<?php echo $this->uri->segment(2); ?>">
 		
-		<header role="banner">
-			<a href="/gtd/">
-				<img class="logo" src="/i/ruck.png" alt="Ruck" width="67" height="23">
-			</a>
-		</header>
+		<?php echo $template['partials']['navigation']; ?>
 		
 		<form role="search" class="search" method="get" action="/search">
 			<div>
@@ -26,8 +22,6 @@
 				<button type="submit">Search</button>
 			</div>
 		</form>
-		
-		<?php echo $template['partials']['navigation']; ?>
 		
 		<?php echo $template['partials']['actions']; ?>
 
