@@ -73,10 +73,6 @@ a {
 
 /* @group Header */
 
-.logo {
-	margin: 16px 0 19px;
-}
-
 .search {
 	position: absolute;
 	right: 0;
@@ -156,7 +152,7 @@ a {
 	background: -moz-linear-gradient(bottom, #eaeaea, #fbfbfb);
 	background: -ms-linear-gradient(bottom, #eaeaea, #fbfbfb);
 	background: -o-linear-gradient(bottom, #eaeaea, #fbfbfb);
-	background: url(/i/icons.png) no-repeat -122px 4px;
+	background: url(/i/icons.png) no-repeat 12px -1px;
 	border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
 	width: 100px;
@@ -193,11 +189,11 @@ a {
 }
 
 .project {
-	background-position: 14px 7px;
+	background-position: 12px -72px;
 }
 
 .task {
-	background-position: 14px -85px;
+	background-position: 12px -162px;
 }
 
 /* @end */
