@@ -18,7 +18,7 @@
 
 body {
 	background: #eee url(/i/body.png);
-	color: #333;
+	color: #444;
 	font: 14px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
 	margin: 0 20px;
 	position: relative;
@@ -176,7 +176,8 @@ a {
 
 .icon {
 	background: url(/i/icons.png) no-repeat;
-	color: #333;
+	border: 1px solid transparent;
+	color: #444;
 	display: block;
 	font-size: 12px;
 	line-height: 12px;
@@ -187,14 +188,16 @@ a {
 
 .icon:hover {
 	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
 }
 
 .project {
-	background-position: 22px 10px;
+	background-position: 14px 7px;
 }
 
 .task {
-	background-position: -48px 10px;
+	background-position: 14px -85px;
 }
 
 /* @end */
@@ -204,7 +207,7 @@ a {
 .content {
 	background: #fff;
 	border: 1px solid #ddd;
-	border-radius: 4px;
+	border-radius: 5px;
 	float: left;
 	margin: 0 0 20px;
 	overflow: hidden;
@@ -370,7 +373,7 @@ h1 .inline-edit {
 .context-actions .inline-edit {
 	color: #808080;
 	font-size: 14px;
-	height: 4em;
+	height: 5em;
 	line-height: 20px;
 	padding-bottom: 20px;
 	width: 100%;
@@ -414,19 +417,23 @@ a.context {
 }
 
 .btn {
-	background: #42a8d6;
+	background: #71bee0 url(/i/btn-icons.png) no-repeat 0 0;
 	border: 0;
 	border-radius: 20px;
 	color: #fff;
 	cursor: pointer;
 	font-size: 16px;
-	padding: 5px 20px;
+	padding: 7px 20px 7px 40px;
 	text-decoration: none;
 	white-space: nowrap;
 }
 
+.btn.delete {
+	background-position: 0 -31px;
+}
+
 .btn:hover {
-	background: #333;
+	background: #d69242;
 }
 
 /* @end */
@@ -479,7 +486,7 @@ footer {
 }
 
 .footer-previous, .footer-next {
-	background: #ddd url(/i/icons.png) no-repeat 5px -83px;
+	background: #ddd;
 	border-radius: 20px;
 	color: #808080;
 	float: left;
@@ -488,7 +495,6 @@ footer {
 }
 
 .footer-next {
-	background-position: 98% -63px;
 	float: right;
 	margin-top: -30px;
 }
