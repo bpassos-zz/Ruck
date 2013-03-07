@@ -44,22 +44,26 @@
 
 <?php if (isset($child_projects)): ?>
 
-	<h1 class="sub">Sub Projects</h1>
+	<div class="sub-projects">
+		
+		<h1 class="sub">Sub Projects</h1>
+		
+		<?php foreach ($child_projects as $project): ?>
+			<?php if ($project->tasks): ?>
+				<ul class="tasks">
+					<?php foreach ($project->tasks as $task): ?>
+						<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
+							<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete"><input type="checkbox"></a>
+							<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
+							<a href="/gtd/projects/<?php echo $project->id; ?>" class="pill project" title="<?php echo $project->name; ?>"><?php echo character_limiter($project->name, 20); ?></a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+		<?php endforeach; ?>
 	
-	<?php foreach ($child_projects as $project): ?>
-		<?php if ($project->tasks): ?>
-			<ul class="tasks">
-				<?php foreach ($project->tasks as $task): ?>
-					<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
-						<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete"><input type="checkbox"></a>
-						<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
-						<a href="/gtd/projects/<?php echo $project->id; ?>" class="pill project" title="<?php echo $project->name; ?>"><?php echo character_limiter($project->name, 20); ?></a>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-		<?php endif; ?>
-	<?php endforeach; ?>
-	
+	</div>
+
 <?php endif; ?>
 
 <script>

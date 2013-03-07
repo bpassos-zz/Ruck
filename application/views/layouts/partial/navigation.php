@@ -17,7 +17,7 @@ if (!isset($breadcrumbs))
 		<li><a href="/gtd/" class="home hide-text" id="home">Home</a></li>
 		<?php for ($i = 0; $i < count($breadcrumbs); $i++): ?>
 			<li>
-				<a href="<?php echo $breadcrumbs[$i]['url']; ?>"><?php echo $breadcrumbs[$i]['text']; ?></a>
+				<a href="<?php echo $breadcrumbs[$i]['url']; ?>"><?php echo character_limiter($breadcrumbs[$i]['text'], 20); ?></a>
 				<?php if ($i === 0): ?>
 					<ul>
 						<?php foreach ($active_projects as $project): ?>

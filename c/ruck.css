@@ -99,13 +99,16 @@ a {
 	margin: 20px 0;
 }
 
-.navigation > ul > li {
-	float: left;
-	line-height: 40px;
+.navigation li {
 	position: relative;
+	line-height: 40px;
 }
 
-.navigation > ul > li > a {
+.navigation > ul > li {
+	float: left;
+}
+
+.navigation li a {
 	background: #f4f4f4;
 	background: -webkit-linear-gradient(bottom, #eaeaea, #fbfbfb);
 	background: -moz-linear-gradient(bottom, #eaeaea, #fbfbfb);
@@ -120,19 +123,24 @@ a {
 }
 
 .navigation a:hover {
-	background-color: #999;
-	color: #fff;
+	background: -webkit-linear-gradient(top, #eaeaea, #fbfbfb);
+	background: -moz-linear-gradient(top, #eaeaea, #fbfbfb);
+	background: -ms-linear-gradient(top, #eaeaea, #fbfbfb);
+	background: -o-linear-gradient(top, #eaeaea, #fbfbfb);
+	color: #444;
 }
 
-.navigation li ul, .navigation li li ul, .navigation li li li ul {
-	background: #ccc;
-	border: 1px solid #eee;
-	border-top: 0;
+.navigation li ul {
 	display: none;
-	left: 100%;
+	left: 0;
 	position: absolute;
-	top: 0;
+	top: 100%;
 	z-index: 99;
+}
+
+.navigation li ul ul {
+	left: 100%;
+	top: 0;
 }
 
 .navigation li:hover > ul {
@@ -140,6 +148,7 @@ a {
 }
 
 .navigation li ul li a {
+	border-right: 1px solid #ddd;
 	border-bottom: 1px solid #eee;
 	display: block;
 	text-decoration: none;
@@ -211,6 +220,11 @@ a {
 	width: 91.4894%;
 }
 
+.sub-projects {
+	margin-top: 40px;
+	width: 73.1707%;
+}
+
 h1 {
 	border-bottom: 1px solid #ddd;
 	font-size: 30px;
@@ -263,7 +277,7 @@ li .delete {
 .tasks .project:hover, .tasks .date:hover, 
 .calendar .date:hover, .active a.context, 
 a.context:hover {
-	opacity: 0.5;
+	
 }
 
 /* @group Calendar */
