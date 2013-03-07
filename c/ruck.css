@@ -395,12 +395,10 @@ h1 .inline-edit {
 
 /* @group Contexts & Buttons */
 
-aside hr {
-	color: #ddd;
-	height: 0;
-	background: #ddd;
+.contexts {
 	border-top: 1px solid #ddd;
-	margin: 40px 0 20px;
+	margin: 40px 0 0;
+	padding: 20px 0;
 }
 
 .context-actions {
@@ -419,11 +417,12 @@ a.context {
 }
 
 .buttons {
-	margin: 20px 0;
 }
 
 .context-actions .buttons {
-	margin-top: 40px;
+	margin-top: 20px;
+	border-top: 1px solid #ddd;
+	padding-top: 40px;
 }
 
 .btn {
