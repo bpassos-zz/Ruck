@@ -61,3 +61,10 @@
 	<?php endforeach; ?>
 	
 <?php endif; ?>
+
+<script>
+	var csrf = {
+		token_name: '<?php echo $this->security->get_csrf_token_name(); ?>',
+		hash: '<?php echo $this->security->get_csrf_hash(); ?>'
+	};
+</script>

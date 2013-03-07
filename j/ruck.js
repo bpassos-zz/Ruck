@@ -43,10 +43,12 @@ $(function () {
 	$('.sortable').sortable({
 		revert: true,
 		update: function (event, ui) {
+			var post_data = {
+				new_order : $('.sortable').sortable('toArray')
+			};
+			post_data[csrf.token_name] = csrf.hash;
 			$.ajax({
-				data: {
-					new_order : $('.sortable').sortable('toArray')
-				},
+				data: post_data,
 				error: function () {
 					// TODO: Add error handling for failed Ajax call.
 				},
