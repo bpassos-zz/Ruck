@@ -11,7 +11,7 @@
 			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a>
 			<a href="/gtd/projects/<?php echo $task->project_id; ?>" class="pill project" title="<?php echo $task->project_name; ?>"><?php echo character_limiter($task->project_name, 20); ?></a>
 			<?php if ($task->due): ?>
-				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill date"><?php echo date('F j', strtotime($task->due)); ?></a>
+				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill <?php echo (strtotime($task->due) + 86400 > time()) ? 'date' : 'overdue'; ?>"><?php echo date('F j', strtotime($task->due)); ?></a>
 			<?php endif; ?>
 		</li>
 	<?php endforeach; ?>
@@ -41,7 +41,7 @@
 						<?php foreach ($upcoming as $task): ?>
 							<?php if (date('Y-m-d', strtotime($task->due)) === date('Y-m-d', time() + (60 * 60 * 24 * $cell))): ?>
 								<div class="upcoming" style="background-position: <?php echo $position; ?>% 0; height: <?php echo $offset; ?>px; z-index: <?php echo 14 - $cell; ?>;">
-									<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill date" style="margin-left: -<?php echo $position - 50; ?>%;">
+									<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill <?php echo (strtotime($task->due) + 86400 > time()) ? 'date' : 'overdue'; ?>" style="margin-left: -<?php echo $position - 50; ?>%;">
 										<?php echo character_limiter($task->description, 20); ?>
 									</a>
 								</div>

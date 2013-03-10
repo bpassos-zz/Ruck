@@ -27,7 +27,9 @@
 			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete"><input type="checkbox"></a>
 			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a>
 			<?php if ($task->due): ?>
-				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill date"><?php echo date('F j', strtotime($task->due)); ?></a>
+				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill <?php echo (strtotime($task->due) + 86400 > time()) ? 'date' : 'overdue'; ?>">
+					<?php echo date('F j', strtotime($task->due)); ?>
+				</a>
 			<?php endif; ?>
 		</li>
 	<?php endforeach; ?>

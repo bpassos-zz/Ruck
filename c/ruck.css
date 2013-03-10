@@ -324,6 +324,10 @@ li .delete {
 	background: #ec4f2e;
 }
 
+.tasks .overdue, .calendar .overdue {
+	background: #541344;
+}
+
 .swing {
 	-webkit-transform-origin: top center;
 	-moz-transform-origin: top center;
