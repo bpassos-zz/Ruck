@@ -11,7 +11,8 @@
 
 		<?php echo $template['partials']['contexts']; ?>
 		
-		<input class="inline-edit date" type="text" name="due" id="due" value="<?php if (isset($task['due'])) echo date('Y-m-d', strtotime($task['due'])); ?>">
+		<input class="date" type="hidden" name="due" id="due" value="<?php if (isset($task['due'])) echo date('Y-m-d', strtotime($task['due'])); ?>">
+		<div id="datepicker"></div>
 
 	</aside>
 	

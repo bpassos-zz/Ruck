@@ -1,5 +1,26 @@
 $(function () {
 	
+	// Add a CLear button to the datepicker plugin.
+	var dpFunc = $.datepicker._generateHTML;
+	$.datepicker._generateHTML = function  (inst) {
+		var thishtml = $(dpFunc.call($.datepicker, inst));
+		thishtml = $('<div/>').append(thishtml);
+		$('.ui-datepicker-buttonpane', thishtml).append(
+			$('<button class="ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all"\>Clear</button\>').click(function () {
+				$('#datepicker').datepicker('setDate', null);
+				return false;
+			})
+		);
+		thishtml = thishtml.children();
+		return thishtml;
+	};
+	
+	$('.project, .date, .context').mouseover(function () {
+		$(this).addClass('swing');
+	}).mouseout(function () {
+		$(this).removeClass('swing');
+	});
+	
 	// Add keyboard shortcuts, only if the user is not currently focused on a form field.
 	$(document).on('keydown', function (e) {
 		if ($(e.target).is('input, select, textarea')) {
@@ -112,12 +133,10 @@ $(function () {
 	}
 	
 	// Attach datepicker to Due Date field.
-	$('#due').datepicker({
-		dateFormat		: 'yy-mm-dd',
-		showButtonPanel	: true,
-		showOn			: 'button',
-		buttonImage		: '/i/calendar.gif',
-		buttonImageOnly	: true
+	$('#datepicker').datepicker({
+		altFormat		: 'yy-mm-dd',
+		altField		: "#due",
+		showButtonPanel	: true
 	});
 
 });
