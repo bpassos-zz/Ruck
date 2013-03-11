@@ -37,6 +37,9 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/j/jquery-1.9.1.min.js"><\/script>')</script>
 		
+		<!-- Load jQuery cookie plugin -->
+		<script src="/j/jquery.cookie.js"></script>
+		
 		<!-- Load jQuery UI Sortable -->
 		<script src="/j/jquery-ui-1.10.1.custom.min.js"></script>
 		

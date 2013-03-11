@@ -114,12 +114,23 @@ $(function () {
 				for (var i = 0; i < active_context_ids.length; i++) {
 					$('.tasks li[data-context-id="' + active_context_ids[i] + '"]').show();
 				}
+				$.cookie('contexts', active_context_ids, { expires: 1 }); // Selected context(s) persist for a single day
 			} else {
 				// Show all tasks as no contexts are selected.
 				$('.tasks li').show();
+				$.removeCookie('contexts');
 			}
 			return false;
 		});
+		
+		// If the contexts cookie is present, use it to set the initial state of the homepage contexts.
+		if ($.cookie('contexts')) {
+			var active_context_ids = $.cookie('contexts');
+			$('.tasks li').hide();
+			for (var i = 0; i < active_context_ids.length; i++) {
+				$('.contexts li[data-context-id="' + active_context_ids[i] + '"] a').click();
+			}
+		}
 	
 	} else {
 		// No task list so hide the context navigation.
