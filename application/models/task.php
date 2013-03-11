@@ -165,7 +165,6 @@ class Task extends CI_Model {
 	 */
 	function insert_new()
 	{
-
 		$project_id = $this->input->post('project_id');
 
 		# If the project_id is set, create a child task.
