@@ -4,7 +4,7 @@
 	<?php echo $template['partials']['contexts']; ?>
 </aside>
 
-<ul class="tasks">
+<ul class="tasks next">
 	<?php foreach ($next_tasks as $task): ?>
 		<li data-context-id="<?php echo $task->context_id; ?>">
 			<a href="/gtd/tasks/delete/<?php echo $task->id; ?>/home" class="delete"><input type="checkbox"></a>
@@ -19,7 +19,7 @@
 
 <?php if (count($upcoming) > 0): ?>
 
-	<h1>Upcoming Due Dates</h1>
+	<h1 class="upcoming-header">Upcoming Due Dates</h1>
 
 	<table class="calendar">
 		<thead>

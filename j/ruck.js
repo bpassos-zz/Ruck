@@ -83,7 +83,7 @@ $(function () {
 		}
 	});
 	
-	var $tasks = $('.tasks li');
+	var $tasks = $('.tasks li'), is_next = $('.next').length;
 
 	if ($tasks.length) {
 
@@ -114,17 +114,21 @@ $(function () {
 				for (var i = 0; i < active_context_ids.length; i++) {
 					$('.tasks li[data-context-id="' + active_context_ids[i] + '"]').show();
 				}
-				$.cookie('contexts', active_context_ids, { expires: 1 }); // Selected context(s) persist for a single day
+				if (is_next) {
+					$.cookie('contexts', active_context_ids, { expires: 1 }); // Selected context(s) persist for a single day
+				}
 			} else {
 				// Show all tasks as no contexts are selected.
 				$('.tasks li').show();
-				$.removeCookie('contexts');
+				if (is_next) {
+					$.removeCookie('contexts');
+				}
 			}
 			return false;
 		});
 		
 		// If the contexts cookie is present, use it to set the initial state of the homepage contexts.
-		if ($.cookie('contexts')) {
+		if (is_next && $.cookie('contexts')) {
 			var active_context_ids = $.cookie('contexts');
 			$('.tasks li').hide();
 			for (var i = 0; i < active_context_ids.length; i++) {
