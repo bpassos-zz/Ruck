@@ -1,5 +1,5 @@
 <?php if (isset($links[0])): ?>
-	<a class="footer-previous" href="<?php echo $links[0]['url']; ?>"><?php echo $links[0]['text']; ?></a>
+	<a class="footer-previous" href="<?php echo $links[0]['url']; ?>" title="<?php echo $links[0]['text']; ?>"><?php echo character_limiter($links[0]['text'], 20); ?></a>
 <?php endif; ?>
 
 <div class="arrow-keys">
@@ -21,5 +21,5 @@
 </div>
 
 <?php if (isset($links[1])): ?>
-	<a class="footer-next" href="<?php echo $links[1]['url']; ?>"><?php echo $links[1]['text']; ?></a>
+	<a class="footer-next" href="<?php echo $links[1]['url']; ?>" title="<?php echo $links[1]['text']; ?>"><?php echo character_limiter($links[1]['text'], 20); ?></a>
 <?php endif; ?>

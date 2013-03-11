@@ -18,6 +18,15 @@
 	
 	<p><textarea name="notes" rows="20" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea></p>
 	
+	<label for="status_id">Status:</label>
+	<?php echo form_dropdown('status_id', $statuses, $task['status_id'], 'id="status_id"'); ?>
+
+	<label for="context_id">Context:</label>
+	<?php echo form_dropdown('context_id', $contexts, $task['context_id'], 'id="context_id"'); ?>
+
+	<label for="project_id">Project:</label>
+	<?php echo form_dropdown('project_id', $projects, $task['project_id'], 'id="project_id"'); ?>
+
 	<div class="buttons">
 		<button type="submit" class="btn save">Save Changes</button>
 	</div>

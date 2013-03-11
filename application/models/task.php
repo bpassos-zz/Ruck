@@ -152,8 +152,9 @@ class Task extends CI_Model {
 		$this->db->where('id', $id)->update('tasks', array(
 			'description'		=> $this->input->post('description'),
 			'notes'				=> strlen($this->input->post('notes')) ? $this->input->post('notes')  : '',
-#			'context_id'		=> $this->input->post('context_id'),
-#			'status_id'			=> $this->input->post('status_id'),
+			'context_id'		=> $this->input->post('context_id'),
+			'status_id'			=> $this->input->post('status_id'),
+			'project_id'		=> $this->input->post('project_id'),
 			'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
 			'updated_at'		=> date('Y-m-d H:i:s'),
 		));

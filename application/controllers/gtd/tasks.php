@@ -58,6 +58,9 @@ class Tasks extends Ruck_Controller {
 		$this->template->build('tasks/detail', array(
 			'task'		=> $task,
 			'project'	=> $project,
+			'statuses'	=> $this->Status->fetch_statuses('task'),
+			'contexts'	=> $this->Context->fetch_contexts(),
+			'projects'	=> $this->Project->fetch_projects_for_dropdown(),
 		));
 			
 	}
