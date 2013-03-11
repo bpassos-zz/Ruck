@@ -15,12 +15,6 @@ $(function () {
 		return thishtml;
 	};
 	
-	$('.project, .date, .context').mouseover(function () {
-		$(this).addClass('swing');
-	}).mouseout(function () {
-		$(this).removeClass('swing');
-	});
-	
 	// Add keyboard shortcuts, only if the user is not currently focused on a form field.
 	$(document).on('keydown', function (e) {
 		if ($(e.target).is('input, select, textarea')) {
