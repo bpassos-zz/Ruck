@@ -14,7 +14,7 @@ if (!isset($breadcrumbs))
 <nav role="navigation" class="navigation">
 
 	<ul>
-		<li><a href="/gtd/" class="home hide-text" id="home">Home</a></li>
+		<li class="home"><a href="/gtd/" class="hide-text" id="home"><span><strong>Home</strong></span></a></li>
 		<?php for ($i = 0; $i < count($breadcrumbs); $i++): ?>
 			<li>
 				<a href="<?php echo $breadcrumbs[$i]['url']; ?>"><?php echo character_limiter($breadcrumbs[$i]['text'], 20); ?></a>
