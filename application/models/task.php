@@ -47,8 +47,15 @@ class Task extends CI_Model {
 	function get_next_tasks()
 	{
 
-		# Create an empty array to hold all the results.
-		$next_tasks = array();
+		# Create an empty array to hold all the results - we're going to use four categories:
+		# 1. Overdue tasks with due dates (in date order)
+		# 2. Tasks with a due date of today
+		# 3. All tasks with no due date (in reverse order of last update)
+		# 4. Tasks with a due date in the future (in date order)
+		$overdue_tasks = array();
+		$todays_tasks = array();
+		$no_due_date_tasks = array();
+		$future_tasks = array();
 
 		# Retrieve all projects.
 		$projects = $this->db->get_where('projects', array(
@@ -64,16 +71,49 @@ class Task extends CI_Model {
 				'project_id' => $project->id
 			), 1);
 			
-			# Insert the Task object into the array, if any were found.
+			# Insert the Task object into the appropriate array, if any were found.
 			if ($task->num_rows() != 0)
 			{
 				$row = $task->row();
 				$row->project_name = $project->name;
-				$next_tasks[] = $task->row();
+				# If it has no due date, put it into the right list.
+				if (!isset($row->due))
+				{
+					$no_due_date_tasks[] = $row;
+				}
+				else
+				{
+					$due = substr($row->due, 0, 10);
+					$now = date('Y-m-d');
+					# Is the due date today?
+					if ($due == $now)
+					{
+						$todays_tasks[] = $row;
+					}
+					else if ($due < $now)
+					{
+						$overdue_tasks[] = $row;
+					}
+					else
+					{
+						$future_tasks[] = $row;
+					}
+				}
 			}
 
 		}
-
+		
+		# Sort the overdue and future date lists by due date.
+		usort($overdue_tasks, 'sort_by_date');
+		usort($future_tasks, 'sort_by_date');
+		
+		# Sort the other lists by last update.
+		usort($no_due_date_tasks, 'sort_by_update');
+		usort($todays_tasks, 'sort_by_update');
+		
+		# Combine the four categories of next tasks into one single list.
+		$next_tasks = array_merge($overdue_tasks, $todays_tasks, $no_due_date_tasks, $future_tasks);
+		
 		# Return the set of next tasks.
 		return $next_tasks;
 
@@ -224,4 +264,14 @@ class Task extends CI_Model {
 		return $project->row()->project_id;
 	}
 
+}
+
+function sort_by_date($a, $b)
+{
+	return ($a->due < $b->due) ? -1 : 1;
+}
+
+function sort_by_update($a, $b)
+{
+	return ($a->updated_at > $b->updated_at) ? -1 : 1;
 }
