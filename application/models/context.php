@@ -24,7 +24,9 @@ class Context extends CI_Model {
 
 	function fetch_contexts()
 	{
-		$contexts = array();
+		$contexts = array(
+			0 => 'Select context:',
+		);
 		$query = $this->db->select('id, name')->get_where('contexts');
 		foreach ($query->result() as $row)
 		{
