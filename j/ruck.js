@@ -147,5 +147,9 @@ $(function () {
 		altField		: "#due",
 		showButtonPanel	: true
 	});
+	
+	// Set the date to the right value.
+	$('#datepicker').datepicker('setDate', $('#due').attr('data-due'));
+
 
 });

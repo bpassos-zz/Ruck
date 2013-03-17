@@ -10,8 +10,8 @@
 	<aside class="context-actions">
 
 		<?php echo $template['partials']['contexts']; ?>
-		
-		<input class="date" type="hidden" name="due" id="due" value="<?php if (isset($task['due'])) echo date('Y-m-d', strtotime($task['due'])); ?>">
+
+		<input class="date" type="text" name="due" id="due" value="" data-due="<?php if (isset($task['due'])) echo date('m/d/Y', strtotime($task['due'])); ?>">
 		<div id="datepicker"></div>
 
 	</aside>
