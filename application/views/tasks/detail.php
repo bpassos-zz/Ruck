@@ -32,3 +32,22 @@
 	</div>
 
 </form>
+
+<?php
+$created_at = new DateTime($task['created_at']);
+$now = new DateTime(date('Y-m-d'));
+$diff = $created_at->diff($now);
+if ($diff->y)
+{
+	$datestamp = $diff->format('%y years, %m months, %d days');
+}
+else if ($diff->m)
+{
+	$datestamp = $diff->format('%m months, %d days');
+}
+else
+{
+	$datestamp = $diff->format('%d days');
+}
+?>
+<p class="datestamp"><?php echo $datestamp; ?></p>
