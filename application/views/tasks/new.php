@@ -16,7 +16,7 @@
 
 	<aside class="context-actions">
 
-		<?php echo form_input(array(
+		<?php echo form_hidden(array(
 			'name'			=> 'due',
 			'id'			=> 'due',
 			'value'			=> set_value('due'),
