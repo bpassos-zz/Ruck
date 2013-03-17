@@ -247,7 +247,8 @@ a {
 	float: left;
 	margin: 0 0 20px;
 	overflow: hidden;
-	padding: 40px 20px;
+	padding: 40px 20px 60px;
+	position: relative;
 	width: 91.4894%;
 }
 
@@ -311,6 +312,13 @@ li .delete {
 
 .tasks .overdue, .calendar .overdue {
 	background: #541344;
+}
+
+.datestamp {
+	color: #ccc;
+	font-size: 12px;
+	position: absolute;
+	bottom: 20px;
 }
 
 /* @group Calendar */

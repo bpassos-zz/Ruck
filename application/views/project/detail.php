@@ -64,6 +64,25 @@
 
 <?php endif; ?>
 
+<?php
+$created_at = new DateTime($project['created_at']);
+$now = new DateTime(date('Y-m-d'));
+$diff = $created_at->diff($now);
+if ($diff->y)
+{
+	$datestamp = $diff->format('%y years, %m months, %d days');
+}
+else if ($diff->m)
+{
+	$datestamp = $diff->format('%m months, %d days');
+}
+else
+{
+	$datestamp = $diff->format('%d days');
+}
+?>
+<p class="datestamp"><?php echo $datestamp; ?></p>
+
 <script>
 	var csrf = {
 		token_name: '<?php echo $this->security->get_csrf_token_name(); ?>',
