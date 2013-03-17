@@ -40,8 +40,8 @@
 		<!-- Load jQuery cookie plugin -->
 		<script src="/j/jquery.cookie.js"></script>
 		
-		<!-- Load jQuery UI Sortable -->
-		<script src="/j/jquery-ui-1.10.1.custom.min.js"></script>
+		<!-- Load jQuery UI Sortable and Datepicker -->
+		<script src="/j/jquery-ui-1.10.2.custom.min.js"></script>
 		
 		<script src="/j/ruck.js"></script>
 		
