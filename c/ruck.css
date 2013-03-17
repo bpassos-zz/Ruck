@@ -44,6 +44,10 @@ a {
 	-webkit-transition: all .25s ease-in-out;
 }
 
+a:hover, a:focus {
+	color: #142a8d;
+}
+
 /* @end */
 
 /* @group Common Classes */
@@ -63,18 +67,10 @@ a {
 	text-decoration: none;
 	white-space: nowrap;
 	display: inline-block;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-timing-function: ease;
-	-webkit-animation-fill-mode: both;
-	-moz-animation-duration: 1s;
-	-moz-animation-timing-function: ease;
-	-moz-animation-fill-mode: both;
-	-ms-animation-duration: 1s;
-	-ms-animation-timing-function: ease;
-	-ms-animation-fill-mode: both;
-	animation-duration: 1s;
-	animation-timing-function: ease;
-	animation-fill-mode: both;
+}
+
+.pill:hover, .pill:focus {
+	color: #fff;
 }
 
 .error {
