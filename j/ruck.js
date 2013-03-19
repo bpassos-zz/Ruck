@@ -1,5 +1,15 @@
 $(function () {
 	
+	// Make the Enter key work properly in the task description field.
+	$('#description').keydown(function keyDownHandler (e) {
+		if (e.keyCode === 13) {
+			$(this).parents('form')[0].submit();
+			e.stopPropagation();
+			e.preventDefault();
+			return false;
+		}
+	});
+	
 	// Add a CLear button to the datepicker plugin.
 	var dpFunc = $.datepicker._generateHTML;
 	$.datepicker._generateHTML = function  (inst) {
