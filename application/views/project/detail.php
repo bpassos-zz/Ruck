@@ -1,3 +1,21 @@
+<?php
+$created_at = new DateTime($project['created_at']);
+$now = new DateTime(date('Y-m-d'));
+$diff = $created_at->diff($now);
+if ($diff->y)
+{
+	$datestamp = $diff->format('%y years, %m months, %d days');
+}
+else if ($diff->m)
+{
+	$datestamp = $diff->format('%m months, %d days');
+}
+else
+{
+	$datestamp = $diff->format('%d days');
+}
+?>
+
 <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
 <h1><input class="inline-edit" type="text" name="name" value="<?php echo htmlspecialchars($project['name']); ?>"></h1>
@@ -64,23 +82,6 @@
 
 <?php endif; ?>
 
-<?php
-$created_at = new DateTime($project['created_at']);
-$now = new DateTime(date('Y-m-d'));
-$diff = $created_at->diff($now);
-if ($diff->y)
-{
-	$datestamp = $diff->format('%y years, %m months, %d days');
-}
-else if ($diff->m)
-{
-	$datestamp = $diff->format('%m months, %d days');
-}
-else
-{
-	$datestamp = $diff->format('%d days');
-}
-?>
 <p class="datestamp"><?php echo $datestamp; ?></p>
 
 <script>
