@@ -16,13 +16,7 @@
 
 	<aside class="context-actions">
 
-		<?php echo form_hidden(array(
-			'name'			=> 'due',
-			'id'			=> 'due',
-			'value'			=> set_value('due'),
-			'maxlength'		=> 20,
-			'size'			=> 15,
-		)); ?>
+		<input type="hidden" name="due" id="due" value="<?php echo set_value('due'); ?>">
 		<div id="datepicker"></div>
 
 	</aside>
