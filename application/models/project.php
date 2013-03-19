@@ -67,7 +67,7 @@ class Project extends CI_Model {
 			'parent_project_id'	=> $parent_project_id,
 			'status_id'			=> 3,
 		))->result();
-		
+
 		# Loop through them all to find the previous and next projects.
 		$passed_current_project = FALSE;
 		$found_next_link = FALSE;
