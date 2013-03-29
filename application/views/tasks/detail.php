@@ -14,6 +14,9 @@
 		<input class="date" type="hidden" name="due" id="due" value="" data-due="<?php if (isset($task['due'])) echo date('m/d/Y', strtotime($task['due'])); ?>">
 		<div id="datepicker"></div>
 
+		<label for="recurs">This task recurs:</label>
+		<?php echo form_dropdown('recurs', $recurring_labels, $task['recurs'], 'id="recurs"'); ?>
+
 	</aside>
 	
 	<p><textarea name="notes" rows="20" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea></p>

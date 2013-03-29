@@ -39,6 +39,22 @@ class Task extends CI_Model {
 	}
 	
 	/**
+	 * Return the options for recurring tasks.
+	 */
+	function fetch_recurring_labels()
+	{
+		$recurring_labels = array(
+			0 => 'Does not recur',
+		);
+		$query = $this->db->get('recurring');
+		foreach ($query->result() as $row)
+		{
+			$recurring_labels[$row->id] = $row->label;
+		}
+		return $recurring_labels;
+	}
+	
+	/**
 	 * Find all of the 'next' tasks. These will be the single task within
 	 * each project with the lowest id (as we re-insert the tasks each time
 	 * their order is updated.) We also need to retrieve the related project
@@ -196,6 +212,7 @@ class Task extends CI_Model {
 			'status_id'			=> $this->input->post('status_id'),
 			'project_id'		=> $this->input->post('project_id'),
 			'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
+			'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : NULL,
 			'updated_at'		=> date('Y-m-d H:i:s'),
 		));
 	}
@@ -218,6 +235,7 @@ class Task extends CI_Model {
 				'status_id'			=> $this->input->post('status_id'),
 				'project_id'		=> $this->input->post('project_id'),
 				'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
+				'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : NULL,
 				'created_at'		=> date('Y-m-d H:i:s'),
 				'updated_at'		=> date('Y-m-d H:i:s'),
 			));
@@ -240,6 +258,7 @@ class Task extends CI_Model {
 				'status_id'			=> $this->input->post('status_id'),
 				'project_id'		=> $project_id,
 				'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
+				'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : NULL,
 				'created_at'		=> date('Y-m-d H:i:s'),
 				'updated_at'		=> date('Y-m-d H:i:s'),
 			));
@@ -251,17 +270,63 @@ class Task extends CI_Model {
 	}
 
 	/**
-	 * Delete a task.
+	 * Delete a task, unless it is a recurring task.
 	 */
 	function delete($id)
 	{
-		$project = $this->db->select('project_id')->get_where('tasks', array(
+
+		# Find the task.
+		$task = $this->db->get_where('tasks', array(
 			'id' => $id
-		));
-		$this->db->delete('tasks', array(
-			'id' => $id
-		));
-		return $project->row()->project_id;
+		))->row();
+
+		# Check whether or not it has the recurring flag set.
+		if ($task->recurs)
+		{
+			# Retrieve the relevant type of recurrence.
+			$recurrence = $this->db->get_where('recurring', array(
+				'id' => $task->recurs
+			))->row();
+			# Check for what type of recurrence it has - daily, weekly, monthly or yearly.
+			if ($recurrence->days)
+			{
+				# Daily task, add X day(s) to the due date.
+				$this->db->where('id', $id)->update('tasks', array(
+					'due' => date('Y-m-d H:i:s', strtotime($task->due . ' +' . $recurrence->days . ' days'))
+				));
+			}
+			elseif ($recurrence->weeks)
+			{
+				# Weekly task, add X week(s) to the due date.
+				$this->db->where('id', $id)->update('tasks', array(
+					'due' => date('Y-m-d H:i:s', strtotime($task->due . ' +' . $recurrence->weeks . ' weeks'))
+				));
+			}
+			elseif ($recurrence->months)
+			{
+				# Monthly task, add X month(s) to the due date.
+				$this->db->where('id', $id)->update('tasks', array(
+					'due' => date('Y-m-d H:i:s', strtotime($task->due . ' +' . $recurrence->months . ' months'))
+				));
+			}
+			elseif ($recurrence->years)
+			{
+				# Annual task, add X year(s) to the due date.
+				$this->db->where('id', $id)->update('tasks', array(
+					'due' => date('Y-m-d H:i:s', strtotime($task->due . ' +' . $recurrence->years . ' years'))
+				));
+			}
+		}
+		else
+		{
+			$this->db->delete('tasks', array(
+				'id' => $id
+			));
+		}
+
+		# Return to the parent project page.
+		return $task->project_id;
+
 	}
 
 }

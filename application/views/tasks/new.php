@@ -18,6 +18,9 @@
 
 		<input type="hidden" name="due" id="due" value="<?php echo set_value('due'); ?>">
 		<div id="datepicker"></div>
+		
+		<label for="recurs">This task recurs:</label>
+		<?php echo form_dropdown('recurs', $recurring_labels, '0', 'id="recurs"'); ?>
 
 	</aside>
 
