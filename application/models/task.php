@@ -235,7 +235,7 @@ class Task extends CI_Model {
 				'status_id'			=> $this->input->post('status_id'),
 				'project_id'		=> $this->input->post('project_id'),
 				'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
-				'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : NULL,
+				'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : 0,
 				'created_at'		=> date('Y-m-d H:i:s'),
 				'updated_at'		=> date('Y-m-d H:i:s'),
 			));
@@ -258,7 +258,7 @@ class Task extends CI_Model {
 				'status_id'			=> $this->input->post('status_id'),
 				'project_id'		=> $project_id,
 				'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
-				'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : NULL,
+				'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : 0,
 				'created_at'		=> date('Y-m-d H:i:s'),
 				'updated_at'		=> date('Y-m-d H:i:s'),
 			));
