@@ -225,11 +225,15 @@ a:hover, a:focus {
 }
 
 .project {
-	background-position: 12px -72px;
+	background-position: 50% -72px;
 }
 
 .task {
-	background-position: 12px -162px;
+	background-position: 50% -162px;
+}
+
+.archive {
+	background-position: 50% -228px;
 }
 
 /* @end */

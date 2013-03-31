@@ -160,5 +160,15 @@ class Projects extends Ruck_Controller {
 		# Redirect to the master page.
 		redirect('/gtd/');
 	}
+	
+	/**
+	 * List all archived projects.
+	 */
+	function archive()
+	{
+		$this->template->build('project/archive', array(
+			'projects' => $this->Project->get_archived_projects(),
+		));
+	}
 
 }

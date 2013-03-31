@@ -29,6 +29,19 @@ class Project extends CI_Model {
 	}
 	
 	/**
+	 * Return a nested list of inactive projects.
+	 */
+	function get_archived_projects()
+	{
+		# Retrieve all the inactive projects, as it's quicker to do the re-ordering in memory than in MySQL.
+		$projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
+			'status_id' => 4,
+		))->result();
+
+		return $this->_build_tree($projects);
+	}
+	
+	/**
 	 * Return an array of link arrays for the navigation, showing all ancestor projects.
 	 */
 	function get_project_breadcrumb($id)
