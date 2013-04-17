@@ -73,9 +73,9 @@ class Task extends CI_Model {
 		$no_due_date_tasks = array();
 		$future_tasks = array();
 
-		# Retrieve all projects.
+		# Retrieve all active projects.
 		$projects = $this->db->get_where('projects', array(
-			'status_id' => '3'
+			'someday_maybe' => 0
 		));
 
 		# Loop through each project.
@@ -245,7 +245,6 @@ class Task extends CI_Model {
 			# No project provided, so first we create a new project to hold this task.
 			$this->db->insert('projects', array(
 				'name'				=> $this->input->post('description'),
-				'status_id'			=> 0,
 				'created_at'		=> date('Y-m-d H:i:s'),
 				'updated_at'		=> date('Y-m-d H:i:s'),
 			));

@@ -164,10 +164,10 @@ class Projects extends Ruck_Controller {
 	/**
 	 * List all archived projects.
 	 */
-	function archive()
+	function someday_maybe()
 	{
-		$this->template->build('project/archive', array(
-			'projects' => $this->Project->get_archived_projects(),
+		$this->template->build('project/someday-maybe', array(
+			'projects' => $this->Project->get_someday_maybe_projects(),
 		));
 	}
 

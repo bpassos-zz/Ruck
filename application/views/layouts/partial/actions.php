@@ -4,6 +4,6 @@
 
 	<a href="/gtd/tasks/create" class="icon task" accesskey="t" id="new-task">New <u>T</u>ask</a>
 
-	<a href="/gtd/projects/archive" class="icon archive" accesskey="a" id="archive"><u>A</u>rchived Projects</a>
+	<a href="/gtd/projects/someday_maybe" class="icon someday-maybe" accesskey="s" id="archive"><u>S</u>omeday/<br>Maybe</a>
 
 </section>

@@ -31,10 +31,10 @@ else
 		<?php echo $template['partials']['contexts']; ?>
 	
 		<div class="buttons">
-			<?php if ($project['status_id'] == 3): ?>
-				<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="btn inactive">Mark as inactive</a>
+			<?php if ($project['someday_maybe'] == 0): ?>
+				<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="btn inactive">Move to Someday/Maybe</a>
 			<?php else: ?>
-				<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="btn active">Mark as active</a>
+				<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="btn active">Make this project active</a>
 			<?php endif; ?>
 			<br>
 			<br>

@@ -21,7 +21,7 @@ class Project extends CI_Model {
 
 		# Retrieve all the active projects, as it's quicker to do the re-ordering in memory than in MySQL.
 		$projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
-			'status_id' => 3,
+			'someday_maybe' => 0,
 		))->result();
 
 		return $this->_build_tree($projects);
@@ -31,11 +31,11 @@ class Project extends CI_Model {
 	/**
 	 * Return a nested list of inactive projects.
 	 */
-	function get_archived_projects()
+	function get_someday_maybe_projects()
 	{
 		# Retrieve all the inactive projects, as it's quicker to do the re-ordering in memory than in MySQL.
 		$projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
-			'status_id' => 4,
+			'someday_maybe' => 1,
 		))->result();
 
 		return $this->_build_tree($projects);
@@ -78,7 +78,7 @@ class Project extends CI_Model {
 		# Find all the projects that have the same parent and are active. 
 		$sibling_projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
 			'parent_project_id'	=> $parent_project_id,
-			'status_id'			=> 3,
+			'someday_maybe'		=> 0,
 		))->result();
 
 		# Loop through them all to find the previous and next projects.
@@ -188,7 +188,7 @@ class Project extends CI_Model {
 	function inactive_projects()
 	{
 		$projects = $this->db->order_by('name', 'asc')->get_where('projects', array(
-			'status_id' => 4
+			'someday_maybe' => 1
 		));
 		return $projects->result();
 	}
@@ -279,7 +279,6 @@ class Project extends CI_Model {
 		$this->db->where('id', $id)->update('projects', array(
 			'name'				=> $this->input->post('name'),
 			'description'		=> strlen($this->input->post('description')) ? $this->input->post('description')  : '',
-#			'status_id'			=> $this->input->post('status_id'),
 #			'parent_project_id'	=> $this->input->post('parent_project_id'),
 			'updated_at'		=> date('Y-m-d H:i:s'),
 		));
@@ -293,7 +292,6 @@ class Project extends CI_Model {
 		$this->db->insert('projects', array(
 			'name'				=> $this->input->post('name'),
 			'description'		=> $this->input->post('description'),
-			'status_id'			=> $this->input->post('status_id'),
 			'parent_project_id'	=> $this->input->post('parent_project_id'),
 			'created_at'		=> date('Y-m-d H:i:s'),
 			'updated_at'		=> date('Y-m-d H:i:s'),
