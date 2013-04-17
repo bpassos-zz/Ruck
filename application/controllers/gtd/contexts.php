@@ -3,21 +3,19 @@
 class Contexts extends Ruck_Controller {
 	
 	/**
-	 * A single project view, showing all tasks associated with that project.
+	 * Contexts home, listing all the contexts in the system.
 	 */
-	public function index($id = NULL)
+	public function index()
 	{
 		
-		$context = $this->Context->find($id);
-		$tasks = $this->Task->get_tasks_by_context($id);
+		$contexts = $this->Context->alphabetical_list();
 
 		# Set page title.
-		$this->template->title('GTD', $context['name']);
+		$this->template->title('GTD', 'Contexts');
 
 		# Load the main content of the page.
 		$this->template->build('context/list', array(
-			'context'		=> $context,
-			'tasks'			=> $tasks->result(),
+			'contexts'		=> $contexts,
 		));
 
 	}

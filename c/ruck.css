@@ -48,6 +48,12 @@ a:hover, a:focus {
 	color: #142a8d;
 }
 
+a small {
+	font-size: 10px;
+	color: #666;
+	text-transform: uppercase;
+}
+
 /* @end */
 
 /* @group Common Classes */

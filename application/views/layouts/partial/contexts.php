@@ -8,3 +8,5 @@
 		<?php endforeach; ?>
 	</ul>
 </nav>
+
+<a href="/gtd/contexts"><small>Edit</small></a>
