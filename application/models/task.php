@@ -269,6 +269,20 @@ class Task extends CI_Model {
 	}
 
 	/**
+	 * Insert a new note from the inbox. These tasks have no project, status, context, etc.
+	 */
+	function insert_note()
+	{
+		$this->db->insert('tasks', array(
+			'description'		=> $this->input->post('description'),
+			'notes'				=> $this->input->post('notes'),
+			'not_processed'		=> 1,
+			'created_at'		=> date('Y-m-d H:i:s'),
+			'updated_at'		=> date('Y-m-d H:i:s'),
+		));
+	}
+
+	/**
 	 * Delete a task, unless it is a recurring task.
 	 */
 	function delete($id)

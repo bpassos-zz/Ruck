@@ -26,7 +26,13 @@
 		<?php echo $template['partials']['actions']; ?>
 
 		<section class="content" role="main">
+
+			<?php if ($this->session->flashdata('message') != ''): ?>
+				<div class="message"><?php echo $this->session->flashdata('message'); ?></div>
+			<?php endif; ?>
+
 			<?php echo $template['body']; ?>
+
 		</section>
 		
 		<footer>

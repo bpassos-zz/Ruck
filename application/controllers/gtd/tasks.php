@@ -22,6 +22,42 @@ class Tasks extends Ruck_Controller {
 	}
 	
 	/**
+	 * The Inbox, for either quick capture of a task for later processing, or processing those captured tasks.
+	 */
+	public function inbox()
+	{
+		
+		$this->load->library('form_validation');
+		
+		# Validate the new project form if submitted.
+		if ($this->form_validation->run('new_task') == FALSE)
+		{
+
+			# Set page title.
+			$this->template->title('GTD', 'Quick capture');
+	
+			# Load the main content of the page.
+			$this->template->build('tasks/inbox');
+
+		}
+		else
+		{
+			
+			# Form passes validation, insert the new note into the database for later processing.
+			$this->Task->insert_note();
+			
+			# Set a flash message to show on the inbox form.
+			$this->session->set_flashdata('message', 'Task "' .  $this->input->post('description') . '" successfully created.');
+			
+			# Redirect back to the Inbox for more capture.
+			redirect('/gtd/tasks/inbox');
+			
+		}
+		
+
+	}
+	
+	/**
 	 * Show an individual task details, and allow editing of the task.
 	 */
 	public function detail($id = NULL)

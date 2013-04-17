@@ -31,6 +31,9 @@ $(function () {
             return;   
         }
         //alert(e.which);
+		if(e.which == 73 || e.which == 105) { // P
+			location.href = $('#inbox').attr('href');
+		}
 		if(e.which == 80 || e.which == 112) { // P
 			location.href = $('#new-project').attr('href');
 		}

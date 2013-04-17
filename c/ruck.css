@@ -88,6 +88,14 @@ a small {
 	padding: 10px 20px;
 }
 
+.message {
+	background: #ccf;
+	border: 1px solid #99c;
+	border-radius: 5px;
+	margin: 0 0 10px;
+	padding: 10px;
+}
+
 /* @end */
 
 /* @group Header */
@@ -240,6 +248,10 @@ a small {
 
 .someday-maybe {
 	background-position: 50% -228px;
+}
+
+.inbox {
+	background-position: 50% -307px;
 }
 
 /* @end */
