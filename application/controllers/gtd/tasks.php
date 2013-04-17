@@ -189,7 +189,7 @@ class Tasks extends Ruck_Controller {
 		$project_id = $this->Task->delete($id);
 		
 		# Redirect to the project page.
-		if ($location == 'home')
+		if ($location == 'home' || !isset($project_id))
 		{
 			redirect('/gtd/');
 		}

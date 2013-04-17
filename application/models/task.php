@@ -28,6 +28,16 @@ class Task extends CI_Model {
 		));
 		return $task->row_array();
 	}
+	
+	/**
+	 * Count the number of items in the inbox.
+	 */
+	function inbox_count()
+	{
+		return $this->db->get_where('tasks', array(
+			'not_processed' => 1
+		))->num_rows();
+	}
 
 	/**
 	 * Find all the tasks under a specific project.
@@ -236,7 +246,7 @@ class Task extends CI_Model {
 			'not_processed'		=> 0,
 			'context_id'		=> $this->input->post('context_id'),
 			'status_id'			=> $this->input->post('status_id'),
-			'project_id'		=> ($project_id) ? $project_id : $this->input->post('project_id'),
+			'project_id'		=> (isset($project_id)) ? $project_id : $this->input->post('project_id'),
 			'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
 			'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : NULL,
 			'updated_at'		=> date('Y-m-d H:i:s'),

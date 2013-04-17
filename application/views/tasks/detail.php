@@ -17,6 +17,10 @@
 		<label for="recurs">This task recurs:</label>
 		<?php echo form_dropdown('recurs', $recurring_labels, $task['recurs'], 'id="recurs"'); ?>
 
+		<div class="buttons">
+			<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="btn delete">Delete this task</a>
+		</div>
+
 	</aside>
 	
 	<p><textarea name="notes" rows="20" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea></p>
