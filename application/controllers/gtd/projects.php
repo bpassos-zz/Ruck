@@ -134,7 +134,7 @@ class Projects extends Ruck_Controller {
 	function activate($id)
 	{
 		$this->db->where('id', $id)->update('projects', array(
-			'status_id' => 3
+			'someday_maybe' => 0
 		));
 		redirect('/gtd/projects/' . $id);
 	}
@@ -142,7 +142,7 @@ class Projects extends Ruck_Controller {
 	function deactivate($id)
 	{
 		$this->db->where('id', $id)->update('projects', array(
-			'status_id' => 4
+			'someday_maybe' => 1
 		));
 		redirect('/gtd/projects/' . $id);
 	}
