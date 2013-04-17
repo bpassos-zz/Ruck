@@ -31,6 +31,7 @@
 	<?php echo form_dropdown('project_id', $projects, $task['project_id'], 'id="project_id"'); ?>
 
 	<div class="buttons">
+		<input type="hidden" name="id" value="<?php echo $task['id']; ?>">
 		<button type="submit" class="btn save">Save Changes</button>
 	</div>
 

@@ -17,6 +17,17 @@ class Task extends CI_Model {
 		));
 		return $task->row_array();
 	}
+	
+	/**
+	 * Find the first unprocessed task, ordered by creation date.
+	 */
+	function find_first_not_processed()
+	{
+		$task = $this->db->order_by('created_at')->limit(1)->get_where('tasks', array(
+			'not_processed' => 1
+		));
+		return $task->row_array();
+	}
 
 	/**
 	 * Find all the tasks under a specific project.
@@ -203,18 +214,34 @@ class Task extends CI_Model {
 	/**
 	 * Save changes to a task.
 	 */
-	function update($id)
+	function update($id, $create_new_project = FALSE)
 	{
+		
+		# For new tasks being assigned through inbox processing, we might need to create a new project.
+		if ($create_new_project && $this->input->post('project_id') == 0)
+		{
+			# No project provided, so first we create a new project to hold this task.
+			$this->db->insert('projects', array(
+				'name'				=> $this->input->post('description'),
+				'created_at'		=> date('Y-m-d H:i:s'),
+				'updated_at'		=> date('Y-m-d H:i:s'),
+			));
+			# Now we can create the new task as a child of the new project.
+			$project_id = $this->db->insert_id();
+		}
+		
 		$this->db->where('id', $id)->update('tasks', array(
 			'description'		=> $this->input->post('description'),
 			'notes'				=> strlen($this->input->post('notes')) ? $this->input->post('notes')  : '',
+			'not_processed'		=> 0,
 			'context_id'		=> $this->input->post('context_id'),
 			'status_id'			=> $this->input->post('status_id'),
-			'project_id'		=> $this->input->post('project_id'),
+			'project_id'		=> ($project_id) ? $project_id : $this->input->post('project_id'),
 			'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
 			'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : NULL,
 			'updated_at'		=> date('Y-m-d H:i:s'),
 		));
+
 	}
 	
 	/**

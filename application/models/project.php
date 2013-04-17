@@ -193,10 +193,10 @@ class Project extends CI_Model {
 		return $projects->result();
 	}
 	
-	function fetch_projects_for_dropdown()
+	function fetch_projects_for_dropdown($include_create_new = FALSE)
 	{
 		$projects = array(
-			'0' => 'No parent project',
+			'0' => ($include_create_new) ? 'Create a new project for this task' : 'No parent project',
 		);
 		$query = $this->db->select('id, name')->order_by('name', 'asc')->get('projects');
 		foreach ($query->result() as $row)

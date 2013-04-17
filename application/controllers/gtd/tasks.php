@@ -54,7 +54,39 @@ class Tasks extends Ruck_Controller {
 			
 		}
 		
+	}
+	
+	/**
+	 * Process the outstanding not_processed tasks by stepping through each one
+	 * using the edit form. Show a count of remaining tasks to process.
+	 */
+	function process_inbox()
+	{
+		
+		$this->load->library('form_validation');
+		
+		# Validate the form if submitted.
+		if ($this->form_validation->run('new_task') != FALSE)
+		{
+			# Form passes validation, update the task in the database.
+			$this->Task->update($this->input->post('id'), TRUE);
+		}
 
+		# Find the first not_processed task.
+		$task = $this->Task->find_first_not_processed();
+
+		# Set page title.
+		$this->template->title('GTD', 'Processing Inbox');
+
+		# Load the main content of the page.
+		$this->template->build('tasks/detail', array(
+			'task'				=> $task,
+			'recurring_labels'	=> $this->Task->fetch_recurring_labels(),
+			'statuses'			=> $this->Status->fetch_statuses('task'),
+			'contexts'			=> $this->Context->fetch_contexts(),
+			'projects'			=> $this->Project->fetch_projects_for_dropdown(TRUE),
+		));
+		
 	}
 	
 	/**
