@@ -1,8 +1,12 @@
 <section class="actions">
 	
 	<a href="/gtd/tasks/inbox" class="icon capture" accesskey="q" id="capture"><u>Q</u>uick Capture</a>
-
-	<a href="/gtd/tasks/process_inbox" class="icon inbox" accesskey="p" id="inbox">Process <u>I</u>nbox<?php echo ($inbox_count > 0) ? ' (' . $inbox_count . ')' : ''; ?></a>
+	
+	<?php if ($inbox_count > 0): ?>
+		<a href="/gtd/tasks/process_inbox" class="icon inbox" accesskey="p" id="inbox">Process <u>I</u>nbox (<?php echo $inbox_count; ?>)</a>
+	<?php else: ?>
+		<a href="/gtd/tasks/process_inbox" class="icon inbox" accesskey="p" id="inbox" onclick="alert('No items to process!'); return false;">Process <u>I</u>nbox</a>
+	<?php endif; ?>
 
 	<a href="/gtd/projects/create" class="icon project" accesskey="p" id="new-project">New <u>P</u>roject</a>
 
