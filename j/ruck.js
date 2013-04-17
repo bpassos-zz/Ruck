@@ -30,12 +30,15 @@ $(function () {
 		if ($(e.target).is('input, select, textarea')) {
             return;   
         }
-        //alert(e.which);
-		if(e.which == 73 || e.which == 105) { // P
+		//alert(e.which);
+		if(e.which == 73 || e.which == 105) { // I
 			location.href = $('#inbox').attr('href');
 		}
 		if(e.which == 80 || e.which == 112) { // P
 			location.href = $('#new-project').attr('href');
+		}
+		if(e.which == 81 || e.which == 113) { // Q
+			location.href = $('#capture').attr('href');
 		}
 		if(e.which == 84 || e.which == 116) { // T
 			location.href = $('#new-task').attr('href');
