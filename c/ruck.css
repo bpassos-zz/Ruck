@@ -168,8 +168,8 @@ a {
 }
 
 .contexts .active a {
-	background: #999;
-	color: #fff;
+	color: #333;
+	font-weight: bold;
 }
 
 .tasks .project {
