@@ -162,9 +162,10 @@ class Task extends CI_Model {
 	function find_upcoming_due_dates()
 	{
 		# Find all the tasks with a due date that falls after NOW() minus 1 day.
-		return $query = $this->db->get_where('tasks', array(
+		$query = $this->db->select('tasks.id, tasks.project_id, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
 			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
 		))->result();
+		return $query;
 	}
 
 	/**
