@@ -7,33 +7,17 @@
 
 	<head>
 		
-		<?php echo $template['partials']['header']; ?>
+		<?php echo $template['partials']['head']; ?>
 
 	</head>
 
-	<body class="body-<?php echo $this->uri->segment(2); ?>">
+	<body>
 		
-		<?php echo $template['partials']['navigation']; ?>
+		<?php echo $template['partials']['header']; ?>
 		
-		<form role="search" class="search" method="get" action="/search">
-			<div>
-				<label for="q">Search:</label>
-				<input type="search" id="q" name="q" placeholder="Search all tasks and projects...">
-				<button type="submit">Search</button>
-			</div>
-		</form>
-		
-		<?php echo $template['partials']['actions']; ?>
+		<?php echo $template['partials']['capture']; ?>
 
-		<section class="content" role="main">
-
-			<?php if ($this->session->flashdata('message') != ''): ?>
-				<div class="message"><?php echo $this->session->flashdata('message'); ?></div>
-			<?php endif; ?>
-
-			<?php echo $template['body']; ?>
-
-		</section>
+		<?php echo $template['body']; ?>
 		
 		<footer>
 			<?php echo $template['partials']['footer']; ?>

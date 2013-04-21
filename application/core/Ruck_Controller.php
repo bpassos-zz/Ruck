@@ -22,18 +22,21 @@ class Ruck_Controller extends CI_Controller {
 		$this->template->set_layout('gtd');
 
 		# Create template partials, including passing data.
-		$this->template->set_partial('header', 'layouts/partial/header');
-		$this->template->set_partial('actions', 'layouts/partial/actions', array(
+		$this->template->set_partial('head', 'layouts/partial/head');
+		$this->template->set_partial('header', 'layouts/partial/header', array(
 			'inbox_count' => $this->Task->inbox_count()
 		));
+		$this->template->set_partial('capture', 'layouts/partial/capture');
 		$this->template->set_partial('contexts', 'layouts/partial/contexts', array(
 			'context_list'	=> $this->Context->alphabetical_list(),
 		));
+
 		# Load navigation.
 		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
 			'active_projects'	=> $this->Project->active_projects(),
 			'inactive_projects'	=> $this->Project->inactive_projects(),
 		));
+
 		# Create footer links.
 		$this->template->set_partial('footer', 'layouts/partial/footer');
 

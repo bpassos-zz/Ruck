@@ -3,7 +3,7 @@
  *
  * Author	: Matthew Pennell
  * Created	: 22/02/2013
- * Modified	: 22/02/2013
+ * Modified	: 21/04/2013
  */
 
 @import url('/c/reset.css');
@@ -21,79 +21,82 @@
 /* @group Basic Element Styles */
 
 body {
-	background: #eee url(/i/body.png);
+	font: 12px/40px "Helvetica Neue", Arial, Helvetica, sans-serif;
 	color: #444;
-	font: 14px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
-	margin: 0 20px;
-	position: relative;
 }
 
-textarea {
-	background: #ffd;
-	border: 0;
-}
-
-legend {
-	display: none;
+h1 {
+	font-weight: bold;
 }
 
 a {
-	color: #42a8d6;
-	transition: all .25s ease-in-out;
-	-moz-transition: all .25s ease-in-out;
-	-webkit-transition: all .25s ease-in-out;
-}
-
-a:hover, a:focus {
-	color: #142a8d;
-}
-
-a small {
-	font-size: 10px;
-	color: #666;
-	text-transform: uppercase;
+	color: #06f;
+	text-decoration: none;
 }
 
 /* @end */
 
 /* @group Common Classes */
 
-.hide-text {
-	text-indent: 100%;
-	white-space: nowrap;
+.pill, .count {
+	background: #ddd;
+	color: #666;
+	border-radius: 10px;
+	padding: 3px 10px;
+	line-height: 1;
+}
+
+.count {
+	font-weight: bold;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+/* @end */
+
+/* @group Page Layout */
+
+.block {
+	border-bottom: 1px solid #ccc;
+}
+
+.header, .capture {
+	height: 40px;
 	overflow: hidden;
 }
 
-.pill {
-	background: #ccc;
-	border-radius: 12px;
-	color: #fff;
-	font-size: 12px;
+.heading {
+	float: left;
+	font-size: 14px;
+	line-height: 40px;
 	padding: 0 10px;
-	text-decoration: none;
-	white-space: nowrap;
-	display: inline-block;
+	position: relative;
+	width: 200px;
 }
 
-.pill:hover, .pill:focus {
-	color: #fff;
+.content {
+	margin-left: 200px;
+	border-left: 1px solid	#ccc;
+	min-height: 40px;
+	overflow: hidden;
 }
 
-.error {
-	background: #d00;
-	border-radius: 20px;
-	color: #fff;
-	font-weight: bold;
-	margin: 20px 0;
-	padding: 10px 20px;
+.tasks li {
+	height: 40px;
+	line-height: 40px;
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+	padding: 0 10px;
+	position: relative;
 }
 
-.message {
-	background: #ccf;
-	border: 1px solid #99c;
-	border-radius: 5px;
-	margin: 0 0 10px;
-	padding: 10px;
+.tasks li:last-child {
+	border: 0;
+}
+
+.tasks li:hover {
+	background: #f4f4f4;
 }
 
 /* @end */
@@ -102,487 +105,77 @@ a small {
 
 .search {
 	position: absolute;
-	right: 0;
-	top: 20px;
-	width: 23.4043%;
-}
-
-.search input {
-	height: 20px;
-	width: 100%;
-}
-
-.js .search label, .js .search button {
-	display: none;
-}
-
-/* @end */
-
-/* @group Navigation Bar */
-
-.navigation {
-	width: 74.4681%;
-	float: left;
-	margin: 20px 0;
-}
-
-.navigation li {
-	position: relative;
-	line-height: 40px;
-}
-
-.navigation > ul > li {
-	float: left;
-}
-
-.navigation li a {
-	background: url(/i/nav.png) no-repeat 100% 0, url(/i/nav.png) no-repeat 0 0;
-	color: #808080;
-	display: block;
-	padding: 0 40px 0 20px;
-	text-decoration: none;
-}
-
-.navigation li:last-child a {
-	background: url(/i/nav.png) no-repeat 100% 0;
-}
-
-.navigation a:hover {
-	color: #444;
-}
-
-.navigation li ul {
-	display: none;
-	left: -20px;
-	border-top: 1px solid #ddd;
-	margin-top: -1px;
-	position: absolute;
-	top: 100%;
-	z-index: 99;
-}
-
-.navigation li ul ul {
-	left: 100%;
 	top: 0;
+	right: 10px;
 }
-
-.navigation li:hover > ul {
-	display: block;
-}
-
-.navigation li ul li a {
-	background: #f4f4f4 !important;
-	border: 1px solid #ddd;
-	border-top: 0;
-	display: block;
-	text-decoration: none;
-	white-space: nowrap;
-	padding: 0 20px;
-}
-
-.navigation .home {
-	width: 11.4286%;
-	height: 40px;
-}
-
-.navigation .home a {
-	background: url(/i/home.png) no-repeat 0 0;
-	height: 100%;
-	padding: 0;
-}
-
-.navigation .home span {
-	background: url(/i/home.png) no-repeat 100% 0;
-	display: block;
-	margin-left: 19px;
-	height: 100%;
-}
-
-.navigation .home strong {
-	background: url(/i/home.png) no-repeat -35px -4px;
-	height: 32px;
-	left: 37.5%;
-	margin-left: -16px;
-	position: absolute;
-	top: 4px;
-	width: 32px;
-}
-
-/* @end */
-
-/* @group Sidebar Actions */
 
 .actions {
-	clear: left;
-	float: left;
-	margin: 20px 2.1277% 0 0;
-	text-align: center;
-	width: 6.3830%;
+	padding: 0 10px;
 }
 
-.icon {
-	background: url(/i/icons.png) no-repeat;
-	border: 1px solid transparent;
-	color: #444;
-	display: block;
-	font-size: 12px;
-	line-height: 12px;
-	padding: 50px 10px 10px;
-	text-decoration: none;
-	margin: 0 0 10px;
-}
-
-.icon:hover {
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-}
-
-.project {
-	background-position: 50% -62px;
-}
-
-.task {
-	background-position: 50% -152px;
-}
-
-.someday-maybe {
-	background-position: 50% -228px;
-}
-
-.inbox {
-	background-position: 50% -307px;
-}
-
-.capture {
-	background-position: 50% -386px;
+.actions a {
+	background: #ccc;
+	border-radius: 20px;
+	padding: 5px 10px;
+	color: #333;
+	margin-right: 10px;
 }
 
 /* @end */
 
-/* @group Main Page Content */
+/* @group Inbox */
 
-.content {
-	background: #fff;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	float: left;
-	margin: 0 0 20px;
-	overflow: hidden;
-	padding: 40px 20px 60px;
-	position: relative;
-	width: 91.4894%;
+.inbox {
+	background: #c00;
+	color: #fff;
 }
 
-.sub-projects {
-	margin-top: 40px;
-	width: 73.1707%;
+.quick-capture {
+	padding: 0 10px;
 }
 
-h1 {
-	border-bottom: 1px solid #ddd;
-	font-size: 30px;
-	font-weight: 300;
-	margin: 0 0 20px;
-	padding-bottom: 20px;
-}
-
-.upcoming-header {
-	clear: right;
-}
-
-h2 {
-	color: #999;
-	font-size: 12px;
-	letter-spacing: 2px;
-	margin: 0 0 20px;
-	text-transform: uppercase;
-}
-
-.tasks {
-	font-size: 18px;
-	margin: 0 0 40px;
-}
-
-.tasks li {
-	margin: 0 0 10px;
-	padding: 0;
-	border: 0;
-}
-
-li .delete {
-	float: left;
-	height: 18px;
-	margin-right: 12px;
-	width: 18px;
-}
-
-.delete input {
-	height: 100%;
-	width: 100%;
-}
-
-.tasks a {
-	text-decoration: none;
-}
-
-.tasks .project {
-	background: #1e9423;
-}
-
-.tasks .date, .calendar .date {
-	background: #ec4f2e;
-}
-
-.tasks .overdue, .calendar .overdue {
-	background: #541344;
-}
-
-.datestamp {
-	color: #ccc;
-	font-size: 12px;
-	position: absolute;
-	bottom: 20px;
-}
+/* @end */
 
 /* @group Calendar */
 
-.calendar {
-	width: 100%;
-	text-align: center;
-	margin-bottom: 160px;
-}
-
-.calendar th {
-	color: #999;
-	font-weight: bold;
-	padding: 0 0 10px;
-	text-align: left;
-	text-transform: uppercase;
-}
-
-.calendar td {
-	border-left: 1px solid #ccc;
-	padding: 10px 0;
-	width: 7.1429%;
-	font-size: 24px;
-	color: #ccc;
-	position: relative;
-}
-
-.calendar .weekend {
-	background: #eee;
-}
-
-.upcoming {
-	background: url(/i/pin.png) no-repeat;
-	left: 0;
-	position: absolute;
-	width: 100%;
-}
-
-.upcoming .pill {
-	bottom: 0;
-	border: 1px solid #fff;
-	padding: 1px 10px;
-	position: absolute;
-	left: 0;
-}
-
-/* @end */
-
-/* @group Forms */
-
-label, input, textarea {
-	display: block;
-}
-
-#due {
-	display: inline;
-}
-
-.no-label label {
-	display: none;
-}
-
-form li {
-	border-bottom: 1px dotted #ccc;
-	padding: 10px 0;
-}
-
-#name, #description {
-	font-size: 24px;
-	padding: 5px;
-}
-
-#notes {
-	padding: 5px;
+.calendar-item {
+	float: left;
 	font-size: 14px;
-}
-
-.ui-datepicker {
-	font-size: 12px !important;
-}
-
-/* @end */
-
-/* @group Inline Editable data */
-
-.inline-edit {
-	border: 0;
-	display: block;
-	width: 90%;
-}
-
-h1 .inline-edit {
-	color: #333;
-	font-size: 30px;
-	font-weight: 300;
-	padding: 10px 0;
-}
-
-.content textarea {
-	width: 69.7674%;
-}
-
-.context-actions .inline-edit {
-	color: #808080;
-	font-size: 14px;
-	height: 5em;
 	line-height: 20px;
-	padding-bottom: 20px;
-	width: 100%;
+	height: 100px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin: 10px;
+	padding: 10px;
 }
 
 /* @end */
 
-/* @end */
-
-/* @group Contexts & Buttons */
+/* @group Next Actions */
 
 .contexts {
-	border-top: 1px solid #ddd;
-	margin: 40px 0 0;
-	padding: 20px 0;
-}
-
-.context-actions {
-	text-align: center;
-	float: right;
-	width: 25.5814%;
-}
-
-.contexts li {
-	display: inline;
-	margin: 0 10px 10px 0;
-}
-
-a.context {
-	background: #ed3473;
-	opacity: 0.67;
-}
-
-.active .context {
-	opacity: 1;
-}
-
-.context-actions .buttons {
-	margin-top: 20px;
-	border-top: 1px solid #ddd;
-	padding-top: 40px;
-}
-
-.btn {
-	background: #71bee0 url(/i/btn-icons.png) no-repeat 0 0;
-	border: 0;
-	border-radius: 20px;
-	color: #fff;
-	cursor: pointer;
-	font-size: 16px;
-	padding: 7px 20px 7px 40px;
-	text-decoration: none;
-	white-space: nowrap;
-}
-
-.btn.delete {
-	background-position: 0 -31px;
-}
-
-.btn:hover {
-	background: #d69242;
-}
-
-/* Datepicker */
-
-.ui-datepicker {
-	width: 100% !important;
-}
-
-.ui-datepicker td span, .ui-datepicker td a {
-	text-align: center !important;
-}
-
-/* @end */
-
-/* @group Footer */
-
-footer {
-	margin: 20px 0 20px 8.5106%;
-	overflow: hidden;
-	clear: left;
-}
-
-.arrow-keys {
-	width: 100px;
-	height: 30px;
-	padding-top: 30px;
-	margin: 0 auto;
-	text-align: center;
-	opacity: 0.5;
-}
-
-.arrow-keys a {
+	padding: 0 10px;
 	background: #ccc;
-	border:	1px solid #aaa;
-	border-radius: 4px;
-	box-shadow: 0 0 3px #999;
-	text-decoration: none;
-	color: #999;
-	width: 28px;
-	height: 28px;
-	display: block;
-	font-size: 18px;
-	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.contexts h2, .contexts a {
 	float: left;
-	margin-right: 2px;
+	margin-right: 10px;
+	background: none;
 }
 
-.arrow-keys a:hover {
-	box-shadow: none;
-	background: #ddd;
+.contexts .active a {
+	background: #999;
+	color: #fff;
 }
 
-#up-arrow {
-	position: relative;
-	top: -30px;
-}
-
-.arrow-keys .disabled {
-	opacity: 0.5;
-}
-
-.footer-previous, .footer-next {
-	background: #ddd;
-	border-radius: 20px;
-	color: #808080;
-	float: left;
-	padding: 4px 20px;
-	text-decoration: none;
-}
-
-.footer-next {
-	float: right;
-	margin-top: -30px;
+.tasks .project {
+	position: absolute;
+	right: 10px;
+	top: 10px;
 }
 
 /* @end */
