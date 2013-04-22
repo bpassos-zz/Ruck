@@ -1,7 +1,7 @@
 <div class="block header">
 
 	<div class="heading">
-		<h1>RUCK</h1>
+		<h1><a href="/gtd/">RUCK</a></h1>
 	</div>
 	
 	<div class="content">
