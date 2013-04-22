@@ -1,49 +1,61 @@
-<?php echo validation_errors('<div class="error">', '</div>'); ?>
-
-<?php echo form_open(); ?>
-
-	<h1>
-		<?php echo form_input(array(
-			'name'			=> 'description',
-			'id'			=> 'description',
-			'value'			=> set_value('description'),
-			'maxlength'		=> 255,
-			'size'			=> 50,
-			'autofocus'		=> 'autofocus',
-			'placeholder'	=> 'Enter a brief description of this single task',
-		)); ?>
-	</h1>
-
-	<aside class="context-actions">
-
-		<input type="hidden" name="due" id="due" value="<?php echo set_value('due'); ?>">
-		<div id="datepicker"></div>
-		
-		<label for="recurs">This task recurs:</label>
-		<?php echo form_dropdown('recurs', $recurring_labels, '0', 'id="recurs"'); ?>
-
-	</aside>
-
-	<p>
-		<?php echo form_textarea(array(
-			'name'			=> 'notes',
-			'id'			=> 'notes',
-			'value'			=> set_value('notes'),
-			'placeholder'	=> '(optional) Enter the details of this task and any other notes or discussion you need to refer to later.',
-		)); ?>
-	</p>
-
-	<label for="status_id">Status:</label>
-	<?php echo form_dropdown('status_id', $statuses, '0', 'id="status_id"'); ?>
-
-	<label for="context_id">Context:</label>
-	<?php echo form_dropdown('context_id', $contexts, $default_context, 'id="context_id"'); ?>
-
-	<label for="project_id">Project:</label>
-	<?php echo form_dropdown('project_id', $projects, $project_id, 'id="project_id"'); ?>
-
-	<div class="buttons">
-		<button class="btn add" type="submit">Create new task</button>
+<div class="block task">
+	
+	<div class="heading">
+		New Task
 	</div>
-
-</form>
+	
+	<div class="content">
+		
+		<?php echo validation_errors('<div class="error">', '</div>'); ?>
+		
+		<?php echo form_open(); ?>
+		
+			<h1>
+				<?php echo form_input(array(
+					'name'			=> 'description',
+					'id'			=> 'description',
+					'value'			=> set_value('description'),
+					'maxlength'		=> 255,
+					'size'			=> 50,
+					'autofocus'		=> 'autofocus',
+					'placeholder'	=> 'Enter a brief description of this single task',
+				)); ?>
+			</h1>
+		
+			<aside class="context-actions">
+		
+				<input type="hidden" name="due" id="due" value="<?php echo set_value('due'); ?>">
+				<div id="datepicker"></div>
+				
+				<label for="recurs">This task recurs:</label>
+				<?php echo form_dropdown('recurs', $recurring_labels, '0', 'id="recurs"'); ?>
+		
+			</aside>
+		
+			<p>
+				<?php echo form_textarea(array(
+					'name'			=> 'notes',
+					'id'			=> 'notes',
+					'value'			=> set_value('notes'),
+					'placeholder'	=> '(optional) Enter the details of this task and any other notes or discussion you need to refer to later.',
+				)); ?>
+			</p>
+		
+			<label for="status_id">Status:</label>
+			<?php echo form_dropdown('status_id', $statuses, '0', 'id="status_id"'); ?>
+		
+			<label for="context_id">Context:</label>
+			<?php echo form_dropdown('context_id', $contexts, $default_context, 'id="context_id"'); ?>
+		
+			<label for="project_id">Project:</label>
+			<?php echo form_dropdown('project_id', $projects, $project_id, 'id="project_id"'); ?>
+		
+			<div class="buttons">
+				<button class="btn add" type="submit">Create new task</button>
+			</div>
+		
+		</form>
+		
+	</div>
+	
+</div>
