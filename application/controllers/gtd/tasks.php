@@ -164,16 +164,6 @@ class Tasks extends Ruck_Controller {
 			# Set page title.
 			$this->template->title('GTD', 'Create a new Task');
 
-			# Override default navigation bar if this task is in an existing project.
-			if (isset($project_id))
-			{
-				$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
-					'breadcrumbs'		=> $this->Project->get_project_breadcrumb($project_id),
-					'active_projects'	=> $this->Project->active_projects(),
-					'inactive_projects'	=> $this->Project->inactive_projects(),
-				));
-			}
-			
 			# Load the main content of the page.
 			$this->template->build('tasks/new', array(
 				'recurring_labels'	=> $this->Task->fetch_recurring_labels(),
@@ -188,7 +178,7 @@ class Tasks extends Ruck_Controller {
 		else
 		{
 			
-			# Form passes validation, insert the new project into the database.
+			# Form passes validation, insert the new task into the database.
 			$project_id = $this->Task->insert_new();
 			
 			# Redirect to the Project's page to show the new task.

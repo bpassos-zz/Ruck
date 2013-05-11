@@ -48,7 +48,7 @@
 				<?php echo form_hidden('status_id', 0); ?>
 				<ul class="form-options">
 					<?php foreach ($statuses as $id=>$name): ?>
-						<li><a href="#" data-value="<?php echo $id; ?>" data-field="status_id"><?php echo $name; ?></a></li>
+						<li><a href="#" data-value="<?php echo $id; ?>" data-field="status_id"<?php if ($id == 1) echo ' class="selected"'; ?>><?php echo $name; ?></a></li>
 					<?php endforeach; ?>
 				</ul>
 			</li>
