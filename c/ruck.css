@@ -50,8 +50,9 @@ strong {
 }
 
 .btn {
-	padding: 10px 20px;
+	border: 0;
 	color: #fff;
+	padding: 10px 20px;
 }
 
 #quick-capture { background: #a20f34; }
@@ -120,11 +121,11 @@ h1, .user {
 	font-weight: 300;
 }
 
-.dropdown, .actions {
+.dropdown, .actions, input, textarea {
 	font-size: 18px;
 }
 
-.menu strong, .task, .btn {
+.menu strong, .task, .btn, .form-options {
 	font-size: 14px;
 }
 
@@ -284,6 +285,72 @@ h1, .user {
 
 .date, .overdue {
 	background: #c00;
+	color: #fff;
+}
+
+/* @end */
+
+/* @group Forms */
+
+form li {
+	margin: 40px 0;
+	overflow: hidden;
+}
+
+legend {
+	display: none;
+}
+
+label, input, select, textarea {
+	display: block;
+}
+
+label {
+	text-transform: uppercase;
+	color: #545454;
+	font-weight: 700;
+}
+
+input, textarea {
+	border: 0;
+	border-bottom: 1px solid #e5e5e5;
+	font-family: "Open Sans";
+	font-weight: 300;
+	outline: 0;
+	padding: 10px 0;
+	width: 100%;
+}
+
+.concealed select {
+	display: none;
+}
+
+input:focus, textarea:focus {
+	border-bottom-color: #42a8d6;
+}
+
+.horizontal label, .form-options li, .concealed label, .concealed a {
+	float: left;
+	margin: 0 20px 0 0;
+	padding: 10px 0;
+}
+
+.concealed a {
+	text-decoration: underline;
+}
+
+.concealed a:hover {
+	text-decoration: none;
+}
+
+.form-options a {
+	border: 1px solid #42a8d6;
+	border-radius: 6px;
+	padding: 5px 20px;
+}
+
+.form-options .selected {
+	background: #42a8d6;
 	color: #fff;
 }
 

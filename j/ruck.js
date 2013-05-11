@@ -70,6 +70,15 @@ $(function () {
 		location.href = $(this).parent().attr('href');
 	});
 	
+	// Make the form selection buttons pass their data-value to the relevant hidden field.
+	$('.form-options a').click(function () {
+		$this = $(this);
+		$('input[name="' + $this.attr('data-field') + '"]').val($this.attr('data-value'));
+		$this.parents('.form-options').find('a').removeClass('selected');
+		$this.addClass('selected');
+		return false;
+	});
+	
 	// Make task lists within projects sortable.
 	$('.sortable').sortable({
 		revert: true,

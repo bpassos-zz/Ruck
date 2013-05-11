@@ -29,17 +29,22 @@
 					'placeholder'	=> 'Enter a short description of this project', 
 				)); ?>
 			</li>
-			<li>
-				<label for="status_id">Status:</label>
-				<?php echo form_dropdown('status_id', $statuses, '3', 'id="status_id"'); ?>
+			<li class="horizontal">
+				<label for="status_id">Someday/Maybe?</label>
+				<?php echo form_hidden('someday_maybe', 0); ?>
+				<ul class="form-options">
+					<li><a href="#" data-value="1" data-field="someday_maybe">Yes</a></li>
+					<li><a href="#" data-value="0" data-field="someday_maybe" class="selected">No</a></li>
+				</ul>
 			</li>
-			<li>
+			<li class="concealed">
 				<label for="parent_project_id">Parent project:</label>
+				<a href="#parent_project_id">Select a parent project</a>
 				<?php echo form_dropdown('parent_project_id', $projects, $parent_project_id, 'id="parent_project_id"'); ?>
 			</li>
 		</ol>
 	</fieldset>
 	<div class="buttons">
-		<button class="btn add" type="submit">Create new project</button>
+		<button class="btn new-project" type="submit">Create new project</button>
 	</div>
 </form>
