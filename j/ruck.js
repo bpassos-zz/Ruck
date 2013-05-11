@@ -38,7 +38,7 @@ $(function () {
 			location.href = $('#new-project').attr('href');
 		}
 		if(e.which == 81 || e.which == 113) { // Q
-			location.href = $('#capture').attr('href');
+			location.href = $('#quick-capture').attr('href');
 		}
 		if(e.which == 84 || e.which == 116) { // T
 			location.href = $('#new-task').attr('href');

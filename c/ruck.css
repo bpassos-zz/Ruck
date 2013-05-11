@@ -154,7 +154,7 @@ h1, .user {
 /* @group Menu */
 
 .dropdown {
-	background: #142a14;
+	background: #142a14 url(/i/dropdown.png) no-repeat 176px;
 	border-bottom: 1px solid #8a958a;
 	color: #fff;
 	display: block;
