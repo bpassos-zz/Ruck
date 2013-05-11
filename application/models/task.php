@@ -44,7 +44,7 @@ class Task extends CI_Model {
 	 */
 	function get_tasks_by_project($project_id)
 	{
-		return $this->db->get_where('tasks', array(
+		return $this->db->select('tasks.id, tasks.description, tasks.due, tasks.recurs, contexts.id AS context_id, contexts.name AS context_name')->join('contexts', 'contexts.id = tasks.context_id')->get_where('tasks', array(
 			'project_id' => $project_id
 		));
 	}

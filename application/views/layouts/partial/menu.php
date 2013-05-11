@@ -15,7 +15,7 @@
 		</a>
 	</li>
 	<li>
-		<a href="/gtd/calendar">
+		<a href="/gtd/tasks/calendar">
 			<span class="count">3</span>
 			<strong>Calendar</strong>
 			Due today or tomorrow

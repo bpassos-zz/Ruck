@@ -2,6 +2,9 @@
 
 class Tasks extends Ruck_Controller {
 	
+	/**
+	 * The default Home view of all Next Actions.
+	 */
 	public function index()
 	{
 
@@ -16,6 +19,18 @@ class Tasks extends Ruck_Controller {
 		# Load the main content of the page.
 		$this->template->build('home', array(
 			'next_tasks'	=> $this->Task->get_next_tasks(),
+		));
+		
+	}
+	
+	public function calendar()
+	{
+
+		# Set page title.
+		$this->template->title('GTD', 'Calendar');
+		
+		# Load the main content of the page.
+		$this->template->build('calendar', array(
 			'upcoming'		=> $this->Task->find_upcoming_due_dates(),
 		));
 		
