@@ -6,7 +6,7 @@
 	<fieldset>
 		<legend>Create a new project</legend>
 		<ol>
-			<li class="no-label">
+			<li>
 				<label for="name">Project name</label>
 				<?php echo form_input(array(
 					'name'			=> 'name',
@@ -18,7 +18,7 @@
 					'placeholder'	=> 'Enter a short but memorable project name', 
 				)); ?>
 			</li>
-			<li class="no-label">
+			<li>
 				<label for="description">Project description</label>
 				<?php echo form_input(array(
 					'name'			=> 'description',

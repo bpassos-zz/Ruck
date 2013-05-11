@@ -73,9 +73,14 @@ $(function () {
 	// Make the form selection buttons pass their data-value to the relevant hidden field.
 	$('.form-options a').click(function () {
 		$this = $(this);
-		$('input[name="' + $this.attr('data-field') + '"]').val($this.attr('data-value'));
-		$this.parents('.form-options').find('a').removeClass('selected');
-		$this.addClass('selected');
+		if ($this.hasClass('selected')) {
+			$('input[name="' + $this.attr('data-field') + '"]').val(0);
+			$this.removeClass('selected');
+		} else {
+			$('input[name="' + $this.attr('data-field') + '"]').val($this.attr('data-value'));
+			$this.parents('.form-options').find('a').removeClass('selected');
+			$this.addClass('selected');
+		}
 		return false;
 	});
 	

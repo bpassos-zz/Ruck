@@ -246,6 +246,7 @@ h1, .user {
 
 .tasks li {
 	border-top: 1px solid #e5e5e5;
+	margin: 0;
 	padding: 10px 0;
 	position: relative;
 	overflow: hidden;
@@ -321,6 +322,10 @@ input, textarea {
 	width: 100%;
 }
 
+textarea {
+	height: 120px;
+}
+
 .concealed select {
 	display: none;
 }
@@ -352,6 +357,10 @@ input:focus, textarea:focus {
 .form-options .selected {
 	background: #42a8d6;
 	color: #fff;
+}
+
+#datepicker {
+	display: none;
 }
 
 /* @end */

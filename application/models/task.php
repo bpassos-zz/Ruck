@@ -64,9 +64,7 @@ class Task extends CI_Model {
 	 */
 	function fetch_recurring_labels()
 	{
-		$recurring_labels = array(
-			0 => 'Does not recur',
-		);
+		$recurring_labels = array();
 		$query = $this->db->get('recurring');
 		foreach ($query->result() as $row)
 		{
