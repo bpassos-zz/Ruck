@@ -2,41 +2,34 @@
 
 <?php echo form_open(); ?>
 	
-	<h1>
-		<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="delete"><input type="checkbox"></a>		
-		<input class="inline-edit heading" type="text" name="description" value="<?php echo htmlspecialchars($task['description']); ?>">
-	</h1>
+	<h1><?php echo $task['description']; ?></h1>
+	<input class="inline-edit heading" type="text" name="description" value="<?php echo htmlspecialchars($task['description']); ?>">
+	<!--
+			<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="delete"><input type="checkbox"></a>
+	-->		
+		
+	<p><?php echo $task['notes']; ?></p>
+	<textarea name="notes" rows="5" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea>
+
+	<input class="date" type="hidden" name="due" id="due" value="" data-due="<?php if (isset($task['due'])) echo date('m/d/Y', strtotime($task['due'])); ?>">
+	<div id="datepicker"></div>
 	
-	<aside class="context-actions">
-
-		<?php echo $template['partials']['contexts']; ?>
-
-		<input class="date" type="hidden" name="due" id="due" value="" data-due="<?php if (isset($task['due'])) echo date('m/d/Y', strtotime($task['due'])); ?>">
-		<div id="datepicker"></div>
-
-		<label for="recurs">This task recurs:</label>
-		<?php echo form_dropdown('recurs', $recurring_labels, $task['recurs'], 'id="recurs"'); ?>
-
-		<div class="buttons">
-			<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="btn delete">Delete this task</a>
-		</div>
-
-	</aside>
-	
-	<p><textarea name="notes" rows="20" class="inline-edit" placeholder="Add task notes"><?php echo $task['notes']; ?></textarea></p>
+	<label for="recurs">This task recurs:</label>
+	<?php echo form_dropdown('recurs', $recurring_labels, $task['recurs'], 'id="recurs"'); ?>
 	
 	<label for="status_id">Status:</label>
 	<?php echo form_dropdown('status_id', $statuses, $task['status_id'], 'id="status_id"'); ?>
-
+	
 	<label for="context_id">Context:</label>
 	<?php echo form_dropdown('context_id', $contexts, $task['context_id'], 'id="context_id"'); ?>
-
+	
 	<label for="project_id">Project:</label>
 	<?php echo form_dropdown('project_id', $projects, $task['project_id'], 'id="project_id"'); ?>
 
 	<div class="buttons">
 		<input type="hidden" name="id" value="<?php echo $task['id']; ?>">
 		<button type="submit" class="btn save">Save Changes</button>
+		<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="btn delete">Delete this task</a>
 	</div>
 
 </form>
