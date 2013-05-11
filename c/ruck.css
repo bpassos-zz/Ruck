@@ -336,7 +336,7 @@ input:focus, textarea:focus {
 
 .horizontal label, .form-options li, .concealed label, .concealed a {
 	float: left;
-	margin: 0 20px 0 0;
+	margin: 0 10px 0 0;
 	padding: 10px 0;
 }
 
