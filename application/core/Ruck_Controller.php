@@ -26,6 +26,7 @@ class Ruck_Controller extends CI_Controller {
 		$this->template->set_partial('header', 'layouts/partial/header', array(
 			'inbox_count' => $this->Task->inbox_count()
 		));
+		$this->template->set_partial('menu', 'layouts/partial/menu');
 		$this->template->set_partial('capture', 'layouts/partial/capture');
 		$this->template->set_partial('contexts', 'layouts/partial/contexts', array(
 			'context_list'	=> $this->Context->alphabetical_list(),

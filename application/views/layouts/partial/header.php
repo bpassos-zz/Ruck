@@ -1,27 +1,7 @@
-<div class="block header">
-
-	<div class="heading">
-		<h1><a href="/gtd/">RUCK</a></h1>
-	</div>
-	
-	<div class="content">
-
-		<div class="actions">
-		
-			<a href="/gtd/projects/create" accesskey="p" id="new-project">New <u>P</u>roject</a>
-		
-			<a href="/gtd/tasks/create" accesskey="t" id="new-task">New <u>T</u>ask</a>
-		
-		</div>
-	
-		<form role="search" class="search" method="get" action="/search">
-			<div>
-				<label for="q">Search:</label>
-				<input type="search" id="q" name="q" placeholder="Search all tasks and projects...">
-				<button type="submit">Search</button>
-			</div>
-		</form>
-
-	</div>
-
+<div class="header">
+	<div class="user">Matthew Pennell</div>
+	<ul class="user-menu">
+		<li><a href="/auth/logout">Sign out</a></li>
+		<li><a href="/settings">Settings</a></li>
+	</ul>
 </div>

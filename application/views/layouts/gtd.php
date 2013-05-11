@@ -14,10 +14,20 @@
 	<body>
 		
 		<?php echo $template['partials']['header']; ?>
-		
-		<?php echo $template['partials']['capture']; ?>
+			
+		<div class="wrapper">
 
-		<?php echo $template['body']; ?>
+			<div class="sidebar">
+				<?php echo $template['partials']['menu']; ?>
+			</div>
+		
+			<?php #echo $template['partials']['capture']; ?>
+	
+			<div class="content">
+				<?php echo $template['body']; ?>
+			</div>
+		
+		</div>
 		
 		<footer>
 			<?php echo $template['partials']['footer']; ?>

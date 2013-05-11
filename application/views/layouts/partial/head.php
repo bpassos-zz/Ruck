@@ -11,6 +11,7 @@
 <meta name="MobileOptimized" content="320">
 
 <!-- Stylesheets -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="/c/ruck.css">
 <link rel="stylesheet" href="/c/jquery-ui-1.10.2.custom.min.css">
 

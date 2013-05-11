@@ -1,4 +1,3 @@
-<h2>Contexts:</h2>	
 <ul>
 	<?php foreach ($context_list as $context): ?>
 		<li data-context-id="<?php echo $context->id; ?>">
@@ -6,5 +5,3 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
-
-<a href="/gtd/contexts">+</a>
