@@ -46,6 +46,7 @@ strong {
 	font-weight: 700;
 	font-size: 11px;
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
 .btn {
@@ -245,6 +246,31 @@ h1, .user {
 .tasks li {
 	border-top: 1px solid #e5e5e5;
 	padding: 10px 0;
+	position: relative;
+	overflow: hidden;
+	transition: padding 0.3s ease;
+}
+
+.tasks .delete {
+	background: #34B434;
+	color: #fff;
+	height: 100%;
+	left: 0;
+	line-height: 40px;
+	text-align: center;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	transition: width 0.3s ease;
+	width: 0;
+}
+
+.tasks li:hover {
+	padding-left: 50px;
+}
+
+.tasks li:hover .delete {
+	width: 40px;
 }
 
 .tasks .project, .tasks .context {

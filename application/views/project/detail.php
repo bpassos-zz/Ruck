@@ -40,9 +40,7 @@ else
 	<ul class="tasks sortable">
 		<?php foreach ($tasks as $task): ?>
 			<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
-<!--
-				<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete"><input type="checkbox"></a>
--->
+				<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete">&#10004;</a>
 				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="task"><?php echo $task->description; ?></a>
 				<?php if ($task->due): ?>
 					<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill <?php echo (strtotime($task->due) + 86400 > time()) ? 'date' : 'overdue'; ?>">
@@ -74,7 +72,7 @@ else
 				<ul class="tasks">
 					<?php foreach ($project->tasks as $task): ?>
 						<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
-							<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete"><input type="checkbox"></a>
+							<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete">&#10004;</a>
 							<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
 							<a href="/gtd/projects/<?php echo $project->id; ?>" class="pill project" title="<?php echo $project->name; ?>"><?php echo character_limiter($project->name, 20); ?></a>
 						</li>
