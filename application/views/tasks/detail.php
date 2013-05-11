@@ -28,8 +28,8 @@
 
 	<div class="buttons">
 		<input type="hidden" name="id" value="<?php echo $task['id']; ?>">
-		<button type="submit" class="btn save">Save Changes</button>
-		<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="btn delete">Delete this task</a>
+		<button type="submit" class="btn new-task">Save Changes</button>
+		<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="btn delete-task">Delete this task</a>
 	</div>
 
 </form>

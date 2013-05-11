@@ -1,4 +1,4 @@
-<a href="/gtd/" class="dropdown">RUCK</a>
+<a href="/gtd/" id="home" class="dropdown">RUCK</a>
 <ul class="actions">
 	<li><a href="/gtd/tasks/capture" accesskey="q" id="quick-capture"><u>Q</u>uick Capture</a></li>
 	<li><a href="/gtd/projects/create" accesskey="p" id="new-project" class="new-project">New <u>P</u>roject</a></li>

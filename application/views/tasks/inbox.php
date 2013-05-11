@@ -24,7 +24,7 @@
 	</p>
 
 	<div class="buttons">
-		<button class="btn add" type="submit">Save new note</button>
+		<button class="btn new-task" type="submit">Save new note</button>
 	</div>
 
 </form>
