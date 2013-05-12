@@ -24,7 +24,15 @@
 			<?php #echo $template['partials']['capture']; ?>
 	
 			<div class="content">
+
+				<?php if ($this->session->flashdata('message')): ?>
+					<div class="flash">
+						<?php echo $this->session->flashdata('message'); ?>
+					</div>
+				<?php endif; ?>
+
 				<?php echo $template['body']; ?>
+
 			</div>
 		
 		</div>
