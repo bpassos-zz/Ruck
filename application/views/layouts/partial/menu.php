@@ -9,21 +9,21 @@
 <ul class="menu">
 	<li>
 		<a href="/gtd/tasks/process_inbox">
-			<span class="count">12</span>
+			<span class="count"><?php echo $inbox_count; ?></span>
 			<strong>Inbox</strong>
 			To be processed
 		</a>
 	</li>
 	<li>
 		<a href="/gtd/tasks/calendar">
-			<span class="count">3</span>
+			<span class="count"><?php echo $calendar_count; ?></span>
 			<strong>Calendar</strong>
 			Due today or tomorrow
 		</a>
 	</li>
 	<li class="selected">
 		<a href="/gtd/">
-			<span class="count">24</span>
+			<span class="count"><?php echo $next_actions_count; ?></span>
 			<strong>Next Actions</strong>
 			What you should be doing
 		</a>

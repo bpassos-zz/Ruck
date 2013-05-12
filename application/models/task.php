@@ -73,6 +73,37 @@ class Task extends CI_Model {
 		return $recurring_labels;
 	}
 	
+	function next_actions_count()
+	{
+
+		$count = 0;
+
+		# Retrieve all active projects.
+		$projects = $this->db->get_where('projects', array(
+			'someday_maybe' => 0
+		));
+
+		# Loop through each project.
+		foreach ($projects->result() as $project)
+		{
+
+			# Retrieve the first task for each project.
+			$task = $this->db->get_where('tasks', array(
+				'project_id' => $project->id
+			), 1);
+			
+			# Insert the Task object into the appropriate array, if any were found.
+			if ($task->num_rows() != 0 && !isset($task->row()->due))
+			{
+				$count++;
+			}
+
+		}
+		
+		return $count;
+		
+	}
+	
 	/**
 	 * Find all of the 'next' tasks. These will be the single task within
 	 * each project with the lowest id (as we re-insert the tasks each time
@@ -152,6 +183,14 @@ class Task extends CI_Model {
 		# Return the set of next tasks.
 		return $next_tasks;
 
+	}
+
+	function calendar_count()
+	{
+		# Find all the tasks with a due date that falls after NOW() minus 1 day.
+		return $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
+			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
+		))->num_rows();
 	}
 	
 	/**
