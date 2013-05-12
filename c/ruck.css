@@ -251,6 +251,7 @@ h1, .user {
 	position: relative;
 	overflow: hidden;
 	transition: padding 0.3s ease;
+	-webkit-transition: width 0.3s ease;
 }
 
 .tasks .delete {
@@ -264,6 +265,7 @@ h1, .user {
 	position: absolute;
 	top: 0;
 	transition: width 0.3s ease;
+	-webkit-transition: width 0.3s ease;
 	width: 0;
 }
 
