@@ -26,17 +26,6 @@ else
 	<p><?php echo $project['description']; ?></p>
 	<textarea name="description" rows="2" class="inline-edit" placeholder="Enter a project description"><?php echo $project['description']; ?></textarea>
 	
-	<div class="buttons">
-		<?php if ($project['someday_maybe'] == 0): ?>
-			<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="btn inactive someday-maybe">Move to Someday/Maybe</a>
-		<?php else: ?>
-			<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="btn active someday-maybe">Make this project active</a>
-		<?php endif; ?>
-		<a href="/gtd/projects/create/<?php echo $project['id']; ?>" class="btn new-project" id="new-child-project">New <u>S</u>ub-Project</a>
-		<a href="/gtd/projects/delete/<?php echo $project['id']; ?>" class="btn delete-project">Delete this project</a>
-	</div>
-				
-			
 	<ul class="tasks sortable">
 		<?php foreach ($tasks as $task): ?>
 			<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
@@ -59,6 +48,13 @@ else
 		
 <div class="buttons">
 	<a href="/gtd/tasks/create/<?php echo $project['id']; ?>" class="btn new-task" id="add"><u>N</u>ew task</a>
+	<?php if ($project['someday_maybe'] == 0): ?>
+		<a href="/gtd/projects/deactivate/<?php echo $project['id']; ?>" class="btn inactive someday-maybe">Move to Someday/Maybe</a>
+	<?php else: ?>
+		<a href="/gtd/projects/activate/<?php echo $project['id']; ?>" class="btn active someday-maybe">Make this project active</a>
+	<?php endif; ?>
+	<a href="/gtd/projects/create/<?php echo $project['id']; ?>" class="btn new-project" id="new-child-project">New <u>S</u>ub-Project</a>
+	<a href="/gtd/projects/delete/<?php echo $project['id']; ?>" class="btn delete-project">Delete this project</a>
 </div>
 		
 <?php if (isset($child_projects)): ?>
