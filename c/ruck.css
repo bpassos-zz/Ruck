@@ -59,7 +59,7 @@ strong {
 .new-project   { background: #1e9423; }
 .new-task      { background: #d46302; }
 .new-context   { background: #462ed3; }
-.delete-project{ background: #4B434F; }
+.delete-project, .delete-task { background: #4B434F; }
 .someday-maybe { background: #C4308C; }
 
 /* @end */
