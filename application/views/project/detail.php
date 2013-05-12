@@ -23,7 +23,7 @@ else
 	<h1><?php echo $project['name']; ?></h1>
 	<input class="inline-edit" type="text" name="name" value="<?php echo htmlspecialchars($project['name']); ?>">
 			
-	<p><?php echo $project['description']; ?></p>
+	<p class="description"><?php echo $project['description']; ?></p>
 	<textarea name="description" rows="2" class="inline-edit" placeholder="Enter a project description"><?php echo $project['description']; ?></textarea>
 	
 	<ul class="tasks sortable">
