@@ -37,9 +37,8 @@
 					<li><a href="#" data-value="0" data-field="someday_maybe" class="selected">No</a></li>
 				</ul>
 			</li>
-			<li class="concealed">
+			<li>
 				<label for="parent_project_id">Parent project:</label>
-				<a href="#parent_project_id">Select a parent project</a>
 				<?php echo form_dropdown('parent_project_id', $projects, $parent_project_id, 'id="parent_project_id"'); ?>
 			</li>
 		</ol>
