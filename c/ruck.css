@@ -125,6 +125,31 @@ strong {
 	border-radius: 4px;
 }
 
+.overlay {
+	background: #e5e5e5;
+	display: none;
+	left: 50%;
+	margin: -169px 0 0 -152px;
+	padding: 40px;
+	position: absolute;
+	top: 50%;
+}
+
+.overlay-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: #fff;
+	border-radius: 10px;
+	padding: 0 5px;
+	color: #545454;
+	font-weight: 700;
+}
+
+.overlay-clear {
+	display: none;
+}
+
 /* @end */
 
 /* @group Text Sizing */
@@ -134,7 +159,7 @@ h1, .user {
 	font-weight: 300;
 }
 
-.dropdown, .actions, input, textarea {
+.dropdown, .actions, input, textarea, .overlay-close {
 	font-size: 18px;
 }
 
@@ -337,6 +362,12 @@ input, textarea {
 	width: 100%;
 }
 
+#due {
+	border: 0;
+	position: relative;
+	top: -6px;
+}
+
 textarea {
 	height: 120px;
 }
@@ -353,6 +384,11 @@ input:focus, textarea:focus {
 	float: left;
 	margin: 0 10px 0 0;
 	padding: 10px 0;
+}
+
+.concealed input {
+	width: auto;
+	float: left;
 }
 
 .concealed a {
@@ -374,8 +410,5 @@ input:focus, textarea:focus {
 	color: #fff;
 }
 
-#datepicker {
-	display: none;
-}
 
 /* @end */

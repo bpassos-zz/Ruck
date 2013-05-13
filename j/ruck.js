@@ -10,21 +10,6 @@ $(function () {
 		}
 	});
 	
-	// Add a CLear button to the datepicker plugin.
-	var dpFunc = $.datepicker._generateHTML;
-	$.datepicker._generateHTML = function  (inst) {
-		var thishtml = $(dpFunc.call($.datepicker, inst));
-		thishtml = $('<div/>').append(thishtml);
-		$('.ui-datepicker-buttonpane', thishtml).append(
-			$('<button class="ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all"\>Clear</button\>').click(function () {
-				$('#datepicker').datepicker('setDate', null);
-				return false;
-			})
-		);
-		thishtml = thishtml.children();
-		return thishtml;
-	};
-	
 	// Add keyboard shortcuts, only if the user is not currently focused on a form field.
 	$(document).on('keydown', function (e) {
 		if ($(e.target).is('input, select, textarea')) {
@@ -171,15 +156,53 @@ $(function () {
 		$('.contexts').remove();
 	}
 	
+	// Add a CLear button to the datepicker plugin.
+	var dpFunc = $.datepicker._generateHTML;
+	$.datepicker._generateHTML = function  (inst) {
+		var thishtml = $(dpFunc.call($.datepicker, inst));
+		thishtml = $('<div/>').append(thishtml);
+		$('.ui-datepicker-buttonpane', thishtml).append(
+			$('<button class="ui-datepicker-clear ui-state-default ui-priority-primary ui-corner-all"\>Clear</button\>').click(function () {
+				$('#datepicker').datepicker('setDate', null);
+				$('.overlay, .overlay-clear').hide();
+				$('#due').attr('type', 'hidden');
+				$('.overlay-show').show();
+				return false;
+			})
+		);
+		thishtml = thishtml.children();
+		return thishtml;
+	};
+	
 	// Attach datepicker to Due Date field.
 	$('#datepicker').datepicker({
 		altFormat		: 'yy-mm-dd',
 		altField		: "#due",
-		showButtonPanel	: true
+		showButtonPanel	: true,
+		onSelect		: function () {
+			$('.overlay, .overlay-show, .overlay-clear').hide();
+			if ($('#due').val() != '') {
+				$('#due').attr('type', 'text');
+				$('.overlay-clear').show();
+			} else {
+				$('#due').attr('type', 'hidden');
+				$('.overlay-show').show();
+			}
+		}
 	});
 	
 	// Set the date to the right value.
 	$('#datepicker').datepicker('setDate', $('#due').attr('data-due'));
 
+	// Make overlay popups work.
+	$('.overlay-show').click(function () {
+		$('.overlay').show();
+	});
+	$('.overlay-close').click(function () {
+		$('.overlay').hide();
+	});
+	$('.overlay-clear').click(function () {
+		$('.ui-datepicker-clear').click();
+	});
 
 });

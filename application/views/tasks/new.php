@@ -30,9 +30,9 @@
 			</li>
 			<li class="concealed">
 				<label for="due">Due date:</label>
-				<a href="#datepicker">Click to set a due date</a>
+				<a href="#" class="overlay-show">Click to set a due date</a>
 				<input type="hidden" name="due" id="due" value="<?php echo set_value('due'); ?>">
-				<div id="datepicker"></div>
+				<a href="#" class="overlay-clear">Clear selected date</a>
 			</li>
 			<li class="horizontal">
 				<label for="recurs">This task recurs:</label>
@@ -74,3 +74,8 @@
 	</div>
 		
 </form>
+
+<div class="overlay">
+	<a href="#" class="overlay-close">&times;</a>
+	<div id="datepicker"></div>
+</div>
