@@ -26,7 +26,9 @@ class Tasks extends Ruck_Controller {
 		
 		# Load the main content of the page.
 		$this->template->build('calendar', array(
-			'upcoming'		=> $this->Task->find_upcoming_due_dates(),
+			'today'    => $this->Task->find_tasks_due_today(),
+			'tomorrow' => $this->Task->find_tasks_due_tomorrow(),
+			'overdue'  => $this->Task->find_overdue_tasks(),
 		));
 		
 	}
