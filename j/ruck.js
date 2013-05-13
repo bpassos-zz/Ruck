@@ -28,13 +28,16 @@ $(function () {
 		if(e.which == 84 || e.which == 116) { // T
 			location.href = $('#new-task').attr('href');
 		}
+		if(e.which == 87 || e.which == 119) { // W
+			location.href = $('#weekly-review').attr('href');
+		}
 		if(e.which == 78 || e.which == 110) { // N
 			location.href = $('#add').attr('href');
 		}
 		if(e.which == 72 || e.which == 104) { // H
 			location.href = $('#home').attr('href');
 		}
-		if(e.which == 83 || e.which == 115) { // H
+		if(e.which == 83 || e.which == 115) { // S
 			location.href = $('#new-child-project').attr('href');
 		}
 		// Arrow keys.

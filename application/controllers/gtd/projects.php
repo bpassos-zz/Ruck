@@ -152,13 +152,20 @@ class Projects extends Ruck_Controller {
 	 * outstanding tasks assigned to this project and prompt the user to decide
 	 * what to do with them before deleting.
 	 */
-	function delete($id = NULL)
+	function delete($id = NULL, $redirect = NULL)
 	{
 		# Delete the project row.
 		$this->Project->delete($id);
 		
-		# Redirect to the master page.
-		redirect('/gtd/');
+		# Redirect to the requested page, or back to the homepage.
+		if (isset($redirect))
+		{
+			redirect('/gtd/projects/' . $redirect);
+		}
+		else
+		{
+			redirect('/gtd/');
+		}
 	}
 	
 	/**
@@ -168,6 +175,19 @@ class Projects extends Ruck_Controller {
 	{
 		$this->template->build('project/someday-maybe', array(
 			'projects' => $this->Project->get_someday_maybe_projects(),
+		));
+	}
+	
+	/**
+	 * Placeholder Weekly Review page, listing all open projects with all tasks under them.
+	 */
+	function review()
+	{
+		# Set page title.
+		$this->template->title('GTD', 'Weekly Review');
+
+		$this->template->build('project/review', array(
+			'projects' => $this->Project->get_projects_for_review(),
 		));
 	}
 

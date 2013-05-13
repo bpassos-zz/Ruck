@@ -68,6 +68,32 @@ class Project extends CI_Model {
 	}
 	
 	/**
+	 * Placeholder for the weekly review process. We will return all 
+	 * open projects (i.e. not Someday/Maybe), and list all tasks within
+	 * those projects, together with Delete links.
+	 */
+	function get_projects_for_review()
+	{
+
+		$projects_tasks = array();
+
+		$projects = $this->db->order_by('name')->get_where('projects', array(
+			'someday_maybe' => 0
+		))->result();
+		
+		foreach ($projects as $project)
+		{
+			$project->tasks = $this->db->get_where('tasks', array(
+				'project_id' => $project->id
+			))->result();
+			$projects_tasks[$project->id] = $project;
+		}
+
+		return $projects_tasks;
+
+	}
+	
+	/**
 	 * Return the previous and next project links for the currently selected one.
 	 */
 	function get_footer_links($id, $parent_project_id)
