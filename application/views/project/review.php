@@ -11,7 +11,7 @@
 				<ol>
 					<?php foreach ($project->tasks as $task): ?>
 						<li>
-							<a href="/gtd/tasks/<?php echo $task->id; ?>"><?php echo $task->description; ?></a>
+							<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a>
 						</li>
 					<?php endforeach; ?>
 				</ol>

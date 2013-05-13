@@ -45,7 +45,7 @@
 			</li>
 			<li class="horizontal">
 				<label for="status_id">Status:</label>
-				<?php echo form_hidden('status_id', 0); ?>
+				<?php echo form_hidden('status_id', 1); ?>
 				<ul class="form-options">
 					<?php foreach ($statuses as $id=>$name): ?>
 						<li><a href="#" data-value="<?php echo $id; ?>" data-field="status_id"<?php if ($id == 1) echo ' class="selected"'; ?>><?php echo $name; ?></a></li>
@@ -54,7 +54,7 @@
 			</li>
 			<li class="horizontal">
 				<label for="context_id">Context:</label>
-				<?php echo form_hidden('context_id', 0); ?>
+				<?php echo form_hidden('context_id', $default_context); ?>
 				<ul class="form-options">
 					<?php foreach ($contexts as $id => $name): ?>
 						<li><a href="#" data-value="<?php echo $id; ?>" data-field="context_id"<?php if ($id == $default_context) echo ' class="selected"'; ?>><?php echo $name; ?></a></li>
