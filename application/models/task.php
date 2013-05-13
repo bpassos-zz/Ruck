@@ -73,6 +73,9 @@ class Task extends CI_Model {
 		return $recurring_labels;
 	}
 	
+	/**
+	 * Get a count of the number of items in the Next Actions list.
+	 */
 	function next_actions_count()
 	{
 
@@ -89,11 +92,12 @@ class Task extends CI_Model {
 
 			# Retrieve the first task for each project.
 			$task = $this->db->get_where('tasks', array(
-				'project_id' => $project->id
+				'project_id' => $project->id,
+				'due'        => NULL,
 			), 1);
 			
 			# Insert the Task object into the appropriate array, if any were found.
-			if ($task->num_rows() != 0 && !isset($task->row()->due))
+			if ($task->num_rows() != 0)
 			{
 				$count++;
 			}
@@ -107,21 +111,15 @@ class Task extends CI_Model {
 	/**
 	 * Find all of the 'next' tasks. These will be the single task within
 	 * each project with the lowest id (as we re-insert the tasks each time
-	 * their order is updated.) We also need to retrieve the related project
-	 * so we can display a link and name for that in the list too.
+	 * their order is updated) that doesn't have a due date. We also need 
+	 * to retrieve the related project so we can display a link and name 
+	 * for that in the list too.
 	 */
 	function get_next_tasks()
 	{
 
-		# Create an empty array to hold all the results - we're going to use four categories:
-		# 1. Overdue tasks with due dates (in date order)
-		# 2. Tasks with a due date of today
-		# 3. All tasks with no due date (in reverse order of last update)
-		# 4. Tasks with a due date in the future (in date order)
-		$overdue_tasks = array();
-		$todays_tasks = array();
-		$no_due_date_tasks = array();
-		$future_tasks = array();
+		# An empty array to hold the next tasks.
+		$tasks = array();
 
 		# Retrieve all active projects.
 		$projects = $this->db->get_where('projects', array(
@@ -131,10 +129,11 @@ class Task extends CI_Model {
 		# Loop through each project.
 		foreach ($projects->result() as $project)
 		{
-
-			# Retrieve the first task for each project.
+			
+			# Retrieve the first task for each project that doesn't have a due date set.
 			$task = $this->db->get_where('tasks', array(
-				'project_id' => $project->id
+				'project_id' => $project->id,
+				'due'        => NULL,
 			), 1);
 			
 			# Insert the Task object into the appropriate array, if any were found.
@@ -142,49 +141,22 @@ class Task extends CI_Model {
 			{
 				$row = $task->row();
 				$row->project_name = $project->name;
-				# If it has no due date, put it into the right list.
-				if (!isset($row->due))
-				{
-					$no_due_date_tasks[] = $row;
-				}
-				else
-				{
-					$due = substr($row->due, 0, 10);
-					$now = date('Y-m-d');
-					# Is the due date today?
-					if ($due == $now)
-					{
-						$todays_tasks[] = $row;
-					}
-					else if ($due < $now)
-					{
-						$overdue_tasks[] = $row;
-					}
-					else
-					{
-						$future_tasks[] = $row;
-					}
-				}
+				$tasks[] = $row;
 			}
 
 		}
 		
-		# Sort the overdue and future date lists by due date.
-		usort($overdue_tasks, 'sort_by_date');
-		usort($future_tasks, 'sort_by_date');
-		
-		# Sort the other lists by last update.
-		usort($no_due_date_tasks, 'sort_by_update');
-		usort($todays_tasks, 'sort_by_update');
-		
-		# Combine the four categories of next tasks into one single list.
-		$next_tasks = array_merge($overdue_tasks, $todays_tasks, $no_due_date_tasks, $future_tasks);
+		# Sort the list by last update.
+		usort($tasks, 'sort_by_update');
 		
 		# Return the set of next tasks.
-		return $next_tasks;
+		return $tasks;
 
 	}
 
+	/**
+	 * Return a count of items that appear in the calendar list.
+	 */
 	function calendar_count()
 	{
 		# Find all the tasks with a due date that falls after NOW() minus 1 day.
