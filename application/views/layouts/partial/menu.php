@@ -17,7 +17,10 @@
 	</li>
 	<li>
 		<a href="/gtd/tasks/calendar">
-			<span class="count"><?php echo $calendar_count; ?></span>
+			<?php if ($calendar_count['overdue'] > 0): ?>
+				<span class="count overdue"><?php echo $calendar_count['overdue']; ?></span>
+			<?php endif; ?>
+			<span class="count<?php if ($calendar_count['overdue'] > 0) echo ' blunt'; ?>"><?php echo $calendar_count['due']; ?></span>
 			<strong>Calendar</strong>
 			Due today or tomorrow
 		</a>

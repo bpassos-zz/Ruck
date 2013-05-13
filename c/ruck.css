@@ -245,6 +245,25 @@ h1, .user {
 
 .count {
 	float: right;
+	background: #3586ab;
+	border-radius: 20px;
+	padding: 0 7px;
+}
+
+.selected .count {
+	background: none;
+}
+
+.blunt {
+	border-radius: 20px 0 0 20px;
+	border-right: 1px solid #42a8d6;
+	padding-right: 4px;
+}
+
+.menu .overdue {
+	background: #c00;
+	border-radius: 0 20px 20px 0;
+	padding-left: 4px;
 }
 
 .menu a:hover, .menu a:focus {
