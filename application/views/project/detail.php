@@ -28,16 +28,17 @@ else
 	
 	<ul class="tasks sortable">
 		<?php foreach ($tasks as $task): ?>
-			<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
+			<li<?php if ($task->due) echo ' class="has-date"'; ?> id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
+				<?php if ($task->due): ?>
+					<span class="date">
+						<strong><?php echo date("j", strtotime($task->due)); ?></strong>
+						<?php echo date("M", strtotime($task->due)); ?>
+					</span>
+				<?php endif; ?>
 				<a href="/gtd/tasks/delete/<?php echo $task->id; ?>" class="delete">&#10004;</a>
 				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="task"><?php echo $task->description; ?></a>
-				<?php if ($task->due): ?>
-					<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill <?php echo (strtotime($task->due) + 86400 > time()) ? 'date' : 'overdue'; ?>">
-						<?php echo date('F j', strtotime($task->due)); ?>
-					</a>
-					<?php if ($task->recurs): ?>
-						<img src="/i/recurs.png" alt="Recurs">
-					<?php endif; ?>
+				<?php if ($task->recurs): ?>
+					<img src="/i/recurs.png" alt="Recurs">
 				<?php endif; ?>
 				<span class="context"><?php echo $task->context_name; ?></span>
 			</li>

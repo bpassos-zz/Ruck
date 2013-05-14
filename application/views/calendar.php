@@ -2,9 +2,9 @@
 	
 	<h1>Overdue Tasks</h1>
 	
-	<ul class="tasks dates">
+	<ul class="tasks">
 		<?php foreach ($overdue as $task): ?>
-			<li data-context-id="<?php echo $task->context_id; ?>">
+			<li class="has-date" data-context-id="<?php echo $task->context_id; ?>">
 				<span class="date overdue">
 					<strong><?php echo date("j", strtotime($task->due)); ?></strong>
 					<?php echo date("M", strtotime($task->due)); ?>
@@ -25,9 +25,9 @@
 
 <?php if (count($today) > 0): ?>
 	
-	<ul class="tasks dates">
+	<ul class="tasks">
 		<?php foreach ($today as $task): ?>
-			<li data-context-id="<?php echo $task->context_id; ?>">
+			<li class="has-date" data-context-id="<?php echo $task->context_id; ?>">
 				<span class="date today">
 					<strong><?php echo date("j", strtotime($task->due)); ?></strong>
 					<?php echo date("M", strtotime($task->due)); ?>
@@ -52,9 +52,9 @@
 	
 	<h1>Due Tomorrow</h1>
 	
-	<ul class="tasks dates">
+	<ul class="tasks">
 		<?php foreach ($tomorrow as $task): ?>
-			<li data-context-id="<?php echo $task->context_id; ?>">
+			<li class="has-date" data-context-id="<?php echo $task->context_id; ?>">
 				<span class="date tomorrow">
 					<strong><?php echo date("j", strtotime($task->due)); ?></strong>
 					<?php echo date("M", strtotime($task->due)); ?>

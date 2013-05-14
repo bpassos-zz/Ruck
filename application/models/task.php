@@ -179,12 +179,12 @@ class Task extends CI_Model {
 	}
 	
 	/**
-	 * Return a list of tasks with due dates that are within the next few weeks.
+	 * Return lists of tasks with due dates that are overdue, due today, or due tomorrow.
 	 */
 	function find_tasks_due_today()
 	{
 		# Find all the tasks with a due date that falls after NOW() minus 1 day.
-		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
+		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
 			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
 			'due <=' => date('Y-m-d H:i:s', time()),
 		))->result();
@@ -194,7 +194,7 @@ class Task extends CI_Model {
 	function find_tasks_due_tomorrow()
 	{
 		# Find all the tasks with a due date that falls between NOW() and plus 1 day.
-		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
+		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
 			'due >=' => date('Y-m-d H:i:s', time()),
 			'due <=' => date('Y-m-d H:i:s', time() + (60 * 60 * 24)),
 		))->result();
@@ -204,7 +204,7 @@ class Task extends CI_Model {
 	function find_overdue_tasks()
 	{
 		# Find all the tasks with a due date that falls before NOW() minus 1 day.
-		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
+		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
 			'due <=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
 		))->result();
 		return $query;

@@ -311,7 +311,7 @@ h1, .user {
 	-webkit-transition: padding 0.3s ease;
 }
 
-.dates li {
+.tasks .has-date {
 	padding-left: 50px;
 }
 
