@@ -164,7 +164,7 @@ h1, .user {
 	font-size: 18px;
 }
 
-.menu strong, .task, .btn, .description, .form-options, .flash {
+.menu strong, .task, .btn, .description, .form-options, .flash, .date strong {
 	font-size: 14px;
 }
 
@@ -261,7 +261,6 @@ h1, .user {
 }
 
 .menu .overdue {
-	background: #c00;
 	border-radius: 0 20px 20px 0;
 	padding-left: 4px;
 }
@@ -312,6 +311,10 @@ h1, .user {
 	-webkit-transition: padding 0.3s ease;
 }
 
+.dates li {
+	padding-left: 50px;
+}
+
 .tasks .delete {
 	background: #34B434;
 	color: #fff;
@@ -344,9 +347,32 @@ h1, .user {
 	color: #42a8d6;
 }
 
-.date, .overdue {
-	background: #c00;
+.date {
+	background: #083E30;
 	color: #fff;
+	font-size: 10px;
+	height: 100%;
+	left: 0;
+	line-height: 1.3333;
+	padding: 5px 0 0;
+	position: absolute;
+	text-align: center;
+	text-transform: uppercase;
+	top: 0;
+	width: 40px;
+}
+
+.overdue {
+	background: #E54134;
+}
+
+.tomorrow {
+	background: #ECE11E;
+	color: #545454;
+}
+
+.date strong {
+	display: block;
 }
 
 /* @end */
