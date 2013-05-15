@@ -195,6 +195,10 @@ class Tasks extends Ruck_Controller {
 		{
 			redirect('/gtd/');
 		}
+		elseif ($location == 'calendar')
+		{
+			redirect('/gtd/tasks/calendar');
+		}
 		else
 		{
 			redirect('/gtd/projects/' . $project_id);

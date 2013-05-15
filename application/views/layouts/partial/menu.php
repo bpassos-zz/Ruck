@@ -8,14 +8,14 @@
 </ul>
 
 <ul class="menu">
-	<li>
+	<li<?php if ($current_page == 'process_inbox') echo ' class="selected"'; ?>>
 		<a href="/gtd/tasks/process_inbox">
 			<span class="count"><?php echo $inbox_count; ?></span>
 			<strong>Inbox</strong>
 			To be processed
 		</a>
 	</li>
-	<li>
+	<li<?php if ($current_page == 'calendar') echo ' class="selected"'; ?>>
 		<a href="/gtd/tasks/calendar">
 			<?php if ($calendar_count['overdue'] > 0): ?>
 				<span class="count overdue"><?php echo $calendar_count['overdue']; ?></span>
@@ -25,21 +25,21 @@
 			Due today or tomorrow
 		</a>
 	</li>
-	<li class="selected">
+	<li<?php if ($next_actions == '') echo ' class="selected"'; ?>>
 		<a href="/gtd/">
 			<span class="count"><?php echo $next_actions_count; ?></span>
 			<strong>Next Actions</strong>
 			What you should be doing
 		</a>
 	</li>
-	<li>
+	<li<?php if ($current_page == 'waiting_for') echo ' class="selected"'; ?>>
 		<a href="/gtd/waiting_for">
 			<span class="count">2</span>
 			<strong>Waiting For</strong>
 			Other people's business
 		</a>
 	</li>
-	<li>
+	<li<?php if ($current_page == 'someday_maybe') echo ' class="selected"'; ?>>
 		<a href="/gtd/projects/someday_maybe">
 			<strong>Someday/Maybe</strong>
 			Future projects

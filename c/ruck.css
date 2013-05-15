@@ -251,7 +251,7 @@ h1, .user {
 }
 
 .selected .count {
-	background: none;
+	color: #fff;
 }
 
 .blunt {

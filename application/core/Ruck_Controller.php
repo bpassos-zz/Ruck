@@ -27,6 +27,8 @@ class Ruck_Controller extends CI_Controller {
 			'user'        => $this->ion_auth->user()->row()
 		));
 		$this->template->set_partial('menu', 'layouts/partial/menu', array(
+			'next_actions'       => $this->uri->segment(2),
+			'current_page'		 => $this->uri->segment(3),
 			'inbox_count'        => $this->Task->inbox_count(),
 			'calendar_count'     => $this->Task->calendar_count(),
 			'next_actions_count' => $this->Task->next_actions_count(),
