@@ -163,13 +163,13 @@ class Task extends CI_Model {
 
 		# Find all the tasks with a due date that falls between NOW() minus 1 day and NOW() plus 1 day.
 		$tasks_due = $this->db->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
-			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
-			'due <=' => date('Y-m-d H:i:s', time() + (60 * 60 * 24)),
+			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24) + ($this->config->item('timezone_offset') * 60 * 60)),
+			'due <=' => date('Y-m-d H:i:s', time() + (60 * 60 * 24) + ($this->config->item('timezone_offset') * 60 * 60)),
 		))->num_rows();
 		
 		# Find all the tasks that have a due date before NOW() minus 1 day.
 		$tasks_overdue = $this->db->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
-			'due <=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
+			'due <=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24) + ($this->config->item('timezone_offset') * 60 * 60)),
 		))->num_rows();
 		
 		return array(
@@ -185,8 +185,8 @@ class Task extends CI_Model {
 	{
 		# Find all the tasks with a due date that falls after NOW() minus 1 day.
 		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
-			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
-			'due <=' => date('Y-m-d H:i:s', time()),
+			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24) + ($this->config->item('timezone_offset') * 60 * 60)),
+			'due <=' => date('Y-m-d H:i:s', time() + ($this->config->item('timezone_offset') * 60 * 60)),
 		))->result();
 		return $query;
 	}
@@ -195,8 +195,8 @@ class Task extends CI_Model {
 	{
 		# Find all the tasks with a due date that falls between NOW() and plus 1 day.
 		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
-			'due >=' => date('Y-m-d H:i:s', time()),
-			'due <=' => date('Y-m-d H:i:s', time() + (60 * 60 * 24)),
+			'due >=' => date('Y-m-d H:i:s', time() + ($this->config->item('timezone_offset') * 60 * 60)),
+			'due <=' => date('Y-m-d H:i:s', time() + (60 * 60 * 24) + ($this->config->item('timezone_offset') * 60 * 60)),
 		))->result();
 		return $query;
 	}
@@ -205,7 +205,7 @@ class Task extends CI_Model {
 	{
 		# Find all the tasks with a due date that falls before NOW() minus 1 day.
 		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
-			'due <=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24)),
+			'due <=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24) + ($this->config->item('timezone_offset') * 60 * 60)),
 		))->result();
 		return $query;
 	}

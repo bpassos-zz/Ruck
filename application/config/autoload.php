@@ -80,7 +80,7 @@ $autoload['helper'] = array('form', 'text', 'url');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('ruck');
 
 
 /*
