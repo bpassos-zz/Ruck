@@ -39,6 +39,8 @@
 */
 
 $route['gtd'] = 'gtd/tasks';
+$route['gtd/calendar'] = 'gtd/tasks/calendar';
+$route['gtd/waiting_for'] = 'gtd/tasks/waiting_for';
 
 $route['gtd/projects/(:num)'] = 'gtd/projects/index/$1';
 

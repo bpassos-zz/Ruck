@@ -102,6 +102,22 @@ class Tasks extends Ruck_Controller {
 	}
 	
 	/**
+	 * Tasks that are flagged as waiting for someone else to complete.
+	 */
+	public function waiting_for()
+	{
+
+		# Set page title.
+		$this->template->title('GTD', 'Waiting For');
+		
+		# Load the main content of the page.
+		$this->template->build('waiting_for', array(
+			'tasks' => $this->Task->find_tasks_waiting_for(),
+		));
+
+	}
+	
+	/**
 	 * Show an individual task details, and allow editing of the task.
 	 */
 	public function detail($id = NULL)
@@ -195,9 +211,9 @@ class Tasks extends Ruck_Controller {
 		{
 			redirect('/gtd/');
 		}
-		elseif ($location == 'calendar')
+		elseif ($location)
 		{
-			redirect('/gtd/tasks/calendar');
+			redirect('/gtd/' . $location);
 		}
 		else
 		{

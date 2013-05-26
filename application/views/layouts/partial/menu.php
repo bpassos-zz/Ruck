@@ -16,7 +16,7 @@
 		</a>
 	</li>
 	<li<?php if ($current_page == 'calendar') echo ' class="selected"'; ?>>
-		<a href="/gtd/tasks/calendar">
+		<a href="/gtd/calendar">
 			<?php if ($calendar_count['overdue'] > 0): ?>
 				<span class="count overdue"><?php echo $calendar_count['overdue']; ?></span>
 			<?php endif; ?>
@@ -34,7 +34,7 @@
 	</li>
 	<li<?php if ($current_page == 'waiting_for') echo ' class="selected"'; ?>>
 		<a href="/gtd/waiting_for">
-			<span class="count">2</span>
+			<span class="count"><?php echo $waiting_for_count; ?></span>
 			<strong>Waiting For</strong>
 			Other people's business
 		</a>

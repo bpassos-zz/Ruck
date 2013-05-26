@@ -218,6 +218,24 @@ class Task extends CI_Model {
 	}
 	
 	/**
+	 * Find tasks that are flagged as waiting for.
+	 */
+	function find_tasks_waiting_for()
+	{
+		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
+			'waiting_for' => 1,
+		))->result();
+		return $query;
+	}
+	
+	function waiting_for_count()
+	{
+		return $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
+			'waiting_for' => 1,
+		))->num_rows();
+	}
+	
+	/**
 	 * Return the previous and next task links for the currently viewed task.
 	 */
 	function get_footer_links($id, $project_id)

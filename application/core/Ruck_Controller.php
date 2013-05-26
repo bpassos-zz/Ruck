@@ -32,6 +32,7 @@ class Ruck_Controller extends CI_Controller {
 			'inbox_count'        => $this->Task->inbox_count(),
 			'calendar_count'     => $this->Task->calendar_count(),
 			'next_actions_count' => $this->Task->next_actions_count(),
+			'waiting_for_count'  => $this->Task->waiting_for_count(),
 		));
 		$this->template->set_partial('capture', 'layouts/partial/capture');
 		$this->template->set_partial('contexts', 'layouts/partial/contexts', array(
