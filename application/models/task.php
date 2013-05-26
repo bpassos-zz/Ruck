@@ -26,7 +26,14 @@ class Task extends CI_Model {
 		$task = $this->db->order_by('created_at')->limit(1)->get_where('tasks', array(
 			'not_processed' => 1
 		));
-		return $task->row_array();
+		if ($task->num_rows() > 0)
+		{
+			return $task->row_array();
+		}
+		else 
+		{
+			return 0;
+		}
 	}
 	
 	/**
