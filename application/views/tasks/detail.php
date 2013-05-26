@@ -71,6 +71,7 @@
 		<input type="hidden" name="id" value="<?php echo $task['id']; ?>">
 		<button type="submit" class="btn new-task">Save Changes</button>
 		<a href="/gtd/tasks/delete/<?php echo $task['id']; ?>" class="btn delete-task">Delete this task</a>
+		<a href="/gtd/projects/<?php echo $task['project_id']; ?>" id="up-arrow" class="hidden">To Parent Project</a>
 	</div>
 
 </form>
