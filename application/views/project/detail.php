@@ -40,6 +40,9 @@ else
 				<?php if ($task->recurs): ?>
 					<img src="/i/recurs.png" alt="Recurs">
 				<?php endif; ?>
+				<?php if ($task->waiting_for == 1): ?>
+					<img src="/i/waiting_for.png" alt="Waiting for someone else">
+				<?php endif; ?>
 				<span class="context"><?php echo $task->context_name; ?></span>
 			</li>
 		<?php endforeach; ?>

@@ -53,6 +53,14 @@
 				</ul>
 			</li>
 			<li class="horizontal">
+				<label for="waiting_for">Waiting for someone else?</label>
+				<?php echo form_hidden('waiting_for', 0); ?>
+				<ul class="form-options">
+					<li><a href="#" data-value="0" data-field="waiting_for" class="selected">>No</a></li>
+					<li><a href="#" data-value="1" data-field="waiting_for">Yes</a></li>
+				</ul>
+			</li>
+			<li class="horizontal">
 				<label for="context_id">Context:</label>
 				<?php echo form_hidden('context_id', $default_context); ?>
 				<ul class="form-options">

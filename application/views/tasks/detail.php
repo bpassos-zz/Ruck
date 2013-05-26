@@ -53,6 +53,14 @@
 					</ul>
 				</li>
 				<li class="horizontal">
+					<label for="waiting_for">Waiting for someone else?</label>
+					<?php echo form_hidden('waiting_for', $task['waiting_for']); ?>
+					<ul class="form-options">
+						<li><a href="#" data-value="0" data-field="waiting_for"<?php if (0 == $task['waiting_for']) echo ' class="selected"'; ?>>No</a></li>
+						<li><a href="#" data-value="1" data-field="waiting_for"<?php if (1 == $task['waiting_for']) echo ' class="selected"'; ?>>Yes</a></li>
+					</ul>
+				</li>
+				<li class="horizontal">
 					<label for="context_id">Context:</label>
 					<?php echo form_hidden('context_id', $task['context_id']); ?>
 					<ul class="form-options">

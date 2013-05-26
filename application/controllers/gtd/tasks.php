@@ -138,13 +138,6 @@ class Tasks extends Ruck_Controller {
 		# Set page title.
 		$this->template->title('GTD', $task['description']);
 
-		# Load navigation.
-		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
-			'breadcrumbs'		=> $this->Project->get_project_breadcrumb($project['id']),
-			'active_projects'	=> $this->Project->active_projects(),
-			'inactive_projects'	=> $this->Project->inactive_projects(),
-		));
-
 		# Create footer links.
 		$this->template->set_partial('footer', 'layouts/partial/footer', array(
 			'links' => $this->Task->get_footer_links($id, $task['project_id']),

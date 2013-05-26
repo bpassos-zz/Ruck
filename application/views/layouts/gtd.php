@@ -21,8 +21,6 @@
 				<?php echo $template['partials']['menu']; ?>
 			</div>
 		
-			<?php #echo $template['partials']['capture']; ?>
-	
 			<div class="content">
 
 				<?php if ($this->session->flashdata('message')): ?>

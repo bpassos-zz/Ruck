@@ -51,7 +51,7 @@ class Task extends CI_Model {
 	 */
 	function get_tasks_by_project($project_id)
 	{
-		return $this->db->select('tasks.id, tasks.description, tasks.due, tasks.recurs, contexts.id AS context_id, contexts.name AS context_name')->join('contexts', 'contexts.id = tasks.context_id')->get_where('tasks', array(
+		return $this->db->select('tasks.id, tasks.description, tasks.due, tasks.recurs, tasks.waiting_for, contexts.id AS context_id, contexts.name AS context_name')->join('contexts', 'contexts.id = tasks.context_id')->get_where('tasks', array(
 			'project_id' => $project_id
 		));
 	}
@@ -294,7 +294,7 @@ class Task extends CI_Model {
 	 */
 	function update($id, $create_new_project = FALSE)
 	{
-		
+		echo(print_r($this->input->post()));
 		# For new tasks being assigned through inbox processing, we might need to create a new project.
 		if ($create_new_project && $this->input->post('project_id') == 0)
 		{
@@ -312,6 +312,7 @@ class Task extends CI_Model {
 			'description'		=> $this->input->post('description'),
 			'notes'				=> strlen($this->input->post('notes')) ? $this->input->post('notes')  : '',
 			'not_processed'		=> 0,
+			'waiting_for'		=> $this->input->post('waiting_for'),
 			'context_id'		=> $this->input->post('context_id'),
 			'status_id'			=> $this->input->post('status_id'),
 			'project_id'		=> (isset($project_id)) ? $project_id : $this->input->post('project_id'),
@@ -336,6 +337,7 @@ class Task extends CI_Model {
 			$this->db->insert('tasks', array(
 				'description'		=> $this->input->post('description'),
 				'notes'				=> $this->input->post('notes'),
+				'waiting_for'		=> $this->input->post('waiting_for'),
 				'context_id'		=> $this->input->post('context_id'),
 				'status_id'			=> $this->input->post('status_id'),
 				'project_id'		=> $this->input->post('project_id'),

@@ -23,13 +23,6 @@ class Projects extends Ruck_Controller {
 		# Set page title.
 		$this->template->title('GTD', $project['name']);
 
-		# Load navigation.
-		$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
-			'breadcrumbs'		=> $this->Project->get_project_breadcrumb($id),
-			'active_projects'	=> $this->Project->active_projects(),
-			'inactive_projects'	=> $this->Project->inactive_projects(),
-		));
-
 		# Create footer links.
 		$this->template->set_partial('footer', 'layouts/partial/footer', array(
 			'links' => $this->Project->get_footer_links($id, $project['parent_project_id']),
@@ -100,16 +93,6 @@ class Projects extends Ruck_Controller {
 			# Set page title.
 			$this->template->title('GTD', 'Create a new Project');
 	
-			# Override default navigation bar if this project is going to be a child project of an existing project.
-			if (isset($parent_project_id))
-			{
-				$this->template->set_partial('navigation', 'layouts/partial/navigation', array(
-					'breadcrumbs'		=> $this->Project->get_project_breadcrumb($parent_project_id),
-					'active_projects'	=> $this->Project->active_projects(),
-					'inactive_projects'	=> $this->Project->inactive_projects(),
-				));
-			}
-			
 			# Load the main content of the page.
 			$this->template->build('project/new', array(
 				'statuses'			=> $this->Status->fetch_statuses('project'),
