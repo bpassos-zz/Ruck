@@ -294,7 +294,7 @@ class Task extends CI_Model {
 	 */
 	function update($id, $create_new_project = FALSE)
 	{
-		echo(print_r($this->input->post()));
+
 		# For new tasks being assigned through inbox processing, we might need to create a new project.
 		if ($create_new_project && $this->input->post('project_id') == 0)
 		{
