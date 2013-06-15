@@ -118,8 +118,8 @@ class Task extends CI_Model {
 	/**
 	 * Find all of the 'next' tasks. These will be the single task within
 	 * each project with the lowest id (as we re-insert the tasks each time
-	 * their order is updated) that doesn't have a due date. We also need 
-	 * to retrieve the related project so we can display a link and name 
+	 * their order is updated) that doesn't have a due date or a waiting_for flag. 
+	 * We also need to retrieve the related project so we can display a link and name 
 	 * for that in the list too.
 	 */
 	function get_next_tasks()
@@ -130,7 +130,7 @@ class Task extends CI_Model {
 
 		# Retrieve all active projects.
 		$projects = $this->db->get_where('projects', array(
-			'someday_maybe' => 0
+			'someday_maybe' => 0,
 		));
 
 		# Loop through each project.
@@ -139,8 +139,9 @@ class Task extends CI_Model {
 			
 			# Retrieve the first task for each project that doesn't have a due date set.
 			$task = $this->db->get_where('tasks', array(
-				'project_id' => $project->id,
-				'due'        => NULL,
+				'project_id'  => $project->id,
+				'due'         => NULL,
+				'waiting_for' => 0,
 			), 1);
 			
 			# Insert the Task object into the appropriate array, if any were found.
