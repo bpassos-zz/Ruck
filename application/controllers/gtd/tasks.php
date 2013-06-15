@@ -123,6 +123,8 @@ class Tasks extends Ruck_Controller {
 	public function detail($id = NULL)
 	{
 
+		$task = $this->Task->find($id);
+
 		$this->load->library('form_validation');
 		
 		# Validate the new project form if submitted.
@@ -130,9 +132,10 @@ class Tasks extends Ruck_Controller {
 		{
 			# Form passes validation, update the task in the database.
 			$this->Task->update($id);
+			# and redirect back to the parent project page.
+			redirect('/gtd/projects/' . $task['project_id']);
 		}
 
-		$task = $this->Task->find($id);
 		$project = $this->Project->find($task['project_id']);
 
 		# Set page title.
