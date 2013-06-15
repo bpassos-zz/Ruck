@@ -19,3 +19,11 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
+
+<h1>Completed Tasks</h1>
+
+<ul>
+	<?php foreach ($completed_tasks as $task): ?>
+		<li><?php echo $task->description; ?></li>
+	<?php endforeach; ?>
+</ul>

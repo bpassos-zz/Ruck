@@ -13,7 +13,8 @@ class Tasks extends Ruck_Controller {
 		
 		# Load the main content of the page.
 		$this->template->build('home', array(
-			'next_tasks'	=> $this->Task->get_next_tasks(),
+			'next_tasks'	  => $this->Task->get_next_tasks(),
+			'completed_tasks' => $this->Task->get_completed_tasks(),
 		));
 		
 	}

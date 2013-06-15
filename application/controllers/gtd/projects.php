@@ -32,6 +32,7 @@ class Projects extends Ruck_Controller {
 		$this->template->build('project/detail', array(
 			'project'			=> $project,
 			'tasks'				=> $tasks->result(),
+			'completed_tasks'   => $this->Task->get_completed_tasks($id),
 			'parent_projects'	=> $this->Project->get_ancestor_projects($project['parent_project_id']),
 			'child_projects'	=> $this->Project->get_child_projects_and_tasks($id),
 		));

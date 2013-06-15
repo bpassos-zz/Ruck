@@ -61,6 +61,14 @@ else
 	<a href="/gtd/projects/delete/<?php echo $project['id']; ?>" class="btn delete-project">Delete this project</a>
 </div>
 		
+<h1>Completed Tasks</h1>
+
+<ul>
+	<?php foreach ($completed_tasks as $task): ?>
+		<li><?php echo $task->description; ?></li>
+	<?php endforeach; ?>
+</ul>
+
 <?php if (isset($child_projects)): ?>
 
 	<div class="sub-projects">

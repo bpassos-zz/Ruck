@@ -68,6 +68,32 @@ class Task extends CI_Model {
 	}
 	
 	/**
+	 * Return all completed tasks within a specific project/context
+	 * that were completed within the last day.
+	 */
+	function get_completed_tasks($project_id = NULL)
+	{
+		if (isset($project_id))
+		{
+			$query = $this->db->get_where('tasks', array(
+				'is_completed'  => 1,
+				'project_id'    => $project_id,
+				'updated_at >=' => date('Y-m-d H:i:s', time() - ($this->config->item('timezone_offset') * 60 * 60) - (60 * 60 * 24)),
+			));
+		}
+		else
+		{
+			$query = $this->db->get_where('tasks', array(
+				'is_completed'  => 1,
+				'updated_at >=' => date('Y-m-d H:i:s', time() - ($this->config->item('timezone_offset') * 60 * 60) - (60 * 60 * 24)),
+			));
+		}
+		
+		return $query->result();
+		
+	}
+	
+	/**
 	 * Return the options for recurring tasks.
 	 */
 	function fetch_recurring_labels()
@@ -374,34 +400,39 @@ class Task extends CI_Model {
 			{
 				# Daily task, add X day(s) to the due date.
 				$this->db->where('id', $duplicate_task_id)->update('tasks', array(
-					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->days . ' days'))
+					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->days . ' days')),
+					'updated_at'   => date('Y-m-d H:i:s'),
 				));
 			}
 			elseif ($recurrence->weeks)
 			{
 				# Weekly task, add X week(s) to the due date.
 				$this->db->where('id', $duplicate_task_id)->update('tasks', array(
-					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->weeks . ' weeks'))
+					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->weeks . ' weeks')),
+					'updated_at'   => date('Y-m-d H:i:s'),
 				));
 			}
 			elseif ($recurrence->months)
 			{
 				# Monthly task, add X month(s) to the due date.
 				$this->db->where('id', $duplicate_task_id)->update('tasks', array(
-					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->months . ' months'))
+					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->months . ' months')),
+					'updated_at'   => date('Y-m-d H:i:s'),
 				));
 			}
 			elseif ($recurrence->years)
 			{
 				# Annual task, add X year(s) to the due date.
 				$this->db->where('id', $duplicate_task_id)->update('tasks', array(
-					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->years . ' years'))
+					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->years . ' years')),
+					'updated_at'   => date('Y-m-d H:i:s'),
 				));
 			}
 		}
 
 		$this->db->where('id', $id)->update('tasks', array(
-			'is_completed' => 1
+			'is_completed' => 1,
+			'updated_at'   => date('Y-m-d H:i:s'),
 		));
 
 		# Return the parent project ID.
