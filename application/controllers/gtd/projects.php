@@ -54,21 +54,11 @@ class Projects extends Ruck_Controller {
 			$new_ids = array();
 			foreach ($new_order as $id)
 			{
-				// TODO: I'm sure there must be a simpler/more efficient way to do this...
 				$task = $this->db->get_where('tasks', array(
 					'id' => $id
-				))->row();
-				$data = array(
-					'description'	=> $task->description,
-					'notes'			=> $task->notes,
-					'project_id'	=> $task->project_id,
-					'status_id'		=> $task->status_id,
-					'context_id'	=> $task->context_id,
-					'due'			=> $task->due,
-					'created_at'	=> $task->created_at,
-					'updated_at'	=> $task->updated_at,
-				);
-				$this->db->insert('tasks', $data);
+				))->row_array();
+				$task['id'] = NULL;
+				$this->db->insert('tasks', $task);
 				$new_ids[] = $this->db->insert_id();
 				$this->db->delete('tasks', array(
 					'id' => $id

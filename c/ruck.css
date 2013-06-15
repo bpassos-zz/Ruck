@@ -329,7 +329,7 @@ h1, .user {
 	padding-left: 50px;
 }
 
-.tasks .delete {
+.tasks .complete {
 	background: #34B434;
 	color: #fff;
 	height: 100%;
@@ -348,7 +348,7 @@ h1, .user {
 	padding-left: 50px;
 }
 
-.tasks li:hover .delete {
+.tasks li:hover .complete {
 	width: 40px;
 }
 

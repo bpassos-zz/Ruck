@@ -94,7 +94,6 @@ class Tasks extends Ruck_Controller {
 		$this->template->build('tasks/detail', array(
 			'task'				=> $task,
 			'recurring_labels'	=> $this->Task->fetch_recurring_labels(),
-			'statuses'			=> $this->Status->fetch_statuses('task'),
 			'contexts'			=> $this->Context->fetch_contexts(),
 			'projects'			=> $this->Project->fetch_projects_for_dropdown(TRUE),
 		));
@@ -197,6 +196,32 @@ class Tasks extends Ruck_Controller {
 
 	}
 	
+	/**
+	 * Complete the task.
+	 */
+	function complete($id = NULL, $location = '')
+	{
+		# Update the task's is_completed flag.
+		$project_id = $this->Task->complete($id);
+		
+		# Redirect to either the home page or project page.
+		if ($location == 'home')
+		{
+			redirect('/gtd/');
+		}
+		elseif ($location)
+		{
+			redirect('/gtd/' . $location);
+		}
+		else
+		{
+			redirect('/gtd/projects/' . $project_id);
+		}
+	}
+
+	/**
+	 * Delete the task entry.
+	 */
 	function delete($id = NULL, $location = '')
 	{
 		# Delete the task row.

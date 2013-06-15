@@ -52,7 +52,8 @@ class Task extends CI_Model {
 	function get_tasks_by_project($project_id)
 	{
 		return $this->db->select('tasks.id, tasks.description, tasks.due, tasks.recurs, tasks.waiting_for, contexts.id AS context_id, contexts.name AS context_name')->join('contexts', 'contexts.id = tasks.context_id')->get_where('tasks', array(
-			'project_id' => $project_id
+			'project_id'   => $project_id,
+			'is_completed' => 0,
 		));
 	}
 	
@@ -99,11 +100,13 @@ class Task extends CI_Model {
 
 			# Retrieve the first task for each project.
 			$task = $this->db->get_where('tasks', array(
-				'project_id' => $project->id,
-				'due'        => NULL,
+				'project_id'   => $project->id,
+				'due'          => NULL,
+				'is_completed' => 0,
+				
 			), 1);
 			
-			# Insert the Task object into the appropriate array, if any were found.
+			# Count the total number of projects/tasks.
 			if ($task->num_rows() != 0)
 			{
 				$count++;
@@ -139,9 +142,10 @@ class Task extends CI_Model {
 			
 			# Retrieve the first task for each project that doesn't have a due date set.
 			$task = $this->db->get_where('tasks', array(
-				'project_id'  => $project->id,
-				'due'         => NULL,
-				'waiting_for' => 0,
+				'project_id'   => $project->id,
+				'due'          => NULL,
+				'waiting_for'  => 0,
+				'is_completed' => 0,
 			), 1);
 			
 			# Insert the Task object into the appropriate array, if any were found.
@@ -173,11 +177,13 @@ class Task extends CI_Model {
 		$tasks_due = $this->db->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
 			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24) - ($this->config->item('timezone_offset') * 60 * 60)),
 			'due <=' => date('Y-m-d H:i:s', time() + (60 * 60 * 24) - ($this->config->item('timezone_offset') * 60 * 60)),
+			'is_completed' => 0,
 		))->num_rows();
 		
 		# Find all the tasks that have a due date before NOW() minus 1 day.
 		$tasks_overdue = $this->db->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
 			'due <=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24) - ($this->config->item('timezone_offset') * 60 * 60)),
+			'is_completed' => 0,
 		))->num_rows();
 		
 		return array(
@@ -195,6 +201,7 @@ class Task extends CI_Model {
 		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
 			'due >=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24) - ($this->config->item('timezone_offset') * 60 * 60)),
 			'due <=' => date('Y-m-d H:i:s', time() - ($this->config->item('timezone_offset') * 60 * 60)),
+			'is_completed' => 0,
 		))->result();
 		return $query;
 	}
@@ -205,6 +212,7 @@ class Task extends CI_Model {
 		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
 			'due >=' => date('Y-m-d H:i:s', time() - ($this->config->item('timezone_offset') * 60 * 60)),
 			'due <=' => date('Y-m-d H:i:s', time() + (60 * 60 * 24) - ($this->config->item('timezone_offset') * 60 * 60)),
+			'is_completed' => 0,
 		))->result();
 		return $query;
 	}
@@ -214,6 +222,7 @@ class Task extends CI_Model {
 		# Find all the tasks with a due date that falls before NOW() minus 1 day.
 		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->order_by('due')->get_where('tasks', array(
 			'due <=' => date('Y-m-d H:i:s', time() - (60 * 60 * 24) - ($this->config->item('timezone_offset') * 60 * 60)),
+			'is_completed' => 0,
 		))->result();
 		return $query;
 	}
@@ -225,6 +234,7 @@ class Task extends CI_Model {
 	{
 		$query = $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
 			'waiting_for' => 1,
+			'is_completed' => 0,
 		))->result();
 		return $query;
 	}
@@ -233,63 +243,10 @@ class Task extends CI_Model {
 	{
 		return $this->db->select('tasks.id, tasks.project_id, tasks.context_id, tasks.recurs, projects.name AS project_name, tasks.due, tasks.description')->join('projects', 'tasks.project_id = projects.id')->get_where('tasks', array(
 			'waiting_for' => 1,
+			'is_completed' => 0,
 		))->num_rows();
 	}
 	
-	/**
-	 * Return the previous and next task links for the currently viewed task.
-	 */
-	function get_footer_links($id, $project_id)
-	{
-
-		$links = array();
-
-		# Find all the tasks that have the same parent and are active. 
-		$sibling_tasks = $this->db->order_by('id')->get_where('tasks', array(
-			'project_id' => $project_id,
-		))->result();
-		
-		# Loop through them all to find the previous and next projects.
-		$passed_current_task = FALSE;
-		$found_next_task = FALSE;
-		foreach ($sibling_tasks as $task)
-		{
-			if (!$found_next_task)
-			{
-				# If the flag for the current task is set, set the next link and set a flag to ignore everything else.
-				if ($passed_current_task)
-				{
-					$links[1] = array(
-						'url'	=> '/gtd/tasks/detail/' . $task->id,
-						'text'	=> $task->description,
-					);
-					$found_next_task = TRUE;
-				}
-				# If this is the current task, set a flag to pick up the next link.
-				if ($task->id == $id)
-				{
-					$passed_current_task = TRUE;
-				}
-				# As long as this is not the current task, make this the previous link.
-				else if (!$found_next_task)
-				{
-					$links[0] = array(
-						'url'	=> '/gtd/tasks/detail/' . $task->id,
-						'text'	=> $task->description,
-					);
-				}
-			}
-		}
-		
-		$links[2] = array(
-			'url'	=> '/gtd/projects/' .  $project_id,
-			'text'	=> 'Parent project',
-		);
-
-		return $links;
-
-	}
-
 	/**
 	 * Save changes to a task.
 	 */
@@ -315,7 +272,6 @@ class Task extends CI_Model {
 			'not_processed'		=> 0,
 			'waiting_for'		=> $this->input->post('waiting_for'),
 			'context_id'		=> $this->input->post('context_id'),
-			'status_id'			=> $this->input->post('status_id'),
 			'project_id'		=> (isset($project_id)) ? $project_id : $this->input->post('project_id'),
 			'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
 			'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : NULL,
@@ -340,7 +296,6 @@ class Task extends CI_Model {
 				'notes'				=> $this->input->post('notes'),
 				'waiting_for'		=> $this->input->post('waiting_for'),
 				'context_id'		=> $this->input->post('context_id'),
-				'status_id'			=> $this->input->post('status_id'),
 				'project_id'		=> $this->input->post('project_id'),
 				'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
 				'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : 0,
@@ -362,7 +317,6 @@ class Task extends CI_Model {
 				'description'		=> $this->input->post('description'),
 				'notes'				=> $this->input->post('notes'),
 				'context_id'		=> $this->input->post('context_id'),
-				'status_id'			=> $this->input->post('status_id'),
 				'project_id'		=> $project_id,
 				'due'				=> ($this->input->post('due')) ? date('Y-m-d H:i:s', strtotime($this->input->post('due'))) : NULL,
 				'recurs'			=> ($this->input->post('recurs') > 0) ? $this->input->post('recurs') : 0,
@@ -391,6 +345,71 @@ class Task extends CI_Model {
 	}
 
 	/**
+	 * Mark a task as complete, unless it is a recurring task.
+	 */
+	function complete($id)
+	{
+
+		# Find the task.
+		$task = $this->db->get_where('tasks', array(
+			'id' => $id
+		))->row_array();
+		
+		$task['id'] = NULL;
+		
+		# Check whether or not it has the recurring flag set. If it is recurring, we need to
+		# duplicate the task with a new due date, then set the original task as completed.
+		if ($task['recurs'])
+		{
+			# Insert the duplicate task.
+			$this->db->insert('tasks', $task);
+			$duplicate_task_id = $this->db->insert_id();
+			
+			# Retrieve the relevant type of recurrence.
+			$recurrence = $this->db->get_where('recurring', array(
+				'id' => $task['recurs']
+			))->row();
+			# Check for what type of recurrence it has - daily, weekly, monthly or yearly.
+			if ($recurrence->days)
+			{
+				# Daily task, add X day(s) to the due date.
+				$this->db->where('id', $duplicate_task_id)->update('tasks', array(
+					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->days . ' days'))
+				));
+			}
+			elseif ($recurrence->weeks)
+			{
+				# Weekly task, add X week(s) to the due date.
+				$this->db->where('id', $duplicate_task_id)->update('tasks', array(
+					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->weeks . ' weeks'))
+				));
+			}
+			elseif ($recurrence->months)
+			{
+				# Monthly task, add X month(s) to the due date.
+				$this->db->where('id', $duplicate_task_id)->update('tasks', array(
+					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->months . ' months'))
+				));
+			}
+			elseif ($recurrence->years)
+			{
+				# Annual task, add X year(s) to the due date.
+				$this->db->where('id', $duplicate_task_id)->update('tasks', array(
+					'due' => date('Y-m-d H:i:s', strtotime($task['due'] . ' +' . $recurrence->years . ' years'))
+				));
+			}
+		}
+
+		$this->db->where('id', $id)->update('tasks', array(
+			'is_completed' => 1
+		));
+
+		# Return the parent project ID.
+		return $task['project_id'];
+
+	}
+
+	/**
 	 * Delete a task, unless it is a recurring task.
 	 */
 	function delete($id)
@@ -401,49 +420,10 @@ class Task extends CI_Model {
 			'id' => $id
 		))->row();
 
-		# Check whether or not it has the recurring flag set.
-		if ($task->recurs)
-		{
-			# Retrieve the relevant type of recurrence.
-			$recurrence = $this->db->get_where('recurring', array(
-				'id' => $task->recurs
-			))->row();
-			# Check for what type of recurrence it has - daily, weekly, monthly or yearly.
-			if ($recurrence->days)
-			{
-				# Daily task, add X day(s) to the due date.
-				$this->db->where('id', $id)->update('tasks', array(
-					'due' => date('Y-m-d H:i:s', strtotime($task->due . ' +' . $recurrence->days . ' days'))
-				));
-			}
-			elseif ($recurrence->weeks)
-			{
-				# Weekly task, add X week(s) to the due date.
-				$this->db->where('id', $id)->update('tasks', array(
-					'due' => date('Y-m-d H:i:s', strtotime($task->due . ' +' . $recurrence->weeks . ' weeks'))
-				));
-			}
-			elseif ($recurrence->months)
-			{
-				# Monthly task, add X month(s) to the due date.
-				$this->db->where('id', $id)->update('tasks', array(
-					'due' => date('Y-m-d H:i:s', strtotime($task->due . ' +' . $recurrence->months . ' months'))
-				));
-			}
-			elseif ($recurrence->years)
-			{
-				# Annual task, add X year(s) to the due date.
-				$this->db->where('id', $id)->update('tasks', array(
-					'due' => date('Y-m-d H:i:s', strtotime($task->due . ' +' . $recurrence->years . ' years'))
-				));
-			}
-		}
-		else
-		{
-			$this->db->delete('tasks', array(
-				'id' => $id
-			));
-		}
+		# Delete it.
+		$this->db->delete('tasks', array(
+			'id' => $id
+		));
 
 		# Return to the parent project page.
 		return $task->project_id;
