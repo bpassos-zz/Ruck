@@ -3,7 +3,7 @@
  *
  * Author	: Matthew Pennell
  * Created	: 11/05/2013
- * Modified	: 11/05/2013
+ * Modified	: 15/06/2013
  */
 
 @import url('/c/reset.css');
@@ -199,11 +199,15 @@ h1, .user {
 .dropdown {
 	background: #142a14 url(/i/dropdown.png) no-repeat 176px;
 	border-bottom: 1px solid #8a958a;
-	color: #fff;
 	display: block;
 	font-weight: 700;
 	line-height: 39px;
 	padding: 0 10px;
+	position: relative;
+}
+
+.dropdown-header {
+	color: #fff;
 }
 
 .actions {
@@ -211,11 +215,12 @@ h1, .user {
 	font-weight: 700;
 	line-height: 40px;
 	position: absolute;
+	left: 0;
 	text-transform: uppercase;
 	width: 200px;
 }
 
-.dropdown:hover + .actions {
+.dropdown:hover .actions {
 	display: block;
 }
 
@@ -224,6 +229,11 @@ h1, .user {
 	color: #fff;
 	display: block;
 	padding: 0 10px;
+}
+
+.actions a:hover {
+	border-left: 5px solid #fff;
+	padding-left: 5px;
 }
 
 .menu a {

@@ -1,11 +1,13 @@
-<a href="/gtd/" id="home" class="dropdown">RUCK</a>
-<ul class="actions">
-	<li><a href="/gtd/tasks/inbox" accesskey="q" id="quick-capture"><u>Q</u>uick Capture</a></li>
-	<li><a href="/gtd/projects/create" accesskey="p" id="new-project" class="new-project">New <u>P</u>roject</a></li>
-	<li><a href="/gtd/tasks/create" accesskey="t" id="new-task" class="new-task">New <u>T</u>ask</a></li>
-	<li><a href="/gtd/contexts" accesskey="c" id="new-context" class="new-context">New <u>C</u>ontext</a></li>
-	<li><a href="/gtd/projects/review" accesskey="w" id="weekly-review" class="weekly-review"><u>W</u>eekly Review</a></li>
-</ul>
+<div class="dropdown">
+	<a href="/gtd/" id="home" class="dropdown-header">RUCK</a>
+	<ul class="actions">
+		<li><a href="/gtd/tasks/inbox" accesskey="q" id="quick-capture"><u>Q</u>uick Capture</a></li>
+		<li><a href="/gtd/projects/create" accesskey="p" id="new-project" class="new-project">New <u>P</u>roject</a></li>
+		<li><a href="/gtd/tasks/create" accesskey="t" id="new-task" class="new-task">New <u>T</u>ask</a></li>
+		<li><a href="/gtd/contexts" accesskey="c" id="new-context" class="new-context">New <u>C</u>ontext</a></li>
+		<li><a href="/gtd/projects/review" accesskey="w" id="weekly-review" class="weekly-review"><u>W</u>eekly Review</a></li>
+	</ul>
+</div>
 
 <ul class="menu">
 	<li<?php if ($current_page == 'process_inbox') echo ' class="selected"'; ?>>
