@@ -75,17 +75,17 @@ class Task extends CI_Model {
 	{
 		if (isset($project_id))
 		{
-			$query = $this->db->get_where('tasks', array(
-				'is_completed'  => 1,
-				'project_id'    => $project_id,
-				'updated_at >=' => date('Y-m-d H:i:s', time() - ($this->config->item('timezone_offset') * 60 * 60) - (60 * 60 * 24)),
+			$query = $this->db->select('tasks.id, tasks.description, tasks.due, tasks.recurs, tasks.waiting_for, contexts.id AS context_id, contexts.name AS context_name')->join('contexts', 'contexts.id = tasks.context_id')->get_where('tasks', array(
+				'is_completed'        => 1,
+				'project_id'          => $project_id,
+				'tasks.updated_at >=' => date('Y-m-d H:i:s', time() - ($this->config->item('timezone_offset') * 60 * 60) - (60 * 60 * 24)),
 			));
 		}
 		else
 		{
-			$query = $this->db->get_where('tasks', array(
-				'is_completed'  => 1,
-				'updated_at >=' => date('Y-m-d H:i:s', time() - ($this->config->item('timezone_offset') * 60 * 60) - (60 * 60 * 24)),
+			$query = $this->db->select('tasks.id, tasks.description, tasks.due, tasks.recurs, tasks.waiting_for, contexts.id AS context_id, contexts.name AS context_name')->join('contexts', 'contexts.id = tasks.context_id')->get_where('tasks', array(
+				'is_completed'        => 1,
+				'tasks.updated_at >=' => date('Y-m-d H:i:s', time() - ($this->config->item('timezone_offset') * 60 * 60) - (60 * 60 * 24)),
 			));
 		}
 		
@@ -438,6 +438,25 @@ class Task extends CI_Model {
 		# Return the parent project ID.
 		return $task['project_id'];
 
+	}
+
+	/**
+	 * Revert completed task status.
+	 */
+	function uncomplete($id)
+	{
+		# Find the task.
+		$task = $this->db->get_where('tasks', array(
+			'id' => $id
+		))->row_array();
+		
+		$this->db->where('id', $id)->update('tasks', array(
+			'is_completed' => 0,
+			'updated_at'   => date('Y-m-d H:i:s'),
+		));
+
+		# Return the parent project ID.
+		return $task['project_id'];
 	}
 
 	/**

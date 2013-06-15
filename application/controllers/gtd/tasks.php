@@ -221,6 +221,29 @@ class Tasks extends Ruck_Controller {
 	}
 
 	/**
+	 * Revert completed task back to incomplete.
+	 */
+	function uncomplete($id = NULL, $location = '')
+	{
+		# Update the task's is_completed flag.
+		$project_id = $this->Task->uncomplete($id);
+		
+		# Redirect to either the home page or project page.
+		if ($location == 'home')
+		{
+			redirect('/gtd/');
+		}
+		elseif ($location)
+		{
+			redirect('/gtd/' . $location);
+		}
+		else
+		{
+			redirect('/gtd/projects/' . $project_id);
+		}
+	}
+
+	/**
 	 * Delete the task entry.
 	 */
 	function delete($id = NULL, $location = '')

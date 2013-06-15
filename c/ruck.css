@@ -325,11 +325,15 @@ h1, .user {
 	-webkit-transition: padding 0.3s ease;
 }
 
+.completed .task {
+	color: #ababab;
+}
+
 .tasks .has-date {
 	padding-left: 50px;
 }
 
-.tasks .complete {
+.tasks .complete, .tasks .uncomplete {
 	background: #34B434;
 	color: #fff;
 	height: 100%;
@@ -344,11 +348,17 @@ h1, .user {
 	width: 0;
 }
 
+.tasks .uncomplete {
+	background: #D2ECFB;
+	color: #4D2ECF;
+	font-size: 18px;
+}
+
 .tasks li:hover {
 	padding-left: 50px;
 }
 
-.tasks li:hover .complete {
+.tasks li:hover .complete, .tasks li:hover .uncomplete {
 	width: 40px;
 }
 
