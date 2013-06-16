@@ -35,10 +35,6 @@
 		
 		</div>
 		
-		<footer>
-			<?php echo $template['partials']['footer']; ?>
-		</footer>
-
 		<!-- Load jQuery -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/j/jquery-1.9.1.min.js"><\/script>')</script>

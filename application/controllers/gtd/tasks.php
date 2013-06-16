@@ -141,19 +141,13 @@ class Tasks extends Ruck_Controller {
 		# Set page title.
 		$this->template->title('GTD', $task['description']);
 
-		# Create footer links.
-		$this->template->set_partial('footer', 'layouts/partial/footer', array(
-			'links' => $this->Task->get_footer_links($id, $task['project_id']),
-		));
-
 		# Load the main content of the page.
 		$this->template->build('tasks/detail', array(
-			'task'		=> $task,
-			'project'	=> $project,
+			'task'				=> $task,
+			'project'			=> $project,
 			'recurring_labels'	=> $this->Task->fetch_recurring_labels(),
-			'statuses'	=> $this->Status->fetch_statuses('task'),
-			'contexts'	=> $this->Context->fetch_contexts(),
-			'projects'	=> $this->Project->fetch_projects_for_dropdown(),
+			'contexts'			=> $this->Context->fetch_contexts(),
+			'projects'			=> $this->Project->fetch_projects_for_dropdown(),
 		));
 			
 	}
@@ -176,7 +170,6 @@ class Tasks extends Ruck_Controller {
 			# Load the main content of the page.
 			$this->template->build('tasks/new', array(
 				'recurring_labels'	=> $this->Task->fetch_recurring_labels(),
-				'statuses'			=> $this->Status->fetch_statuses('task'),
 				'contexts'			=> $this->Context->fetch_contexts(),
 				'projects'			=> $this->Project->fetch_projects_for_dropdown(),
 				'project_id'		=> $project_id,

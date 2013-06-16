@@ -39,9 +39,6 @@ class Ruck_Controller extends CI_Controller {
 			'context_list'	=> $this->Context->alphabetical_list(),
 		));
 
-		# Create footer links.
-		$this->template->set_partial('footer', 'layouts/partial/footer');
-		
 	}
 	
 }

@@ -44,15 +44,6 @@
 				</ul>
 			</li>
 			<li class="horizontal">
-				<label for="status_id">Status:</label>
-				<?php echo form_hidden('status_id', 1); ?>
-				<ul class="form-options">
-					<?php foreach ($statuses as $id=>$name): ?>
-						<li><a href="#" data-value="<?php echo $id; ?>" data-field="status_id"<?php if ($id == 1) echo ' class="selected"'; ?>><?php echo $name; ?></a></li>
-					<?php endforeach; ?>
-				</ul>
-			</li>
-			<li class="horizontal">
 				<label for="waiting_for">Waiting for someone else?</label>
 				<?php echo form_hidden('waiting_for', 0); ?>
 				<ul class="form-options">
