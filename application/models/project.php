@@ -136,7 +136,9 @@ class Project extends CI_Model {
 		$projects = array(
 			'0' => ($include_create_new) ? 'Create a new project for this task' : 'No parent project',
 		);
-		$query = $this->db->select('id, name')->order_by('name', 'asc')->get('projects');
+		$query = $this->db->select('id, name')->order_by('name', 'asc')->get_where('projects', array(
+			'someday_maybe' => 0,
+		));
 		foreach ($query->result() as $row)
 		{
 			$projects[$row->id] = $row->name;
