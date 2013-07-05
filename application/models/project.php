@@ -185,7 +185,8 @@ class Project extends CI_Model {
 			foreach ($query->result() as $row)
 			{
 				$row->tasks = $this->db->get_where('tasks', array(
-					'project_id' => $row->id
+					'project_id'   => $row->id,
+					'is_completed' => 0,
 				))->result();
 				$child_projects[] = $row;
 			}
