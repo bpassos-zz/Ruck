@@ -98,7 +98,7 @@ else
 						<li id="<?php echo $task->id; ?>" data-context-id="<?php echo $task->context_id; ?>">
 							<a href="/gtd/tasks/complete/<?php echo $task->id; ?>" class="complete">&#10004;</a>
 							<a href="/gtd/tasks/detail/<?php echo $task->id; ?>"><?php echo $task->description; ?></a> 
-							<a href="/gtd/projects/<?php echo $project->id; ?>" class="pill project" title="<?php echo $project->name; ?>"><?php echo character_limiter($project->name, 20); ?></a>
+							<a href="/gtd/projects/<?php echo $project->id; ?>" class="project" title="<?php echo $project->name; ?>"><?php echo character_limiter($project->name, 20); ?></a>
 						</li>
 					<?php endforeach; ?>
 				</ul>
