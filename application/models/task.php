@@ -469,14 +469,26 @@ class Task extends CI_Model {
 		$task = $this->db->get_where('tasks', array(
 			'id' => $id
 		))->row();
-
+		
 		# Delete it.
 		$this->db->delete('tasks', array(
 			'id' => $id
 		));
+		
+		# Delete the parent project if it has no other tasks and the same name as the task.
+		if ($this->db->get_where('tasks', array('project_id' => $task->project_id))->num_rows() == 0)
+		{
+			$this->db->delete('projects', array(
+				'id'   => $task->project_id,
+				'name' => $task->description,
+			));
+		}
 
 		# Return to the parent project page.
-		return $task->project_id;
+		if ($this->db->affected_rows() == 0)
+		{
+			return $task->project_id;
+		}
 
 	}
 
