@@ -118,8 +118,26 @@ strong {
 	text-align: right;
 }
 
-.inline-edit {
+.edit {
+	font-size: 11px;
+	background: #ababab;
+	color: #fff;
+	padding: 2px 5px;
+	border-radius: 3px;
+	position: relative;
+	top: -4px;
+	text-transform: uppercase;
+	margin-bottom: -4px;
+	letter-spacing: 0.1em;
+	line-height: 1;
+}
+
+.edit, input.inline-edit, textarea.inline-edit {
 	display: none;
+}
+
+h1.inline-edit:hover .edit, p.inline-edit:hover .edit {
+	display: inline;
 }
 
 .flash {
@@ -163,7 +181,7 @@ strong {
 
 /* @group Text Sizing */
 
-h1, .user {
+h1, .user, input.inline-edit {
 	font-size: 24px;
 	font-weight: 300;
 }

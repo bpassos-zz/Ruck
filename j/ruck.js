@@ -53,11 +53,6 @@ $(function () {
 
 	});
 	
-	// Make the task checkboxes not intercept the click event.
-	$('.delete input').click(function () {
-		location.href = $(this).parent().attr('href');
-	});
-	
 	// Make the form selection buttons pass their data-value to the relevant hidden field.
 	$('.form-options a').click(function () {
 		$this = $(this);
@@ -159,7 +154,7 @@ $(function () {
 		$('.contexts').remove();
 	}
 	
-	// Add a CLear button to the datepicker plugin.
+	// Add a Clear button to the datepicker plugin.
 	var dpFunc = $.datepicker._generateHTML;
 	$.datepicker._generateHTML = function  (inst) {
 		var thishtml = $(dpFunc.call($.datepicker, inst));
@@ -206,6 +201,14 @@ $(function () {
 	});
 	$('.overlay-clear').click(function () {
 		$('.ui-datepicker-clear').click();
+	});
+	
+	// Make the Project title and description editable.
+	$('h1.inline-edit, p.inline-edit').click(function () {
+		$(this).hide().next().show().focus();
+	});
+	$('input.inline-edit, textarea.inline-edit').blur(function () {
+		$(this).parents('form')[0].submit();
 	});
 
 });

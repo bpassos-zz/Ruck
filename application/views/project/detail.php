@@ -20,10 +20,10 @@ else
 		
 <?php echo form_open(); ?>
 		
-	<h1><?php echo $project['name']; ?></h1>
+	<h1 class="inline-edit"><?php echo $project['name']; ?> <span class="edit">Edit</span></h1>
 	<input class="inline-edit" type="text" name="name" value="<?php echo htmlspecialchars($project['name']); ?>">
 			
-	<p class="description"><?php echo $project['description']; ?></p>
+	<p class="description inline-edit"><?php echo $project['description']; ?></p>
 	<textarea name="description" rows="2" class="inline-edit" placeholder="Enter a project description"><?php echo $project['description']; ?></textarea>
 	
 	<ul class="tasks sortable">
