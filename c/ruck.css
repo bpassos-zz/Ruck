@@ -53,6 +53,10 @@ strong {
 	white-space: nowrap;
 }
 
+.information {
+	margin-bottom: 20px;
+}
+
 .btn {
 	border: 0;
 	color: #fff;

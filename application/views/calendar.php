@@ -44,7 +44,7 @@
 
 <?php else: ?>
 
-	<p>You have no tasks due today.</p>	
+	<p class="information">You have no tasks due today.</p>	
 
 <?php endif; ?>
 
