@@ -53,6 +53,11 @@ $(function () {
 
 	});
 	
+	// Make the task checkboxes not intercept the click event.
+	$('.complete input, .uncomplete input').click(function () {
+		location.href = $(this).parent().attr('href');
+	});
+	
 	// Make the form selection buttons pass their data-value to the relevant hidden field.
 	$('.form-options a').click(function () {
 		$this = $(this);

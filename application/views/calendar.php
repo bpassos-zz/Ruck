@@ -9,7 +9,7 @@
 					<strong><?php echo date("j", strtotime($task->due)); ?></strong>
 					<?php echo date("M", strtotime($task->due)); ?>
 				</span>
-				<a href="/gtd/tasks/complete/<?php echo $task->id; ?>/calendar" class="complete">&#10004;</a>
+				<a href="/gtd/tasks/complete/<?php echo $task->id; ?>/calendar" class="complete"><input type="checkbox"></a>
 				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="task"><?php echo $task->description; ?></a>
 				<?php if ($task->recurs): ?>
 					<img src="/i/recurs.png" alt="Recurs">
@@ -32,7 +32,7 @@
 					<strong><?php echo date("j", strtotime($task->due)); ?></strong>
 					<?php echo date("M", strtotime($task->due)); ?>
 				</span>
-				<a href="/gtd/tasks/complete/<?php echo $task->id; ?>/calendar" class="complete">&#10004;</a>
+				<a href="/gtd/tasks/complete/<?php echo $task->id; ?>/calendar" class="complete"><input type="checkbox"></a>
 				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="task"><?php echo $task->description; ?></a>
 				<?php if ($task->recurs): ?>
 					<img src="/i/recurs.png" alt="Recurs">
@@ -59,7 +59,7 @@
 					<strong><?php echo date("j", strtotime($task->due)); ?></strong>
 					<?php echo date("M", strtotime($task->due)); ?>
 				</span>
-				<a href="/gtd/tasks/complete/<?php echo $task->id; ?>/calendar" class="complete">&#10004;</a>
+				<a href="/gtd/tasks/complete/<?php echo $task->id; ?>/calendar" class="complete"><input type="checkbox"></a>
 				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="task"><?php echo $task->description; ?></a>
 				<?php if ($task->recurs): ?>
 					<img src="/i/recurs.png" alt="Recurs">
