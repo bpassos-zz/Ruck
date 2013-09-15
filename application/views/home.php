@@ -8,7 +8,7 @@
 	<?php foreach ($next_tasks as $task): ?>
 		<li data-context-id="<?php echo $task->context_id; ?>">
 			<a href="/gtd/tasks/complete/<?php echo $task->id; ?>/home" class="complete"><input type="checkbox"></a>
-			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="task"><?php echo $task->description; ?></a>
+			<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="task" title="<?php echo htmlspecialchars($task->notes); ?>"><?php echo $task->description; ?></a>
 			<?php if ($task->due): ?>
 				<a href="/gtd/tasks/detail/<?php echo $task->id; ?>" class="pill <?php echo (strtotime($task->due) + 86400 > time()) ? 'date' : 'overdue'; ?>"><?php echo date('F j', strtotime($task->due)); ?></a>
 				<?php if ($task->recurs): ?>
